@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import React from "react";
 
 import ClientOnly from "../components/client-only";
+import { cn } from "../lib/utils";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -14,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={cn("h-full", font.className)}>
         <ClientOnly>{children}</ClientOnly>
       </body>
     </html>

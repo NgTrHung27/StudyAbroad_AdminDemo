@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -22,7 +20,7 @@ const UserMenu = () => {
           onClick={toggleOpen}
           className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
         >
-          <AiOutlineMenu />
+          <AiOutlineMenu className="text-white font-bold" />
           <div className="hidden md:block">
             <Avatar src={"/placeholder.jpg"} />
           </div>
@@ -38,9 +36,12 @@ const UserMenu = () => {
               <MenuItem onClick={() => {}} label="Ngành học" />
             </div>
             <hr />
-            <MenuItem onClick={() => router.push("/sign-in")} label="Đăng nhập" />
+            <MenuItem
+              onClick={() => router.push("/sign-in")}
+              label="Đăng nhập"
+            />
             <hr className="hidden lg:block" />
-            <MenuItem onClick={() => router.push("/sign-up")} label="Đăng ký" />
+            <MenuItem onClick={() => {}} label="Đăng ký" />
           </div>
         </div>
       )}

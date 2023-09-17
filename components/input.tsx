@@ -47,7 +47,7 @@ const Input = ({
             type="submit"
             className="flex flex-row items-center justify-center bg-[#7D1F1F] w-10 h-10 rounded-full"
           >
-            <BiSearch className="font-bold w-5 h-5" />
+            <BiSearch className="font-bold w-5 h-5 text-white" />
           </button>
         </div>
       </form>
