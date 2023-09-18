@@ -17,7 +17,7 @@ const SignInPage = () => {
         <LoginModal />
       </div>
       <div className="relative text-black bg-orange-500 w-full h-full">
-        <Image fill alt="Logo" src="/Login_BG.png" />
+        <Image fill alt="Logo" src={"/Login_BG.png"} />
       </div>
     </main>
   );
