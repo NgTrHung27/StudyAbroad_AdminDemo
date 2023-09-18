@@ -9,7 +9,8 @@ const ClientOnly = ({ children }) => {
   const [mounted, isMounted] = useState(false);
   const pathname = usePathname();
 
-  const navVisible = pathname !== "/sign-in";
+  const isSignIn = pathname !== "/sign-in";
+  const isSignUp = pathname !== "/sign-up";
 
   useEffect(() => {
     isMounted(true);
@@ -20,7 +21,7 @@ const ClientOnly = ({ children }) => {
   return (
     <>
       <div className="h-full bg-white">
-        {navVisible && <Navbar />}
+        {isSignIn && isSignUp && <Navbar />}
         {children}
       </div>
     </>
