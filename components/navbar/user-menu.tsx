@@ -41,7 +41,7 @@ const UserMenu = () => {
               label="Đăng nhập"
             />
             <hr className="hidden lg:block" />
-            <MenuItem onClick={() => {}} label="Đăng ký" />
+            <MenuItem onClick={() => router.push("/sign-up")} label="Đăng ký" />
           </div>
         </div>
       )}

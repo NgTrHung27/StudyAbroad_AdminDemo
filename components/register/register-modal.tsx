@@ -2,20 +2,27 @@ import axios from "axios";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "../ui/form";
 import { useForm } from "react-hook-form";
-import { formSchema } from "../../app/(routes)/sign-in/constants";
-import Heading from "./heading";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import Heading from "../login/heading";
+import { formSchema } from "../../app/(routes)/sign-up/constants";
 
-const LoginModal = () => {
+const RegisterModal = () => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      email: "",
       password: "",
     },
   });
@@ -24,10 +31,12 @@ const LoginModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/login`,
-        values
-      );
+      // const response = await axios.post(
+      //   `${process.env.NEXT_PUBLIC_API_URL}/login`,
+      //   values
+      // );
+
+      const response = await axios.post("/api/register", values);
 
       console.log(response.data);
       form.reset();
@@ -41,8 +50,8 @@ const LoginModal = () => {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-0 m-0 gap-0">
       <Heading
-        title="Đăng nhập"
-        description="Chào mừng quay trở lại! Đăng nhập để tiếp tục"
+        title="Đăng ký"
+        description="Vui lòng nhập thông tin để đăng ký tài khoản"
       />
       <div className="w-full px-4 lg:px-8 flex flex-col items-center">
         <Form {...form}>
@@ -56,12 +65,31 @@ const LoginModal = () => {
                 <FormItem>
                   <FormControl>
                     <Input
+                      type="text"
                       className="text-black border-md outline focus-visible:ring-offset-500 focus-visible:ring-sky-500"
                       disabled={isLoading}
                       placeholder="Nhập tên đăng nhập"
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      className="text-black border-md outline focus-visible:ring-offset-500 focus-visible:ring-sky-500"
+                      disabled={isLoading}
+                      placeholder="Nhập email"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -74,10 +102,11 @@ const LoginModal = () => {
                       type="password"
                       className="text-black border-md outline focus-visible:ring-offset-500 focus-visible:ring-sky-500"
                       disabled={isLoading}
-                      placeholder="Nhập tên mật khẩu"
+                      placeholder="Nhập mật khẩu"
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -87,7 +116,7 @@ const LoginModal = () => {
               size="sm"
               disabled={isLoading}
             >
-              Đăng nhập
+              Đăng ký
             </Button>
           </form>
         </Form>
@@ -96,4 +125,4 @@ const LoginModal = () => {
   );
 };
 
-export default LoginModal;
+export default RegisterModal;
