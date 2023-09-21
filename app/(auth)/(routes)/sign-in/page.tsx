@@ -1,8 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import LoginModal from "../../../components/login/login-modal";
+import LoginModal from "../../../../components/login/login-modal";
 
 const SignInPage = () => {
   return (

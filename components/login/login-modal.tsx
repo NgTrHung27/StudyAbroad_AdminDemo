@@ -1,13 +1,15 @@
+"use client";
+
 import axios from "axios";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "../ui/form";
 import { useForm } from "react-hook-form";
-import { formSchema } from "../../app/(routes)/sign-in/constants";
 import Heading from "./heading";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { formSchema } from "../../app/(auth)/(routes)/sign-in/constants";
 
 const LoginModal = () => {
   const router = useRouter();
