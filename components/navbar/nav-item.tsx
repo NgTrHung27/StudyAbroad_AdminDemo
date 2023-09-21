@@ -4,18 +4,15 @@ import React from "react";
 
 const NavItem = () => {
   return (
-    <div className="hidden lg:flex md:flex-row items-center justify-normal mx-auto gap-4">
-      <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 px-3">
+    <div className="hidden md:flex flex-row items-center justify-center mx-auto gap-3 text-center">
+      <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-orange-800/90 hover:text-white/60 px-3 py-4">
         Trang chủ
       </div>
-      <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 px-3">
-        Yêu cầu
+      <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-orange-800/90 hover:text-white/60 px-3 py-4">
+        Trường học
       </div>
-      <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 px-3">
-        Liên kết
-      </div>
-      <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 px-3">
-        Ngành học
+      <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-orange-800/90 hover:text-white/60 px-3 py-4">
+        Đời sống sinh viên
       </div>
     </div>
   );

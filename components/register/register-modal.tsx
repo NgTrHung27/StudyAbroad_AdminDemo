@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
@@ -13,7 +15,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Heading from "../login/heading";
-import { formSchema } from "../../app/(routes)/sign-up/constants";
+import { formSchema } from "../../app/(auth)/(routes)/sign-up/constants";
 
 const RegisterModal = () => {
   const router = useRouter();
@@ -66,7 +68,7 @@ const RegisterModal = () => {
                   <FormControl>
                     <Input
                       type="text"
-                      className="text-black border-md outline focus-visible:ring-offset-500 focus-visible:ring-sky-500"
+                      className="text-black border outline outline-1 focus-visible:ring-offset-500 focus-visible:ring-sky-500"
                       disabled={isLoading}
                       placeholder="Nhập tên đăng nhập"
                       {...field}

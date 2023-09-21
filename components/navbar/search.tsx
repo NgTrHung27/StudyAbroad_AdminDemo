@@ -36,16 +36,18 @@ const Search = () => {
   };
 
   return (
-    <Input
-      id="prompt"
-      label="Tìm kiếm..."
-      type="text"
-      disabled={isLoading}
-      register={register}
-      errors={errors}
-      required
-      onSubmit={handleSubmit(onSubmit)}
-    />
+    <div className="">
+      <Input
+        id="prompt"
+        label="Tìm kiếm..."
+        type="text"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+        onSubmit={handleSubmit(onSubmit)}
+      />
+    </div>
   );
 };
 
