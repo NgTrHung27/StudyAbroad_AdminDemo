@@ -1,10 +1,10 @@
 import "./globals.css";
-import { Montserrat } from "next/font/google";
+import { Inter } from "next/font/google";
 import React from "react";
 
 import { cn } from "../lib/utils";
 
-const font = Montserrat({ subsets: ["latin"] });
+const font = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Quản lý du học",
@@ -14,9 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={cn("h-full", font.className)}>
-        {children}
-      </body>
+      <body className={cn("h-full", font.className)}>{children}</body>
     </html>
   );
 }

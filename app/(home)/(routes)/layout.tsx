@@ -1,12 +1,15 @@
-import Navbar from "../../../components/navbar/navbar";
 import NavBtSeo from "../../../components/navbar_seo/navbar_seo";
+import FooterDemo from "../../../components/Footer/footer";
+
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="h-full">
-      <div className="fixed w-full inset-y-0 z-50 h-[80px]">
+    <div className="h-full flex flex-col">
+      <div className="">
         <NavBtSeo />
       </div>
-      {children}
+
+      <main className="flex-1 pt-[80px]">{children}</main>
+      <FooterDemo />
     </div>
   );
 };

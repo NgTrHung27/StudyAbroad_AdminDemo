@@ -1,84 +1,62 @@
 "use client";
 
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "../../lib/utils";
+import { Button } from "../../components/ui/button";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "../../components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../../components/ui/popover";
+import { ComboboxDemo } from "../ui/combobox";
+
+const frameworks = [
+  {
+    value: "next.js",
+    label: "Next.js",
+  },
+  {
+    value: "sveltekit",
+    label: "SvelteKit",
+  },
+  {
+    value: "nuxt.js",
+    label: "Nuxt.js",
+  },
+  {
+    value: "remix",
+    label: "Remix",
+  },
+  {
+    value: "astro",
+    label: "Astro",
+  },
+];
+
 import React from "react";
 
 const NavItem = () => {
-  return (
-    <div className="hidden lg:flex md:flex-row items-center justify-normal mx-auto gap-4">
-      <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 px-3">
-        Trang chủ
-      </div>
-      <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 px-3">
-        Trường Học
-      </div>
-      <button
-        id="dropdownHoverButton"
-        data-dropdown-toggle="dropdownHover"
-        data-dropdown-trigger="hover"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-      >
-        Dropdown hover{" "}
-        <svg
-          class="w-2.5 h-2.5 ml-2.5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 10 6"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m1 1 4 4 4-4"
-          />
-        </svg>
-      </button>
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
 
-      <div
-        id="dropdownHover"
-        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-      >
-        <ul
-          class="py-2 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownHoverButton"
-        >
-          <li>
-            <a
-              href="#"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Settings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Earnings
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-              Sign out
-            </a>
-          </li>
-        </ul>
+  return (
+    <>
+      <div className="hidden lg:flex md:flex-row items-center justify-normal mx-auto ">
+        <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 ">
+          Trang chủ
+        </div>
+        <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 ">
+          <ComboboxDemo />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
