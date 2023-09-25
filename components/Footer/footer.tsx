@@ -35,22 +35,22 @@ export default function FooterDemo() {
             </h2>
             <ul className="mb-8 space-y-2 text-base list-none">
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90  ">
                   About
                 </Link>
               </li>
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90 ">
                   Terms of Use
                 </Link>
               </li>
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90 ">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90 ">
                   How it Works
                 </Link>
               </li>
@@ -63,17 +63,17 @@ export default function FooterDemo() {
             </h2>
             <ul className="mb-8 space-y-2 text-base list-none">
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90 ">
                   Support Carrer
                 </Link>
               </li>
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90 ">
                   24h Service
                 </Link>
               </li>
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90 ">
                   Cotact Us
                 </Link>
               </li>
@@ -86,17 +86,17 @@ export default function FooterDemo() {
             </h2>
             <ul className="mb-8 space-y-2 text-sm list-none">
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90  ">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90  ">
                   Policy
                 </Link>
               </li>
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90  ">
                   Business
                 </Link>
               </li>
@@ -109,12 +109,12 @@ export default function FooterDemo() {
             </h2>
             <ul className="mb-8 space-y-2 text-sm list-none">
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90 ">
                   Whatsapp
                 </Link>
               </li>
               <li>
-                <Link href={"/"} className="text-[#767676]">
+                <Link href={"/"} className="text-[#767676] hover:underline hover:text-black/90 ">
                   Support 24
                 </Link>
               </li>
