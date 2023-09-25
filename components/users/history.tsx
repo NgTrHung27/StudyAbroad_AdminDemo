@@ -40,7 +40,6 @@ export const History = () => {
                          <Image src={"/Truong1/cornerstone_logo.png"} alt='logoBottom' width={240} height={167} />
                     </div>
                 </div>
-               
             </div>
         </div>
     </div>
