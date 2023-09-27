@@ -22,8 +22,8 @@ const Heading = ({
         {Icon && <Icon className={cn("w-8 h-8", iconColor)} />}
       </div>
       <div>
-        <h2 className="text-2xl font-bold">{title}</h2>
-        <p className="md:max-w-[300px] text-sm text-muted-foreground truncate">
+        <h2 className="text-sm md:text-2xl font-bold">{title}</h2>
+        <p className="md:max-w-[300px] text-xs md:text-sm text-muted-foreground md:truncate">
           {description}
         </p>
       </div>
