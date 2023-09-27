@@ -1,4 +1,4 @@
-import ToastProvider from "@/components/ui/providers/toaster-provider";
+import ToastProvider from "@/components/providers/toaster-provider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";

@@ -8,5 +8,5 @@ export default async function Home() {
 
   if (!currentUser) return redirect("/sign-in");
 
-  return <div>Hello {currentUser?.username}</div>;
+  return <div>Hello Trang chủ</div>;
 }
