@@ -7,11 +7,9 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="">
         <NavBtSeo />
       </div>
-
       <main className="flex-1 pt-[80px]">{children}</main>
       <FooterDemo />
     </div>
   );
 };
-
 export default AuthLayout;
