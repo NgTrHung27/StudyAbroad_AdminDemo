@@ -12,6 +12,7 @@ interface NavbarRoutesProps {
 export const NavbarRoutes = ({ currentUser }: NavbarRoutesProps) => {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isCreate = pathname?.includes("create");
 
   const route = routes.filter((route) => route.href === pathname)[0];
 
@@ -19,13 +20,13 @@ export const NavbarRoutes = ({ currentUser }: NavbarRoutesProps) => {
     <>
       <div className="flex gap-x-2 w-full items-center">
         <Heading
-          title={route.label}
+          title={route?.label}
           description={
             isHome
               ? `Chào mừng trở lại, ${currentUser?.username}`
-              : route.description
+              : route?.description
           }
-          icon={route.icon}
+          icon={route?.icon}
         />
         <div className="ml-auto">
           <UserButton currentUser={currentUser} />
