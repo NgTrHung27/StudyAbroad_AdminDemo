@@ -4,9 +4,9 @@ import Image from 'next/image'
 export const History = () => {
   return (
     <div className='w-full relative bg-yellow-500'>
-        <div className='w-screen max-h-[219px] relative'>
-            <Image alt='/' src='/Truong1/historyheader.png' width={1440} height={219}/>
-            <div className='bg-blue-950 bg-opacity-90 z-10 absolute inset-0 w-full h-full text-center items-center flex flex-col justify-center text-[48px] font-bold text-white'>
+        <div className='relative'>
+             <Image alt='/' src='/Truong1/historyheader.png' width={1440} height={219} className='z-0' />           
+            <div className='bg-blue-950 bg-opacity-90 z-10 absolute inset-0 w-full min-h-[225px] text-center items-center flex flex-col justify-center text-[48px] font-bold text-white '>
                 <p style={{letterSpacing:"-2px"}}>Lịch sử của</p>
                 <p style={{letterSpacing:"-2px"}}>Cornerstone International Community College</p>
             </div>
@@ -16,7 +16,7 @@ export const History = () => {
                 <img alt='/2' src='/Truong1/truong1.png' className='w-fit h-fit' />
             </div>
             <div className='col-span-2 relative z-0'>
-                <div className='bg-white left-0 right-0 top-[24px] bottom-[24px] z-10 absolute'>
+                <div className='bg-white w-full top-[24px] bottom-[24px] z-10 absolute'>
                     <div className='flex flex-col py-[66px] '>
                         <div className='flex flex-row pl-[22px] pr-[58px]'>
                             <div className=' p-0 w-8 h-8 rounded-full border-yellow-500 border-[2px] border-dashed justify-center items-center font-bold flex absolute'>
@@ -26,8 +26,8 @@ export const History = () => {
                                 Cornerstone international community college (CICC) là một cơ sở giáo dục nổi tiếng với lịch sử đa dạng và phong phú.
                             </div>      
                         </div>
-                        <div className='bg-yellow-500 w-[3px] h-[140px] ml-[37px] mt-12 absolute '></div>
-                        <div className='flex flex-row pl-[22px] pr-[58px] mt-[156px]'>
+                        <div className='bg-yellow-500 w-[4px] h-[140px] ml-[37px] mt-[1px] static '></div>
+                        <div className='flex flex-row pl-[22px] pr-[58px] mt-[12px] static'>
                             <div className=' p-0 w-8 h-8 rounded-full border-yellow-500 border-[2px] border-dashed justify-center items-center font-bold flex absolute'>
                                <p>02</p> 
                             </div>
