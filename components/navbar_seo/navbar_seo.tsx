@@ -8,7 +8,7 @@ import NavBtSeo from "./nav_button_seo";
 const ChuyenHuong = [];
 const Navbar = () => {
   return (
-    <div className="fixed w-full z-10 shadow-sm">
+    <div className="">
       <div className="py-2 border-b-[1px] bg-[#7D1F1F] ">
         <Container>
           <div className="flex flex-row items-center justify-center gap-3 ">
