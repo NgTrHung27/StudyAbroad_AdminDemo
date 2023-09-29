@@ -1,12 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext",
-      "ES2017",
-      "es6"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext", "ES2017", "es6"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -29,9 +23,8 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "app/(home)/(routesTruong)/[idTruong]/YeuCau/page.jsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
