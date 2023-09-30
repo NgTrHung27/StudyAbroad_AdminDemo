@@ -9,7 +9,7 @@ export const Blogs = () => {
             <Image src={"/Truong1/blogsicon.png"} alt='logoBottom' width={280} height={214} className='absolute left-[400px] mt-[-52px]'  />                
             <p className='text-white font-extrabold text-4xl absolute left-[600px] mt-7'>BLOGS</p>
         </div>
-        <div className='grid grid-cols-3 px-10 gap-4 absolute top-28'>
+        <div className='grid grid-cols-3 px-10 gap-4 items-center mt-28'>
             <div className='col-span-1'>
                 <Blogscard/>
             </div>
