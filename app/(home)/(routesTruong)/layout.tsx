@@ -6,12 +6,11 @@ const AuthLayout = ({ children: children }: { children: React.ReactNode }) => {
     <div className="h-full flex flex-col">
       <div className="flex-1">
         <Navbar />
-        <main className="h-full w-full pt-[60px]">{children}</main>
+        <main className="h-full w-full pt-[72px]">{children}</main>
       </div>
       <div className="w-full">
         <Footer1 />
       </div>
-       <div >{children}</div>
     </div>
   );
 };

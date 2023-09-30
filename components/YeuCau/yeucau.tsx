@@ -7,7 +7,7 @@ export default function YeuCauPage() {
       <div>
         <Image
           alt="header"
-          src={"/Truong1/historyheader.png"}
+          src={"/ImgDoiTac2/navyeucau.png"}
           width={2000}
           height={538}
           className=""
@@ -19,7 +19,7 @@ export default function YeuCauPage() {
             alt=""
             src={"/LOGO_RED.png"}
             layout="fill"
-            className="absolute inset-0 z-0 mt-[850px] -rotate-45 opacity-20"
+            className="absolute inset-0 z-0 mt-[970px] -rotate-45 opacity-20"
           />
         </div>
         <div className="relative z-10">
