@@ -46,7 +46,7 @@ export default function DoiTac2() {
                 </div>
               </div>
               <div className="ml-[-25px] col-span-11">
-                <p className="text-[24px] text-justify">
+                <p className="text-[24px] text-justify mb-[10px]">
                   Chương trình cấp bằng quản lý thể thao điện tử quốc tế mang
                   đến cho sinh viên cơ hội biến niềm đam mê chơi trò chơi điện
                   tử thành một nghề nghiệp khả thi trong ngành thể thao điện tử,
@@ -78,7 +78,7 @@ export default function DoiTac2() {
           </div>
         </div>
       </div>
-      <div className="mt-[-60px]">
+      <div className="mt-[60px]">
         <div className="relative ">
           <div className="w-[1223px] h-[36px] bg-[#D120B5] absolute top-[-18px] left-[200px]"></div>
           <div>
@@ -92,7 +92,7 @@ export default function DoiTac2() {
               className="w-full h-[876px] absolute inset-0 z-[-1]"
             />
           </div>
-          <div className="absolute top-0 left-0 z-49 mt-[120px]">
+          <div className="absolute top-0 left-0 z-50 mt-[120px]">
             <div className="flex flex-row items-start mt-[20px] mr-[250px]">
               <div className="rounded-full mx-[48px] w-[12px] h-[12px] mt-[10px] bg-white"></div>
               <p className="text-white ml-[-25px] text-[24px]">
@@ -147,7 +147,7 @@ export default function DoiTac2() {
             sizes="100vw"
             className="w-[612px] h-[693px] absolute top-[90px] right-[35px]"
           />
-          <div className="absolute bottom-[-50px] left-0 z-49">
+          <div className="absolute bottom-[-50px] left-0 z-50">
             <div className="h-[110px] w-[1080px] bg-[#D120B5] rounded-br-3xl relative">
               <p className="font-bold text-[60px] text-white text-center justify-center">
                 Tổng quan chương trình
@@ -178,7 +178,7 @@ export default function DoiTac2() {
               className="w-full h-[1143px] absolute inset-0 z-[-1]"
             />
           </div>
-          <div className="absolute top-0 left-0 z-49 mt-[200px] ml-[50px]">
+          <div className="absolute top-0 left-0 z-50 mt-[200px] ml-[50px]">
             <div className="flex flex-row items-start mt-[20px] mr-[900px]">
               <div className="rounded-full mx-[48px] w-[12px] h-[12px] mt-[10px] bg-white"></div>
               <p className="text-white ml-[-25px] text-[24px]">
@@ -307,7 +307,7 @@ export default function DoiTac2() {
             className="w-full h-[876px] absolute inset-0 z-[-1]"
           />
         </div>
-        <div className="absolute top-0 left-0 z-49 mt-[30px]">
+        <div className="absolute top-0 left-0 z-50 mt-[30px]">
           <div className="flex flex-row items-start mt-[20px] mr-[250px]">
             <div className="rounded-full mx-[48px] w-[12px] h-[12px] mt-[10px] bg-white"></div>
             <p className="text-white ml-[-25px] text-[24px]">
