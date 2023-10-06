@@ -4,7 +4,7 @@ import Image from "next/image";
 export const History = () => {
   return (
     <div className="w-full relative bg-yellow-500">
-      <div className="w-screen max-h-[219px] relative">
+      <div className="w-full max-h-[219px] overflow-hidden relative">
         <Image
           alt="/"
           src="/Truong1/historyheader.png"
@@ -18,7 +18,7 @@ export const History = () => {
           </p>
         </div>
       </div>
-      <div className="w-screen h-full grid-cols-3 grid relative">
+      <div className="w-full h-full grid-cols-3 grid relative">
         <div className="col-span-1">
           <img alt="/2" src="/Truong1/truong1.png" className="w-fit h-fit" />
         </div>
