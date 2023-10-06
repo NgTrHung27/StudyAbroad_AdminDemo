@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export const Body = () => {
   return (
-    <div className='w-full h-[500px] bg-white'>
+    <div className='w-full h-auto bg-white'>
         <div className='w-[514px] h-full ml-[274px] flex flex-col'>
             <div className='flex flex-col relative '>
                 <div className='w-1 h-9 bg-red-700'></div>
