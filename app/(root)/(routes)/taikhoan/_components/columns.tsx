@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/badge";
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "username",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <Button
@@ -82,10 +82,10 @@ export const columns: ColumnDef<User>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <Link href={`/teacher/courses/${id}`}>
+            <Link href={`/taikhoan/edit/${id}`}>
               <DropdownMenuItem>
                 <Pencil className="h-4 w-4 mr-2" />
-                Cập nhật
+                Xem thông tin chi tiết
               </DropdownMenuItem>
             </Link>
           </DropdownMenuContent>

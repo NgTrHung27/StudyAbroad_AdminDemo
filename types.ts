@@ -1,11 +1,13 @@
-import { User } from "@prisma/client";
+import { User, UserRole } from "@prisma/client";
 import {
   FileSpreadsheet,
   GraduationCap,
   Home,
+  Newspaper,
   PlusCircle,
   School,
   Settings,
+  User as UserIcon,
 } from "lucide-react";
 
 export const routes = [
@@ -17,7 +19,7 @@ export const routes = [
   {
     label: "Tài khoản người dùng",
     href: "/taikhoan",
-    icon: PlusCircle,
+    icon: UserIcon,
     description: "Quản lý và theo dõi danh sách các tài khoản người dùng",
   },
   {
@@ -54,3 +56,14 @@ export type SafeUser = Omit<
   updatedAt: string;
   emailVerified: string | null;
 };
+
+export const rolesOptions = [
+  {
+    value: UserRole.ADMIN,
+    label: "Quản trị viên",
+  },
+  {
+    value: UserRole.USER,
+    label: "Người dùng",
+  },
+];

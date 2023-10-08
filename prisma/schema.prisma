@@ -15,16 +15,35 @@ enum UserRole {
   USER
 }
 
+// Bảng người dùng (đăng nhập, đăng ký, hồ sơ)
 model User {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  role           UserRole  @default(USER)
-  username       String?
-  email          String?   @unique
-  emailVerified  DateTime?
-  image          String?
-  hashedPassword String?
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  accounts Account[]
+  role UserRole @default(USER)
+
+  // Đăng nhập
+  email          String    @unique
+  emailVerified  DateTime?
+  hashedPassword String
+
+  // Thông tin người dùng, đăng ký
+  name        String
+  dob         DateTime
+  address     String
+  phoneNumber String
+  gender      Boolean  @default(false)
+  cccd        String   @unique
+  description String?
+  avatar      String?
+  isPublished Boolean  @default(false)
+
+  schoolId String? @db.ObjectId
+  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  accounts       Account[]
+  activateTokens ActivateToken[]
+  certificates   Certificate[]
+  blogs          Blog[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -50,4 +69,98 @@ model Account {
   updatedAt DateTime @updatedAt
 
   @@unique([provider, providerAccountId])
+}
+
+model ActivateToken {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  token String @unique
+  otp   String @unique
+
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum SchoolCategory {
+  THPT
+  CAODANG
+  DAIHOC
+}
+
+enum CertificateCategory {
+  IELTS
+  TOEFL
+}
+
+model Certificate {
+  id       String              @id @default(auto()) @map("_id") @db.ObjectId
+  category SchoolCategory      @default(THPT)
+  english  CertificateCategory @default(IELTS)
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model School {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  logoUrl       String @db.String
+  backgroundUrl String @db.String
+  name          String
+  description   String @db.String
+  colorValue    String
+
+  users      User[]
+  operations Operation[]
+  blogs      Blog[]
+  programs   Program[]
+}
+
+// Bảng cơ sở của trường học
+model Operation {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name          String
+  description   String @db.String
+  backgroundUrl String @db.String
+
+  schoolId String? @db.ObjectId
+  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@index([schoolId])
+}
+
+model Blog {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  description String @db.String
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  schoolId String? @db.ObjectId
+  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@index([userId, schoolId])
+}
+
+model Program {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  description String @db.String
+  fee         Float
+  picOne      String @db.String
+  picTwo      String @db.String
+
+  schoolId String? @db.ObjectId
+  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@index([schoolId])
 }
