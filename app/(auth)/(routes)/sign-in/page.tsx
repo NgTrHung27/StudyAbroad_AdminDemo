@@ -4,18 +4,17 @@ import LoginModal from "../../../../components/login/login-modal";
 
 const SignInPage = () => {
   return (
-    <main className="h-full w-full flex flex-row items-center">
-      <Link
-        href={"/"}
-        className="hidden md:block m-12 self-start absolute w-24 h-14"
-      >
-        <Image fill alt="Logo" className="cursor-pointer" src="/logo.png" />
-      </Link>
-      <div className="w-full h-full text-black">
+    <main className="grid h-full w-full grid-cols-1 md:grid-cols-2">
+      <div>
         <LoginModal />
       </div>
-      <div className="relative text-black bg-orange-500 w-full h-full">
-        <Image fill alt="Logo" src={"/Login_BG.png"} />
+      <div className="relative">
+        <Image
+          fill
+          alt="Background"
+          src={"/LOGIN_CANADA.png"}
+          className="object-cover"
+        />
       </div>
     </main>
   );
