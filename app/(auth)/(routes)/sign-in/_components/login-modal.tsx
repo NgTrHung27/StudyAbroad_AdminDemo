@@ -139,9 +139,7 @@ const LoginModal = () => {
               />
             </div>
             <DialogFooter className="bg-gray-100 px-6 py-4">
-              <Button disabled={isLoading} variant={"login"}>
-                Đăng nhập
-              </Button>
+              <Button disabled={isLoading}>Đăng nhập</Button>
             </DialogFooter>
           </form>
         </Form>

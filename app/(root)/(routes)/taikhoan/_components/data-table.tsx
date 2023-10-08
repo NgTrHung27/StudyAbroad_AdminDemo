@@ -73,11 +73,9 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center py-4 justify-between gap-x-2">
         <Input
           placeholder="Bộ lọc tên tài khoản..."
-          value={
-            (table.getColumn("username")?.getFilterValue() as string) ?? ""
-          }
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("username")?.setFilterValue(event.target.value)
+            table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="max-w-[260px]"
         />
@@ -100,7 +98,7 @@ export function DataTable<TData, TValue>({
                       column.toggleVisibility(!!value)
                     }
                   >
-                    {column.id === "username" && "Tên tài khoản"}
+                    {column.id === "name" && "Tên tài khoản"}
                     {column.id === "email" && "email"}
                     {column.id === "role" && "vai trò"}
                     {column.id === "actions" && "Tùy chọn"}

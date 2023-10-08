@@ -4,6 +4,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import db from "@/lib/db";
 import { UserRole } from "@prisma/client";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(db),
@@ -16,7 +18,8 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Sai thông tin tài");
+          toast.error("Sai thông tin tài khoản");
+          throw new Error("Sai thông tin tài khoản");
         }
 
         const user = await db.user.findUnique({
@@ -27,7 +30,13 @@ export const authOptions: AuthOptions = {
         });
 
         if (!user || !user?.hashedPassword) {
-          throw new Error(`Sai thông tài khoản`);
+          toast.error("Sai thông tin tài khoản");
+          throw new Error(`Sai thông tin tài khoản`);
+        }
+
+        if (!user.emailVerified) {
+          toast.error("Email chưa xác thực");
+          throw new Error("Người dùng chưa xác thực email");
         }
 
         const isCorrectPassword = await bcrypt.compare(
@@ -36,6 +45,7 @@ export const authOptions: AuthOptions = {
         );
 
         if (!isCorrectPassword) {
+          toast.error("Sai thông tin tài khoản");
           throw new Error("Sai thông tin tài khoản");
         }
 

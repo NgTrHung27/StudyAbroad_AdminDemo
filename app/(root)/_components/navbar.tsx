@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { NavbarRoutes } from "./navbar-routes";
+import { NavbarRoutes } from "../../../components/navbar-routes";
 import { SafeUser } from "@/types";
 import { MobileSidebar } from "./mobile.sidebar";
 

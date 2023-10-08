@@ -3,6 +3,7 @@ import db from "@/lib/db";
 import { UserRole } from "@prisma/client";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import { randomUUID } from "crypto";
 
 export async function POST(req: Request) {
   try {
@@ -12,7 +13,7 @@ export async function POST(req: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const { username, role, password, email } = await req.json();
+    const { name, role, password, email } = await req.json();
 
     const hasRole = role === UserRole.ADMIN || role === UserRole.USER;
 
@@ -24,10 +25,17 @@ export async function POST(req: Request) {
 
     const user = await db.user.create({
       data: {
-        username,
+        name,
         email,
         hashedPassword,
         role,
+      },
+    });
+
+    const token = await db.activateToken.create({
+      data: {
+        token: `${randomUUID()}${randomUUID()}`.replace("/-/g", ""),
+        userId: user.id,
       },
     });
 

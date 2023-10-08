@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 interface SidebarItemProps {
   icon: LucideIcon;
   label: string;
-  href: string;
+  href?: string;
 }
 
 const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
@@ -20,7 +20,11 @@ const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
     pathname?.startsWith(`${href}/`);
 
   const onClick = () => {
-    router.push(href);
+    if (href) {
+      router.push(href);
+    }
+
+    return;
   };
   return (
     <button

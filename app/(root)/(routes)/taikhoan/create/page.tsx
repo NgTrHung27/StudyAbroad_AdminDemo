@@ -22,17 +22,7 @@ import { Input } from "@/components/ui/input";
 import { formCreateUserSchema } from "./constants";
 import { UserRole } from "@prisma/client";
 import { Combobox } from "@/components/ui/combobox";
-
-const options = [
-  {
-    value: UserRole.ADMIN,
-    label: "Quản trị viên",
-  },
-  {
-    value: UserRole.USER,
-    label: "Người dùng",
-  },
-];
+import { rolesOptions } from "@/types";
 
 const CreateTaiKhoanPage = () => {
   const router = useRouter();
@@ -40,7 +30,7 @@ const CreateTaiKhoanPage = () => {
   const form = useForm<z.infer<typeof formCreateUserSchema>>({
     resolver: zodResolver(formCreateUserSchema),
     defaultValues: {
-      username: "",
+      name: "",
       password: "",
       email: "",
       role: "",
@@ -53,7 +43,7 @@ const CreateTaiKhoanPage = () => {
     try {
       const response = await axios.post("/api/users", values);
 
-      router.push(`/taikhoan/${response.data.id}`);
+      router.push(`/taikhoan/edit/${response.data.id}`);
       toast.success("Tạo tài khoản thành công");
     } catch (error) {
       console.log(error);
@@ -91,7 +81,7 @@ const CreateTaiKhoanPage = () => {
                 <FormItem>
                   <FormLabel>Vai trò</FormLabel>
                   <FormControl>
-                    <Combobox options={...options} {...field} />
+                    <Combobox options={...rolesOptions} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -99,7 +89,7 @@ const CreateTaiKhoanPage = () => {
             />
             <FormField
               control={form.control}
-              name="username"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Tên tài khoản</FormLabel>
@@ -149,7 +139,7 @@ const CreateTaiKhoanPage = () => {
               )}
             />
             <div className="flex items-center gap-x-2">
-              <Link href={"/"}>
+              <Link href={"/taikhoan"}>
                 <Button variant={"ghost"} type="button">
                   Quay về
                 </Button>
