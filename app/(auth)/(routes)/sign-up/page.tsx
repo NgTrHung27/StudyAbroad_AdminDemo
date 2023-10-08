@@ -1,14 +1,21 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
 import RegisterModal from "../../../../components/register/register-modal";
 
 const SignUpPage = () => {
   return (
-    <div className="h-full">
-      <div className="flex flex-row">
-        <RegisterModal />
+    <main className="grid h-full w-full grid-cols-1 md:grid-cols-2">
+      <RegisterModal />
+      <div className="relative">
+        <Image
+          fill
+          alt="Background"
+          src={"/register/REGISTER_CANADA.png"}
+          className="object-cover"
+        />
       </div>
-    </div>
+    </main>
   );
 };
 
