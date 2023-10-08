@@ -4,14 +4,19 @@ import axios from "axios";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+} from "../../@/components/ui/form";
 import { useForm } from "react-hook-form";
-import Heading from "./heading";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import Heading from "../heading";
+import { Input } from "../../@/components/ui/input";
+import { Button } from "../../@/components/ui/button";
 import { formSchema } from "../../app/(auth)/(routes)/sign-in/constants";
 import Image from "next/image";
-import { Checkbox } from "../ui/checkbox";
+import { Checkbox } from "../../@/components/ui/checkbox";
 
 const LoginModal = () => {
   const router = useRouter();

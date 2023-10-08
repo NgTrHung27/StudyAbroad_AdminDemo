@@ -12,7 +12,7 @@ const SignInPage = () => {
         <Image
           fill
           alt="Background"
-          src={"/LOGIN_CANADA.png"}
+          src={"/login/LOGIN_CANADA.png"}
           className="object-cover"
         />
       </div>
