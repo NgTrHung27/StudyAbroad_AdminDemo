@@ -8,8 +8,10 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="fixed w-full h-[80px] inset-y-0 z-10 shadow-sm">
         <NavBtSeo />
       </div>
-      <main className="flex-1 pt-[80px]">{children}</main>
-      <FooterDemo />
+      <main className="flex-1 pt-[80px] h-full">
+        {children}
+        <FooterDemo />
+      </main>
     </div>
   );
 };
