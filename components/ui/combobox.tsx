@@ -4,7 +4,7 @@ import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { cn } from "../../../lib/utils";
+import { cn } from "../../lib/utils";
 import { Button } from "./button";
 import {
   Command,
