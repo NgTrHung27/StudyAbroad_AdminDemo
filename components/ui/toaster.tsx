@@ -1,6 +1,6 @@
 "use client";
 
-import { useToast } from "../../../action/use-toast";
+import { useToast } from "../../action/use-toast";
 import {
   Toast,
   ToastClose,
