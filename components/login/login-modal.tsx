@@ -4,12 +4,19 @@ import axios from "axios";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+} from "../../@/components/ui/form";
 import { useForm } from "react-hook-form";
-import Heading from "./heading";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import Heading from "../heading";
+import { Input } from "../../@/components/ui/input";
+import { Button } from "../../@/components/ui/button";
 import { formSchema } from "../../app/(auth)/(routes)/sign-in/constants";
+import Image from "next/image";
+import { Checkbox } from "../../@/components/ui/checkbox";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -41,16 +48,19 @@ const LoginModal = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-0 m-0 gap-0">
+    <div className="relative w-full h-full flex flex-col items-center justify-center p-0 m-0 gap-0">
+      <div className="absolute top-0 mt-12 w-[193px] h-[95px]">
+        <Image fill alt="Logo" src={"/login/LOGO_RED.png"} />
+      </div>
       <Heading
         title="Đăng nhập"
-        description="Chào mừng quay trở lại! Đăng nhập để tiếp tục"
+        description="Chào mừng bạn! Hãy đăng nhập tài khoản của bạn"
       />
       <div className="w-full px-4 lg:px-8 flex flex-col items-center">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-y-4 w-[320px] p-2 px-3 md:px-6 focus-within::shadow-sm gap-2"
+            className="flex flex-col justify-center gap-y-4 w-[350px] focus-within::shadow-sm gap-2"
           >
             <FormField
               name="username"
@@ -58,9 +68,9 @@ const LoginModal = () => {
                 <FormItem>
                   <FormControl>
                     <Input
-                      className="text-black border-md outline focus-visible:ring-offset-500 focus-visible:ring-sky-500"
+                      className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
                       disabled={isLoading}
-                      placeholder="Nhập tên đăng nhập"
+                      placeholder="Email đăng nhập"
                       {...field}
                     />
                   </FormControl>
@@ -74,25 +84,47 @@ const LoginModal = () => {
                   <FormControl>
                     <Input
                       type="password"
-                      className="text-black border-md outline focus-visible:ring-offset-500 focus-visible:ring-sky-500"
+                      className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
                       disabled={isLoading}
-                      placeholder="Nhập tên mật khẩu"
+                      placeholder="Mật khẩu"
                       {...field}
                     />
                   </FormControl>
                 </FormItem>
               )}
             />
-            <Button
-              className="my-4 w-full"
-              variant="login"
-              size="sm"
-              disabled={isLoading}
-            >
-              Đăng nhập
-            </Button>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Checkbox
+                  className="w-5 h-5
+              "
+                />
+                <span className="ml-2 italic text-sm font-semibold">
+                  Ghi nhớ mật khẩu
+                </span>
+              </div>
+              <div className="text-sm italic font-semibold hover:underline cursor-pointer">
+                Quên mật khẩu?
+              </div>
+            </div>
+            <div className="flex items-center justify-center">
+              <Button
+                className="my-4 w-full text-base font-semibold uppercase"
+                variant="login"
+                size="login"
+                disabled={isLoading}
+              >
+                Đăng nhập
+              </Button>
+            </div>
           </form>
         </Form>
+      </div>
+      <div className="mt-20 text-[#7D1F1F] text-base font-semibold">
+        Bạn chưa có tài khoản?
+        <span className="ml-2 font-bold cursor-pointer hover:underline">
+          Đăng ký ngay
+        </span>
       </div>
     </div>
   );
