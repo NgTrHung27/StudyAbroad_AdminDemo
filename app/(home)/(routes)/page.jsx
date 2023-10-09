@@ -9,11 +9,11 @@ import HighlightSchool from "./_components/6_HightlightSchool";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-1 flex-col bg-white">
-      <div className="">
+    <>
+      <div className="w-10/12 h-full mx-auto ">
         <Carousel />
       </div>
-      <div className="">
+      <div>
         <Benefit />
       </div>
       <WhyCEMC />
@@ -22,7 +22,7 @@ const HomePage = () => {
       <div className="mt-16 p-4 bg-[url('/Home_Bg_Hightlight.png')]">
         <HighlightSchool />
       </div>
-    </div>
+    </>
   );
 };
 
