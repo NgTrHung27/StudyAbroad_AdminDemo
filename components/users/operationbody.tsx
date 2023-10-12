@@ -4,7 +4,7 @@ import { Operationcard_1 } from './operationcard_1'
 
 export const OperationBody = () => {
   return (
-    <div className='w-full h-[fit] bg-black relative py-12'>
+    <div className='w-full h-[fit] bg-black relative flex items-center justify-center py-12'>
         <Image alt='/' src='/Truong1/bg-operations.png' fill className='w-full h-full z-0 relative ' />
         <div className='z-10 flex flex-col md:grid md:grid-cols-3 gap-4 px-5 mt-48 '>
             <div className='md:col-span-1 '>

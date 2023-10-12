@@ -4,7 +4,7 @@ import Image from "next/image";
 export const History = () => {
   return (
     <div className="w-full h-fit relative bg-yellow-500 " >
-      <div className="w-screen h-[209px] relative">
+      <div className="w-full h-[209px] relative">
         <Image
           alt="/"
           src="/Truong1/historyheader.png"
