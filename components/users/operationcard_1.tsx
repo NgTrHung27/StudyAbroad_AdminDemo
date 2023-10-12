@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export const Operationcard_1 = () => {
   return (
-    <div className='relative'>
+    <div className='relative w-[394px]'>
       <div>
       <Image alt='/' src='/Truong1/truong2.png' width={291} height={281} className='z-[2] absolute bottom-[167px] left-[50px] ' />
       </div>

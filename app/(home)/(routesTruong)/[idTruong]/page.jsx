@@ -2,15 +2,17 @@ import React from "react";
 import { Welcome } from "../../../../components/users/welcome";
 import { History } from "../../../../components/users/history";
 import Navbar from "../../../../components/navbar/navbar";
-import { Operation } from "../../../../components/users/operation";
+import { OperationTop } from "../../../../components/users/operation";
 import { Blogs } from "../../../../components/users/blogs";
+import { OperationBody } from "../../../../components/users/operationbody";
 
 function page({ params }) {
   return (
-    <div className="">
+    <div>
       <Welcome />
       <History />
-      <Operation />
+      <OperationTop />
+      <OperationBody/>
       <Blogs />
     </div>
   );
