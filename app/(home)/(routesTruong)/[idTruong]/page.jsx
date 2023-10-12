@@ -11,7 +11,8 @@ function page({ params }) {
     <div>
       <Welcome />
       <History />
-      <Operation />
+      <OperationTop />
+      <OperationBody/>
       <Procedure />
       <Connect />
       <Blogs />
