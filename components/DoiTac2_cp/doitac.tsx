@@ -21,6 +21,7 @@ export default function DoiTac2() {
           </p>
         </div>
       </div>
+
       <div className="relative z-[-3]">
         <div className="flex items-center justify-center w-full h-[219px] bg-[#D120B5] bg-opacity-90 text-center">
           <p className="text-white text-[60px] font-bold leading-[80px]">
@@ -36,16 +37,20 @@ export default function DoiTac2() {
           className="w-full h-[219px] absolute inset-0 z-[-1]"
         />
       </div>
+
       <div className=" pt-[10px]">
-        <div className=" grid grid-cols-2 ">
-          <div className="col-span-1">
-            <div className="grid grid-cols-12 pl-[10px]">
-              <div className="col-span-1">
-                <div className=" p-0 w-8 h-8 rounded-full border-yellow-500 border-[2px] border-dashed justify-center items-center font-bold flex absolute ">
+        <div className="lg:grid lg:grid-cols-2 ">
+          <div className="lg:col-span-1">
+            <div className="lg:grid grid-cols-12 pl-[10px]">
+              <div className="lg:col-span-1">
+                <div className="p-0 w-8 h-8 rounded-full border-yellow-500 border-[2px] border-dashed justify-center items-center font-bold flex absolute ">
                   <p>01</p>
                 </div>
               </div>
-              <div className="ml-[-25px] col-span-11">
+              <div className="lg:hidden">
+                <br />
+              </div>
+              <div className="lg:ml-[-25px] lg:col-span-11 ml-[25px]">
                 <p className="text-[24px] text-justify mb-[10px]">
                   Chương trình cấp bằng quản lý thể thao điện tử quốc tế mang
                   đến cho sinh viên cơ hội biến niềm đam mê chơi trò chơi điện
@@ -66,18 +71,22 @@ export default function DoiTac2() {
               </div>
             </div>
           </div>
-          <div className="col-span-1">
+          <div className="lg:hidden">
+            <br />
+          </div>
+          <div className="lg:col-span-1">
             <Image
               alt=""
               src={"/ImgDoiTac2/image9.png"}
               width={0}
               height={0}
               sizes="100vw"
-              className="w-[80%] h-[80%]"
+              className="lg:w-[80%] lg:h-[80%] w-full h-auto"
             />
           </div>
         </div>
       </div>
+
       <div className="mt-[60px]">
         <div className="relative ">
           <div className="w-[1223px] h-[36px] bg-[#D120B5] absolute top-[-18px] left-[200px]"></div>
@@ -105,17 +114,18 @@ export default function DoiTac2() {
                 Định hướng kinh doanh và quản lý
               </p>
             </div>
-            <div className="flex flex-row items-start mt-[20px] pr-[900px]">
-              <div className="rounded-full mx-[48px] w-[12px] h-[12px] mt-[10px] bg-white"></div>
-              <p className="text-white ml-[-25px] text-[24px]">
+
+            <div className="flex flex-row items-start mt-[20px] mr-[750px]">
+              <div className="rounded-full mx-[48px] w-[12px] h-[12px] mt-[10px] bg-white absolute"></div>
+              <p className="text-white ml-[85px] text-[24px]">
                 Học tập và định hướng nghề nghiệp, sinh viên tốt nghiệp có thể
                 theo đuổi giáo dục cao hơn hoặc tìm kiếm sự nghiệp trong ngành
                 công nghiệp không ngừng phát triển.
               </p>
             </div>
-            <div className="flex flex-row items-start mt-[20px] mr-[900px]">
-              <div className="rounded-full mx-[48px] w-[12px] h-[12px] mt-[10px] bg-white"></div>
-              <p className="text-white ml-[-25px] text-[24px]">
+            <div className="flex flex-row items-start mt-[20px] mr-[750px]">
+              <div className="rounded-full mx-[48px] w-[12px] h-[12px] mt-[10px] bg-white absolute"></div>
+              <p className="text-white ml-[85px] text-[24px]">
                 Một chương trình độc đáo với việc tổ chức và quản lý dự án thi
                 đấu thể thao điện tử ngoài đời thực
               </p>
@@ -133,7 +143,7 @@ export default function DoiTac2() {
               </p>
             </div>
             <div className="flex flex-row items-start mt-[20px] mr-[900px]">
-              <div className="rounded-full mx-[48px] w-[12px] h-[12px] mt-[10px] bg-white"></div>
+              <div className="rounded-full mx-[48px] w-[12px] h-[12px] mt-[10px] bg-white "></div>
               <p className="text-white ml-[-25px] text-[24px]">
                 Các buổi thảo luận và giảng dạy theo nhóm
               </p>
@@ -261,11 +271,7 @@ export default function DoiTac2() {
               className="w-[103px] h-[94px] ml-[350px]"
             />
             <p className="text-[60px] text-white font-bold text-center mt-[-20px]">
-              Cơ hội nghề
-              <br />
-              nghiệp của ngành
-              <br />
-              E-sport
+              Cơ hội nghề nghiệp của ngành E-sport
             </p>
           </div>
           <div className="h-[200px] w-[890px] bg-[#D120B5] absolute bottom-[-30px] right-0"></div>
@@ -275,7 +281,7 @@ export default function DoiTac2() {
             width={0}
             height={0}
             sizes="100vw"
-            className="w-auto h-[180px] absolute bottom-[-20px] left-[770px] z-20"
+            className="w-auto h-[180px] absolute bottom-[-20px] left-[680px] z-20"
           />
           <Image
             alt=""
@@ -283,7 +289,7 @@ export default function DoiTac2() {
             width={0}
             height={0}
             sizes="100vw"
-            className="w-auto h-[100px] absolute bottom-[30px] left-[1100px] z-20"
+            className="w-auto h-[100px] absolute bottom-[20px] left-[1000px] z-20"
           />
           <Image
             alt=""
@@ -291,7 +297,7 @@ export default function DoiTac2() {
             width={0}
             height={0}
             sizes="100vw"
-            className="w-auto h-[200px] absolute bottom-[-20px] left-[1480px] z-20"
+            className="w-auto h-[150px] absolute bottom-[-20px] left-[1370px] z-20"
           />
         </div>
       </div>
@@ -307,7 +313,7 @@ export default function DoiTac2() {
             className="w-full h-[876px] absolute inset-0 z-[-1]"
           />
         </div>
-        <div className="absolute top-0 left-0 z-50 mt-[30px]">
+        <div className="absolute top-0 left-0 mt-[30px] z-40">
           <div className="flex flex-row items-start mt-[20px] mr-[250px]">
             <div className="rounded-full mx-[48px] w-[12px] h-[12px] mt-[10px] bg-white"></div>
             <p className="text-white ml-[-25px] text-[24px]">
@@ -376,7 +382,7 @@ export default function DoiTac2() {
             height={0}
             sizes="100vw"
             src={"/ImgDoiTac2/startright.png"}
-            className="w-[240px] h-[728px] absolute top-[17px] right-0"
+            className="w-[240px] h-[728px] absolute top-[17px] right-0 "
           />
         </div>
       </div>

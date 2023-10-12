@@ -1,7 +1,6 @@
 import React from "react";
 import { Welcome } from "../../../../components/users/welcome";
 import { History } from "../../../../components/users/history";
-import Navbar from "../../../../components/navbar/navbar";
 import { Operation } from "../../../../components/users/operation";
 import { Blogs } from "../../../../components/users/blogs";
 import Procedure from "../../../../components/users/procedure";
@@ -12,7 +11,8 @@ function page({ params }) {
     <div>
       <Welcome />
       <History />
-      <Operation />
+      <OperationTop />
+      <OperationBody/>
       <Procedure />
       <Connect />
       <Blogs />
