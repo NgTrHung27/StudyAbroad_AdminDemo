@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const Welcome = () => {
   return (
-    <div className="w-full h-screen relative ">
+    <div className="w-full h-[120vh] relative flex justify-center items-center">
       <Image
         className="w-full h-full object-cover"
         layout="fill"
