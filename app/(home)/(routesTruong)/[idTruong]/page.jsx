@@ -1,10 +1,10 @@
 import React from "react";
 import { Welcome } from "../../../../components/users/welcome";
 import { History } from "../../../../components/users/history";
-import Navbar from "../../../../components/navbar/navbar";
-import { OperationTop } from "../../../../components/users/operation";
+import { Operation } from "../../../../components/users/operation";
 import { Blogs } from "../../../../components/users/blogs";
-import { OperationBody } from "../../../../components/users/operationbody";
+import Procedure from "../../../../components/users/procedure";
+import { Connect } from "../../../../components/users/connect";
 
 function page({ params }) {
   return (
@@ -13,6 +13,8 @@ function page({ params }) {
       <History />
       <OperationTop />
       <OperationBody/>
+      <Procedure />
+      <Connect />
       <Blogs />
     </div>
   );

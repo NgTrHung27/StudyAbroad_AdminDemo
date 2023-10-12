@@ -80,3 +80,13 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+@import "react-phone-number-input/style.css";
+
+.PhoneInput--focus {
+  outline: solid #7d1f1f 2px;
+}
+
+.PhoneInput--focus input {
+  outline: none;
+}
