@@ -18,21 +18,62 @@ export const OperationTop = () => {
                   <p >Cornerstone International Community College là trường  <br/>
                     cao đẳng tư thục lớn nhất ở Vancouver.</p>
                 </div>
-                <div><Image className='mx-1' alt='/' src={"/Truong1/book.png"} width={24} height={24} /></div>
               </div>
-              <div className='flex flex-row justify-center items-center text-sm md:text-base'>
-                <div className='flex flex-col mt-2 justify-center items-center'>
-                  <div><Image className='mx-1' alt='/' src={"/Truong1/brifecase.png"} width={34} height={36} /></div>
-                  <div className='flex flex-col mt-2'>
-                    <p >Trường có 3 cơ sở :<br/>
-                     West Hastings, Granville và Seymore.</p>
+              <div className="flex flex-row justify-center items-center">
+                <div className="flex flex-col mt-2 justify-center items-center">
+                  <div>
+                    <Image
+                      className="mx-1"
+                      alt="/"
+                      src={"/Truong1/brifecase.png"}
+                      width={34}
+                      height={36}
+                    />
+                  </div>
+                  <div className="flex flex-col mt-2">
+                    <p style={{ letterSpacing: "-0.5px" }}>
+                      Trường có 3 cơ sở :
+                    </p>
+                    <p
+                      style={{ letterSpacing: "-0.5px" }}
+                      className="mt-[-5px]"
+                    >
+                      {" "}
+                      West Hastings, Granville và Seymore.
+                    </p>
                   </div>
                 </div>
-                <div className='mx-[85px]'><Image className='mx-1' alt='/' src={"/Truong1/canadaflag.png"} width={137} height={69} /></div>
-                <div className='flex flex-col mt-2 justify-center items-center'>
-                  <div><Image className='mx-1' alt='/' src={"/Truong1/brifecase.png"} width={34} height={36} /></div>
-                  <div className='flex flex-col mt-2'>
-                    <p > Thêm 1 cơ sở đang được xây dựng tại Gastown<br/> cho các chương trình công nghệ.</p>
+                <div className="mx-[85px]">
+                  <Image
+                    className="mx-1"
+                    alt="/"
+                    src={"/Truong1/canadaflag.png"}
+                    width={137}
+                    height={69}
+                  />
+                </div>
+                <div className="flex flex-col mt-2 justify-center items-center">
+                  <div>
+                    <Image
+                      className="mx-1"
+                      alt="/"
+                      src={"/Truong1/brifecase.png"}
+                      width={34}
+                      height={36}
+                    />
+                  </div>
+                  <div className="flex flex-col mt-2">
+                    <p style={{ letterSpacing: "-0.5px" }}>
+                      {" "}
+                      Thêm 1 cơ sở đang được xây dựng tại Gastown
+                    </p>
+                    <p
+                      style={{ letterSpacing: "-0.5px" }}
+                      className="mt-[-5px]"
+                    >
+                      {" "}
+                      cho các chương trình công nghệ.
+                    </p>
                   </div>
                 </div>
               </div>
