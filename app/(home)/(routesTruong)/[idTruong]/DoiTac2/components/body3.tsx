@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { Blogscard } from "../../../../../../components/users/blogscard";
+import { Blogs } from "../../../../../../components/users/blogs";
 
 export const Body3 = () => {
   return (
@@ -52,8 +52,8 @@ export const Body3 = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-auto md:grid md:grid-cols-3">
-        <div className="col-span-2">
+      <div className="w-full h-auto md:grid md:grid-cols-4">
+        <div className="col-span-3 mt-3">
           <div className="relative mr-2 pt-[5px] ">
             <div className="absolute mt-1 md:mt-3  rounded-full w-[12px] h-[12px] bg-black ml-2"></div>
             <p className="text-black md:text-[24px] ml-[25px] text-[16px]">
@@ -119,14 +119,14 @@ export const Body3 = () => {
           </div>
         </div>
         <div className="md:col-span-1">
-          <div className="md:flex md:flex-col md:gap-20 md:mt-[20px]">
+          <div className="md:flex md:flex-col md:mt-[20px]">
             <Image
               width={0}
               height={0}
               src={"/ImgDoiTac2/image 10.png"}
               sizes="100vw"
               alt=""
-              className="w-full h-auto mt-1 rounded-sm"
+              className="w-full h-auto rounded-sm"
             />
             <Image
               width={0}
@@ -140,6 +140,7 @@ export const Body3 = () => {
         </div>
       </div>
       <div className="w-full h-[60px] bg-[#D120B5]"></div>
+      <Blogs />
     </>
   );
 };

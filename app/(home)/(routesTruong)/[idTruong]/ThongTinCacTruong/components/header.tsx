@@ -4,8 +4,8 @@ import React from "react";
 export const Header = () => {
   return (
     <>
-      <div className="font-bold text-[60px] text-center mt-8">
-        Thông Tin Các Trường Học
+      <div className="text-[60px] font-bold text-center my-[40px]">
+        Thông tin so sánh các trường{" "}
       </div>
       <Image
         alt=""
@@ -13,19 +13,20 @@ export const Header = () => {
         width={0}
         height={0}
         sizes="100vw"
-        className="w-auto h-auto mx-auto"
+        className="w-5/6 h-auto mx-auto"
       />
-      <div className="text-[40px] italic font-bold mt-[50px] text-center">
+
+      <div className="text-[50px] italic font-bold my-[50px] text-center">
         Số lượng đánh giá 5 sao
       </div>
-      <div className="grid lg:grid-cols-4">
+      <div className="flex flex-row">
         <Image
-          src={"/ThongTinCactruongHoc/ThongKeCot.png"}
+          src={"/ThongTinCactruongHoc/thongke.png"}
           width={0}
           height={0}
           sizes="100vw"
           alt=""
-          className="lg:w-auto lg:h-auto lg:col-span-3 ml-[30px]"
+          className="w-[70%] lg:h-auto lg:col-span-3 ml-[30px]"
         />
         <Image
           src={"/ThongTinCactruongHoc/rank.png"}
@@ -33,7 +34,7 @@ export const Header = () => {
           width={0}
           height={0}
           sizes="100vw"
-          className="w-auto h-auto lg:col-span-1"
+          className="w-[30%] h-auto"
         />
       </div>
       <Image
@@ -42,19 +43,19 @@ export const Header = () => {
         height={0}
         alt=""
         sizes="100vw"
-        className="w-auto h-auto"
+        className="w-[40%] h-auto my-5"
       />
       <div className="font-bold text-[35px] italic text-center">
         Biểu đồ thể hiện điểm trung bình ngành của các trường đại học
       </div>
-      <div className="grid lg:grid-cols-4">
+      <div className="flex flex-row">
         <Image
           src={"/ThongTinCactruongHoc/bieudotron.png"}
           width={0}
           height={0}
           sizes="100vw"
           alt=""
-          className="lg:w-auto lg:h-auto lg:col-span-3 ml-[30px]"
+          className="w-[70%] h-auto"
         />
         <Image
           src={"/ThongTinCactruongHoc/rank.png"}
@@ -62,7 +63,7 @@ export const Header = () => {
           width={0}
           height={0}
           sizes="100vw"
-          className="w-auto h-auto lg:col-span-1"
+          className="w-[30%] h-auto"
         />
       </div>
       <Image
@@ -71,7 +72,7 @@ export const Header = () => {
         height={0}
         alt=""
         sizes="100vw"
-        className="w-auto h-auto"
+        className="w-[40%] h-auto my-5"
       />
     </>
   );
