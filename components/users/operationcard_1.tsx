@@ -4,13 +4,13 @@ import Image from 'next/image';
 
 export const Operationcard_1 = () => {
   return (
-    <div className='relative w-[394px]'>
+    <div className='relative w-fit flex items-center flex-col'>
       <div>
-      <Image alt='/' src='/Truong1/truong2.png' width={291} height={281} className='z-[2] absolute bottom-[167px] left-[50px] ' />
+        <Image alt='/' src='/Truong1/truong2.png' width={291} height={281} className='z-[2]' />
       </div>
-      <div className='bg-white w-[394px] h-[220px] rounded-[16px] relative z-[1] px-9 '>
+      <div className='bg-white w-[394px] py-6 h-fit rounded-[16px] relative z-[1] px-9 -mt-12 '>
         <div className='flex flex-col justify-center items-center '>
-          <div className='mt-[73px] flex flex-row'>
+          <div className='mt-9 flex flex-row'>
             <Image alt='/' src='/Truong1/award.png' width={24} height={24} />
             <p className='font-bold'>Granville</p>
             <Image alt='/' src='/Truong1/award.png' width={24} height={24} />
