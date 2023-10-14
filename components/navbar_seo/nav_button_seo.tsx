@@ -8,18 +8,6 @@ const links = ["Đăng Nhập", "Đăng Ký"];
 export default function NavBtSeo() {
   const router = useRouter();
   return (
-    // <ul className="flex gap-6 list-none text-gray-300">
-    //   {links.map((link) => (
-    //     <li key={link}>
-    //       <Link
-    //         href={link.toLowerCase()}
-    //         className="p-2 hover:bg-slate-600 hover:rounded-md active:bg-green-700 focus:ring-1 focus:rounded-md"
-    //       >
-    //         {link}
-    //       </Link>
-    //     </li>
-    //   ))}
-    // </ul>
     <div className="flex gap-6">
       <button
         onClick={() => router.push("/sign-in")}

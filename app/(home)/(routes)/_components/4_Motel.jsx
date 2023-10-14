@@ -1,10 +1,12 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 
 const Motel = () => {
   return (
     <div className="mt-16 ">
-      <div className="flex gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <Image
             width={1800}
@@ -14,40 +16,41 @@ const Motel = () => {
             className="object-cover rounded-e-2xl"
           />
         </div>
-        <div className="w-full h-full mt-20">
-          <p className="bg-[#7D1F1F] rounded-l-lg p-3 pl-9 text-white text-4xl font-bold italic  ">
+        <div className="md:mt-12">
+          <p className="bg-[#7D1F1F] rounded-l-lg p-2 pl-9 text-white text-3xl font-bold italic md:text-4x1 md:text-left text-center">
             Nhà trọ tiện nghi
           </p>
-          <p className="text-2xl p-3">
-            Sinh viên không cần phải lo lắng về nơi <br></br>ở khi học tập, luôn
-            có những khu <br></br>
-            nhà trọ hiện đại, tiện nghi ở gần trường.
+          <p className="text-2xl p-3 w-full">
+            <p className="w-auto md:mr-52">
+              Sinh viên không cần phải lo lắng về nơi ở khi học tập, luôn có
+              những khu nhà trọ hiện đại, tiện nghi ở gần trường.
+            </p>
           </p>
         </div>
       </div>
 
-      <div className="mt-20 w-full h-full mx-auto flex flex-col justify-center items-center">
-        <p className="text-4xl font-bold flex text-center">
+      <div className="mt-20 flex flex-col justify-center items-center">
+        <p className="text-center text-4xl font-bold">
           Nhà trọ cho sinh viên tại &nbsp;
           <span className="text-[#7D1F1F]">Canada</span>
         </p>
-        <div className="flex gap-8 mt-8">
-          <div className="bg-transparent w-40 rounded-full ring-4 ring-[#7D1F1F] text-[#7D1F1F] text-2xl text-center font-semibold p-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
+          <div className="w-40 text-[#7D1F1F] text-2xl text-center font-semibold p-3">
             Vancouver
           </div>
-          <div className="bg-transparent w-40 rounded-full ring-4 ring-[#7D1F1F] text-[#7D1F1F] text-2xl text-center font-semibold p-3">
+          <div className="w-40 text-[#7D1F1F] text-2xl text-center font-semibold p-3">
             Toronto
           </div>
-          <div className="bg-transparent w-40 rounded-full ring-4 ring-[#7D1F1F] text-[#7D1F1F] text-2xl text-center font-semibold p-3">
+          <div className="w-40 text-[#7D1F1F] text-2xl text-center font-semibold p-3">
             Montreal
           </div>
-          <div className="bg-transparent w-40 rounded-full ring-4 ring-[#7D1F1F] text-[#7D1F1F] text-2xl text-center font-semibold p-3">
+          <div className="w-40 text-[#7D1F1F] text-2xl text-center font-semibold p-3">
             Banff
           </div>
         </div>
       </div>
 
-      <div className="m-20 flex gap-28 justify-center">
+      <div className="m-10 grid md:grid-cols-3 grid-cols-1 gap-28 justify-center">
         <div className="max-w-sm rounded overflow-hidden shadow-lg ">
           <Image
             className="w-full h-[200px]"
