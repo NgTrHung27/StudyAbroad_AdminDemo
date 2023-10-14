@@ -6,17 +6,17 @@ export const OperationBody = () => {
   return (
     <div className='w-full h-[fit] bg-black relative flex items-center justify-center py-12'>
         <Image alt='/' src='/Truong1/bg-operations.png' fill className='w-full h-full z-0 relative ' />
-        <div className='z-10 flex flex-col md:grid md:grid-cols-3 gap-4 px-5 mt-48 '>
-            <div className='md:col-span-1 '>
+        <div className='z-10 grid grid-cols-1 md:grid-cols-3 gap-8 px-5 '>
+            <div className='col-span-1 '>
                 <Operationcard_1/>
             </div>
-            <div className='md:col-span-1'>
+            <div className='col-span-1'>
                 <Operationcard_1/>
             </div>
-            <div className='md:col-span-1'>
+            <div className='col-span-1'>
                 <Operationcard_1/>
             </div>
-            <div className='md:col-start-2 md:col-span-1 mt-[250px] '>
+            <div className='md:col-start-2 col-span-1'>
                 <Operationcard_1/>
             </div>
         </div>
