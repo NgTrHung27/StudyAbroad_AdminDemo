@@ -4,8 +4,8 @@ import React from "react";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="">
-      <div className="fixed w-full h-[72px] inset-y-0 z-50 shadow-sm">
+    <div className="h-full">
+      <div className="fixed w-full h-[80px] inset-y-0 z-10 shadow-sm">
         <NavBtSeo />
       </div>
       <main className="flex-1 pt-[72px] h-full">
