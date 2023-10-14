@@ -17,24 +17,24 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 const truongHocs = [
   {
-    value: "truong1",
-    label: "Truong1",
+    value: "Cornerstone International Community College of Canada",
+    label: "Cornerstone International Community College of Canada",
   },
   {
-    value: "Harvord",
-    label: "Harvord",
+    value: "Metropolitan Community College",
+    label: "Metropolitan Community College",
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
+    value: "UCW University Canada West",
+    label: "UCW University Canada West",
   },
   {
-    value: "remix",
-    label: "Remix",
+    value: "University of the Fraser Valley",
+    label: "University of the Fraser Valley",
   },
   {
-    value: "astro",
-    label: "Astro",
+    value: "Sprott Shaw College",
+    label: "Sprott Shaw College",
   },
 ];
 
@@ -51,14 +51,14 @@ export function ComboboxDemo() {
           variant="ghost"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-center"
+          className="w-[150px] justify-center"
         >
           {value
             ? truongHocs.find((truongHoc) => truongHoc.value === value)?.label
             : "Trường Học"}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-[400px] p-0">
         <Command>
           <CommandGroup>
             {truongHocs.map((truongHoc) => (
@@ -72,7 +72,7 @@ export function ComboboxDemo() {
               >
                 <Check
                   className={cn(
-                    "mr-2 h-4 w-4",
+                    "mr-2 h-5 w-4",
                     value === truongHoc.value ? "opacity-100" : "opacity-0"
                   )}
                 />
