@@ -44,18 +44,18 @@ const NavItem = () => {
 
   return (
     <>
-      <div className="hidden lg:flex md:flex-row items-center justify-normal mx-auto ">
-        <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-black/90 px-3 hover:bg-accent rounded-lg w-auto h-auto">
+      <div className="hidden lg:flex md:flex-row items-center justify-normal mx-auto gap-3 relative ">
+        <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
           Trang chủ
         </div>
-        <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 ">
+        <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[22px]">
           <ComboboxDemo />
         </div>
 
-        <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-black/90 px-3 hover:bg-accent rounded-sm w-[100px] hover:h-[35px]">
+        <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
           <a href="">Liên Hệ</a>
         </div>
-        <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-black/90 px-3 hover:bg-accent rounded-sm w-[100px] hover:h-[35px]">
+        <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
           <a href="/id/ThongTinCacTruong">So Sánh</a>
         </div>
       </div>
