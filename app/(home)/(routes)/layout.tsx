@@ -4,11 +4,11 @@ import React from "react";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="">
+    <div className="h-full">
       <div className="fixed w-full h-[80px] inset-y-0 z-10 shadow-sm">
         <NavBtSeo />
       </div>
-      <main className="flex-1 pt-[80px] h-full">
+      <main className="flex-1 pt-[72px] h-full">
         {children}
         <FooterDemo />
       </main>
