@@ -4,61 +4,61 @@ import Image from 'next/image'
 export const Hpcornerstone = () => {
   return (
     <div className='w-full h-fit p-5 grid grid-cols-3 bg-gray-300'>
-        <div className='col-span-1 relative items-center justify-center bg-[#253C8A] rounded-2xl px-5 flex'>
-            <div className='w-full h-[40%] relative '>
+        <div className='col-span-1 relative items-center justify-center bg-[#253C8A] rounded-2xl px-0 md:px-5 flex'>
+            <div className='w-full md:h-[40%] h-[20%] relative '>
                 <Image alt='/' fill src={"/HocPhi/Cornerstone.jpg"} className='w-full h-full absolute'  />
             </div>
         </div>
-        <div className='col-span-1 px-5 flex flex-col gap-y-3 ml-3'>
-            <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>Quản lý khách sạn</p>
+        <div className='col-span-1 px-2 md:px-5 flex flex-col gap-y-3 md:ml-3 ml-1 font-bold md:text-xs text-[9.5px]'>
+            <div className='bg-white rounded-xl h-12 w-full items-center flex px-4 '>
+                <p >Quản lý khách sạn</p>
             </div>
-            <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>Kinh doanh quốc tế</p>
+            <div className='bg-white rounded-xl h-12 w-full items-center flex px-4'>
+                <p>Kinh doanh quốc tế</p>
             </div>
-            <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>Hệ thống mạng & Mạng</p>
+            <div className='bg-white rounded-xl h-12 w-full items-center flex px-4'>
+                <p>Hệ thống mạng & Mạng</p>
             </div>
-            <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>Hiển thị kĩ thuật số</p>
+            <div className='bg-white rounded-xl h-12 w-full items-center flex px-4'>
+                <p>Hiển thị kĩ thuật số</p>
             </div>
-            <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>Quan hệ khách hàng</p>
+            <div className='bg-white rounded-xl h-12 w-full items-center flex px-4'>
+                <p>Quan hệ khách hàng</p>
             </div>
-            <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>Thiết kế UI/UX</p>
+            <div className='bg-white rounded-xl h-12 w-full items-center flex px-4'>
+                <p>Thiết kế UI/UX</p>
             </div>
-            <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>Phát triển ứng dụng di động</p>
+            <div className='bg-white rounded-xl h-12 w-full items-center flex px-4'>
+                <p>Phát triển ứng dụng di động</p>
             </div>
-            <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>Phát triển website</p>
+            <div className='bg-white rounded-xl h-12 w-full items-center flex px-4'>
+                <p>Phát triển website</p>
             </div>
         </div>
-        <div className='col-span-1 px-5 flex flex-col gap-y-3'>
+        <div className='col-span-1 md:px-5 px-3 flex flex-col gap-y-3 font-bold md:text-xs text-[9.5px] ml-2'>
             <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>5,247 CAD</p>
+                <p >5,247 CAD</p>
             </div>
             <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>7,995 CAD</p>
+                <p >7,995 CAD</p>
             </div>
             <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>13,495 CAD</p>
+                <p >13,495 CAD</p>
             </div>
             <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>6,747 CAD</p>
+                <p >6,747 CAD</p>
             </div>
             <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>5,495 CAD</p>
+                <p >5,495 CAD</p>
             </div>
             <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>6,747 CAD</p>
+                <p >6,747 CAD</p>
             </div>
             <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>7,522 CAD</p>
+                <p >7,522 CAD</p>
             </div>
             <div className='bg-white rounded-xl h-12 w-full items-center flex pl-4'>
-                <p className='font-bold text-xs'>7,522 CAD</p>
+                <p>7,522 CAD</p>
             </div>
         </div>
     </div>

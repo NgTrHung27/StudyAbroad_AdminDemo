@@ -1,7 +1,10 @@
 import React from 'react'
 import { Hpcornerstone } from './components/hpcornerstone'
-import { Metropolitian } from './components/hpmetropolitian'
+import { Hpmetropolitan } from './components/hpmetropolitan'
 import { Hpcanadawest } from './components/hpcanadawest'
+import { Hpvalley } from './components/hpvalley'
+import { HPsprott } from './components/hpsprott'
+
 
 function page() {
   return (
@@ -21,8 +24,10 @@ function page() {
             </div>
         </div>
         <Hpcornerstone/>
-        <Metropolitian/>
+        <Hpmetropolitan/>
         <Hpcanadawest/>
+        <Hpvalley/>
+        <HPsprott/>
     </div>
   ) 
 }
