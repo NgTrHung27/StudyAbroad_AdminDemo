@@ -1,11 +1,14 @@
 import React from 'react'
 import { Hpcornerstone } from './components/hpcornerstone'
-import { Metropolitian } from './components/hpmetropolitian'
+import { Hpmetropolitan } from './components/hpmetropolitan'
 import { Hpcanadawest } from './components/hpcanadawest'
+import { Hpvalley } from './components/hpvalley'
+import { HPsprott } from './components/hpsprott'
+
 
 function page() {
   return (
-    <div className='pt-28 px-12 h-fit w-full items-center flex flex-col'>
+    <div className='pt-28 px-[8%] h-fit w-full items-center flex flex-col'>
         <div className='text-center text-3xl font-bold text-red-900 '>
             HỌC PHÍ NĂM HỌC 2023-2024
         </div>
@@ -21,8 +24,10 @@ function page() {
             </div>
         </div>
         <Hpcornerstone/>
-        <Metropolitian/>
+        <Hpmetropolitan/>
         <Hpcanadawest/>
+        <Hpvalley/>
+        <HPsprott/>
     </div>
   ) 
 }

@@ -16,7 +16,7 @@ export const History = () => {
           Cornerstone International Community College</p>
         </div>
       </div>
-      <div className="w-full h-full grid-cols-3 grid relative">
+      <div className="w-full h-full grid-cols-1 md:grid-cols-3 grid relative">
         <div className="col-span-1">
           <img alt="/2" src="/Truong1/truong1.png" className="w-full h-full  " />
         </div>
