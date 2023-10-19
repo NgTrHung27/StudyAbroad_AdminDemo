@@ -160,7 +160,7 @@ const RegisterModal = () => {
                   </Button>
                 </FormControl>
               </PopoverTrigger>
-              <PopoverContent className="w-full p-0" align="start">
+              <PopoverContent className="w-auto p-0" align="start">
                 <Calendar
                   mode="single"
                   selected={field.value}
@@ -352,10 +352,6 @@ const RegisterModal = () => {
       />
     </>
   );
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center p-0 m-0 gap-0">
