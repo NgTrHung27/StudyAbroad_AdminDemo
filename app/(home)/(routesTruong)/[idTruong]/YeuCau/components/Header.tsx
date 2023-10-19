@@ -158,17 +158,17 @@ export default function Header() {
             </div>
           </div>
           <ul className="list-disc ml-[90px] md:ml-[520px] text-[18px]">
-            <li className="mt-3">Tiếng anh 12 - điểm cuối kỳ tối thiểu "C"</li>
-            <li className="mt-3">Văn học tiếng anh 12 - điểm tối thiểu "C"</li>
-            <li className="mt-3">Giao tiếp 12 - điểm cuối kỳ tối thiểu "B"</li>
+            <li className="mt-3">Tiếng anh 12 - điểm cuối kỳ tối thiểu &quot;C&quot;</li>
+            <li className="mt-3">Văn học tiếng anh 12 - điểm tối thiểu &quot;C&quot;</li>
+            <li className="mt-3">Giao tiếp 12 - điểm cuối kỳ tối thiểu &quot;B&quot;</li>
             <li className="mt-3">
-              Tiếng anh 12 dân tộc bản địa - điểm cuối kỳ tối thiểu "C"
+              Tiếng anh 12 dân tộc bản địa - điểm cuối kỳ tối thiểu &quot;C&quot;
             </li>
             <li className="mt-3">
-              Tiếng anh 12 dân tộc bản địa - điểm cuối kỳ tối thiểu "C"
+              Tiếng anh 12 dân tộc bản địa - điểm cuối kỳ tối thiểu &quot;C&quot;
             </li>
             <li className="mt-3">
-              Giao tiếp kỹ thuật và chuyên nghiệp 12 - điểm tối thiểu "C" hoặc
+              Giao tiếp kỹ thuật và chuyên nghiệp 12 - điểm tối thiểu &quot;C&quot; hoặc
               tiếng anh hoặc văn học - điểm tối thiểu 3
             </li>
             <li className="mt-3">TOEFL PBT - 513; CBT - 183; ibt - 65</li>

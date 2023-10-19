@@ -159,32 +159,36 @@ export default function YeuCauPage() {
           <div className="flex flex-row ml-[495px] mt-[24px] items-center">
             <div className="bg-black rounded-full w-[15px] h-[15px]"></div>
             <div className="ml-[20px] text-[24px]">
-              <p>Tiếng anh 12 - điểm cuối kỳ tối thiểu "C"</p>
+              <p>Tiếng anh 12 - điểm cuối kỳ tối thiểu &quot;C&quot;</p>
             </div>
           </div>
           <div className="flex flex-row ml-[495px] mt-[24px] items-center">
             <div className="bg-black rounded-full w-[15px] h-[15px]"></div>
             <div className="ml-[20px] text-[24px]">
-              <p>Văn học tiếng anh 12 - điểm tối thiểu "C"</p>
+              <p>Văn học tiếng anh 12 - điểm tối thiểu &quot;C&quot;</p>
             </div>
           </div>
           <div className="flex flex-row ml-[495px] mt-[24px] items-center">
             <div className="bg-black rounded-full w-[15px] h-[15px]"></div>
             <div className="ml-[20px] text-[24px]">
-              <p>Giao tiếp 12 - điểm cuối kỳ tối thiểu "B"</p>
+              <p>Giao tiếp 12 - điểm cuối kỳ tối thiểu &quot;B&quot;</p>
             </div>
           </div>
           <div className="flex flex-row ml-[495px] mt-[24px] items-center">
             <div className="bg-black rounded-full w-[15px] h-[15px]"></div>
             <div className="ml-[20px] text-[24px]">
-              <p>Tiếng anh 12 dân tộc bản địa - điểm cuối kỳ tối thiểu "C"</p>
+              <p>
+                Tiếng anh 12 dân tộc bản địa - điểm cuối kỳ tối thiểu
+                &quot;C&quot;
+              </p>
             </div>
           </div>
           <div className="flex flex-row ml-[495px] mt-[24px]">
             <div className="mt-[10px] bg-black rounded-full w-[15px] h-[15px]"></div>
             <div className="ml-[20px] text-[24px]">
               <p>
-                Giao tiếp kỹ thuật và chuyên nghiệp 12 - điểm tối thiểu "C"
+                Giao tiếp kỹ thuật và chuyên nghiệp 12 - điểm tối thiểu
+                &quot;C&quot;
                 <br /> hoặc tiếng anh hoặc văn học - điểm tối thiểu 3
               </p>
             </div>
