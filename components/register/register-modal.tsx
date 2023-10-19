@@ -7,8 +7,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";
 import Heading from "../heading";
-import { Input } from "../../@/components/ui/input";
-import { Button } from "../../@/components/ui/button";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import { formRegisterSchema } from "../../app/(auth)/(routes)/sign-up/constants";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
@@ -18,16 +18,12 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "../../@/components/ui/form";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../@/components/ui/popover";
+} from "../ui/form";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "../../lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { Calendar } from "../../@/components/ui/calendar";
+import { Calendar } from "../ui/calendar";
 import { vi } from "date-fns/locale";
 import PhoneInput from "react-phone-number-input";
 import {
@@ -36,9 +32,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../@/components/ui/select";
+} from "../ui/select";
 import { CertificateCategory, SchoolCategory } from "@prisma/client";
-import { Textarea } from "../../@/components/ui/textarea";
+import { Textarea } from "../ui/textarea";
 
 enum STEPS {
   INFORMATION = 0,
@@ -164,7 +160,7 @@ const RegisterModal = () => {
                   </Button>
                 </FormControl>
               </PopoverTrigger>
-              <PopoverContent className="w-full p-0" align="start">
+              <PopoverContent className="w-auto p-0" align="start">
                 <Calendar
                   mode="single"
                   selected={field.value}
@@ -356,10 +352,6 @@ const RegisterModal = () => {
       />
     </>
   );
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center p-0 m-0 gap-0">
