@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 
@@ -16,9 +18,8 @@ const WhyCEMC = () => {
           className="object-cover "
         />
       </div>
-      <p className="text-center text-2xl mt-14 font-semibold">
-        Vì chúng tôi có những lợi ích tuyệt vời nhất <br></br> dành cho sinh
-        viên.
+      <p className="text-center text-2xl mt-14 font-semibold break-words max-w-[2000px]">
+        Vì chúng tôi có những lợi ích tuyệt vời nhất dành cho sinh viên.
       </p>
     </div>
   );

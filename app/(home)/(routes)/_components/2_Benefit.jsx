@@ -1,73 +1,32 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import IconBenefit from "../_components/7_Icon_Benefit";
 
 const Benefit = () => {
   return (
-    <div className="flex flex-col text-[#7D1F1F]  font-bold text-center bg-gray-100">
-      <div className=" justify-center flex space-x-60 mt-6">
-        <div>
-          <Image
-            width={100}
-            height={100}
-            alt="Icon"
-            src="/IconSchool.png"
-            className="object-cover"
-          />
-          <p className="break-all	">
-            Hơn 500 học sinh <br></br> du học mỗi năm
-          </p>
-        </div>
-        <div>
-          <Image
-            width={100}
-            height={100}
-            alt="Icon"
-            src="/IconHocBong.png"
-            className="object-cover"
-          />
-          <p className="">
-            Học bổng trung <br></br> bình 100,000$
-          </p>
-        </div>
-        <div>
-          <Image
-            width={100}
-            height={100}
-            alt="Icon"
-            src="/IconNha.png"
-            className="object-cover"
-          />
-          <p className="">
-            Nhiều chỗ ở <br></br> tiện nghi
-          </p>
-        </div>
+    <div className="text-[#7D1F1F]  font-bold text-center bg-gray-100 md:px-24">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 pt-5 md:pt-8 ">
+        <IconBenefit
+          src="/IconSchool.png"
+          description="Hơn 500 học sinh du học mỗi năm"
+        />
+        <IconBenefit
+          src="/IconHocBong.png"
+          description="Học bổng trung bình 100,000$"
+        />
+        <IconBenefit src="/IconNha.png" description="Nhiều chỗ ở tiện nghi" />
       </div>
-
-      <div className="justify-center flex space-x-60 mb-6">
-        <div>
-          <Image
-            width={100}
-            height={100}
-            alt="Icon"
-            src="/IconGiaoLuu.png"
-            className="object-cover"
-          />
-          <p className="">
-            Gặp gỡ và giao lưu <br></br> bạn bè trên thế giới
-          </p>
-        </div>
-        <div>
-          <Image
-            width={100}
-            height={100}
-            alt="Icon"
-            src="/IconJob.png"
-            className="object-cover"
-          />
-          <p className="">
-            95,7% Có việc làm <br></br> sau khi tốt nghiệp
-          </p>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-3 md:pt-8 md:mx-52 md:mt-[-50px]">
+      <IconBenefit
+          src="/IconJob.png"
+          description="Gặp gỡ và giao lưu bạn bè trên thế giới"
+        />
+        <IconBenefit
+          src="/IconSchool.png"
+          description="95,7% Có việc làm sau khi tốt nghiệp"
+        />
       </div>
     </div>
   );
