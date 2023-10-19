@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
+import { UserRole } from "@prisma/client";
 
 import {
   Form,
@@ -16,16 +17,30 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { formNameSchema } from "../constants";
+import { formRoleSchema } from "../constants";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { User } from "@prisma/client";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface nameFormProps {
   user: User;
 }
 
-const NameForm = ({ user }: nameFormProps) => {
+const roleMap = {
+  [UserRole.ADMIN]: "bg-rose-500",
+  [UserRole.USER]: "bg-slate-500",
+};
+
+const RoleForm = ({ user }: nameFormProps) => {
   const router = useRouter();
 
   const [isEditting, setIsEditting] = useState(false);
@@ -34,32 +49,36 @@ const NameForm = ({ user }: nameFormProps) => {
     setIsEditting((current) => !current);
   };
 
-  const form = useForm<z.infer<typeof formNameSchema>>({
-    resolver: zodResolver(formNameSchema),
+  const form = useForm<z.infer<typeof formRoleSchema>>({
+    resolver: zodResolver(formRoleSchema),
     defaultValues: {
-      name: "",
+      role: "",
     },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formNameSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formRoleSchema>) => {
     try {
       await axios.patch(`/api/users/${user.id}`, values);
-      toast.success("Cập nhật tài khoản thành công");
+      toast.success("Cập nhật hồ sơ thành công");
       toggleEdit();
     } catch (error) {
-      toast.error("Cập nhật tài khoản thất bại");
+      toast.error("Cập nhật hồ sơ thất bại");
     } finally {
       router.refresh();
       form.reset();
     }
   };
 
+  if (user.email === "cigpbubu@gmail.com") {
+    return null;
+  }
+
   return (
     <div className="mt-6 border bg-white rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Họ tên người dùng
+        Vai trò nguời dùng
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditting ? (
             <>Hủy</>
@@ -72,7 +91,9 @@ const NameForm = ({ user }: nameFormProps) => {
         </Button>
       </div>
       {!isEditting ? (
-        <p className="text-sm mt-2">{user.name}</p>
+        <Badge className={cn(roleMap[user.role])}>
+          {user.role === UserRole.ADMIN ? "Quản trị viên" : "Người dùng"}
+        </Badge>
       ) : (
         <Form {...form}>
           <form
@@ -81,16 +102,26 @@ const NameForm = ({ user }: nameFormProps) => {
           >
             <FormField
               control={form.control}
-              name="name"
+              name="role"
               render={({ field }) => (
                 <FormItem>
-                  <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      placeholder="Vd: Nguyễn Văn A"
-                      {...field}
-                    />
-                  </FormControl>
+                  <Select
+                    disabled={isSubmitting}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder={"Vui lòng chọn vai trò"} />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value={UserRole.ADMIN}>
+                        Quản trị viên
+                      </SelectItem>
+                      <SelectItem value={UserRole.USER}>Người dùng</SelectItem>
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
@@ -107,4 +138,4 @@ const NameForm = ({ user }: nameFormProps) => {
   );
 };
 
-export default NameForm;
+export default RoleForm;

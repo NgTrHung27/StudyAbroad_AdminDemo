@@ -16,7 +16,7 @@ export const NavbarRoutes = ({ currentUser }: NavbarRoutesProps) => {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const isCreate = pathname?.includes("/create");
-  const isEdit = pathname?.includes("/edit");
+  const isUserEdit = pathname?.includes("/taikhoan/edit");
 
   const route = routes.filter((route) => route.href === pathname)[0];
 
@@ -33,11 +33,11 @@ export const NavbarRoutes = ({ currentUser }: NavbarRoutesProps) => {
           icon={route?.icon}
         />
         <div className="ml-auto flex items-center gap-2">
-          {(isCreate || isEdit) && (
-            <Link href={"/"}>
+          {(isCreate || isUserEdit) && (
+            <Link href={"/taikhoan"}>
               <Button size={"sm"} variant={"ghost"}>
                 <LogOut className="h-4 w-4 mr-2" />
-                Quay về trang chủ
+                Quay về trang tài khoản
               </Button>
             </Link>
           )}

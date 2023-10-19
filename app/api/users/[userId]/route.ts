@@ -32,9 +32,16 @@ export async function PATCH(
       return new NextResponse("User not found", { status: 404 });
     }
 
+    if (existingUser.email.toLowerCase() === "cigpbubu@gmail.com") {
+      return new NextResponse("Không thể cập nhật người dùng này");
+    }
+
     const user = await db.user.update({
       where: {
         id: params.userId,
+        NOT: {
+          email: "cigpbubu@gmail.com",
+        },
       },
       data: {
         ...values,

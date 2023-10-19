@@ -67,3 +67,89 @@ export const rolesOptions = [
     label: "Người dùng",
   },
 ];
+
+export const cccd_mattruoc = {
+  errorCode: 0,
+
+  errorMessage: "",
+
+  data: [
+    {
+      id: "xxxx",
+
+      id_prob: "xxxx",
+
+      name: "xxxx",
+
+      name_prob: "xxxx",
+
+      dob: "xxxx",
+
+      dob_prob: "xxxx",
+
+      sex: "xxxx",
+
+      sex_prob: "xxxx",
+
+      nationality: "xxxx",
+
+      nationality_prob: "xxxx",
+
+      home: "xxxx",
+
+      home_prob: "xxxx",
+
+      address: "xxxx",
+
+      address_prob: "xxxx",
+
+      address_entities: {
+        province: "xxxx",
+
+        district: "xxxx",
+
+        ward: "xxxx",
+
+        street: "xxxx",
+      },
+
+      doe: "xxxx",
+
+      doe_prob: "xxxx",
+
+      type: "xxxx",
+    },
+  ],
+};
+
+export const cccd_matsau = {
+  errorCode: 0,
+
+  errorMessage: "",
+
+  data: [
+    {
+      religion_prob: "xxxx",
+
+      religion: "xxxx",
+
+      ethnicity_prob: "xxxx",
+
+      ethnicity: "xxxx",
+
+      features: "xxxx",
+
+      features_prob: "xxxx",
+
+      issue_date: "xxxx",
+
+      issue_date_prob: "xxxx",
+
+      issue_loc_prob: "xxxx",
+
+      issue_loc: "xxxx",
+
+      type: "xxxx",
+    },
+  ],
+};

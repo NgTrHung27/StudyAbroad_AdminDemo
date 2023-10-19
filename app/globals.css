@@ -82,3 +82,12 @@ body,
 }
 
 @import "~@uploadthing/react/styles.css";
+@import "react-phone-number-input/style.css";
+
+.PhoneInput--focus {
+  outline: solid black 2px;
+}
+
+.PhoneInput--focus input {
+  outline: none;
+}

@@ -9,6 +9,7 @@ import AvatarForm from "./_components/avatar-form";
 import { Separator } from "@/components/ui/separator";
 import NameForm from "./_components/username-form";
 import EmailForm from "./_components/email-form";
+import RoleForm from "./_components/role-form";
 
 const TaiKhoanIdPage = async ({
   params,
@@ -74,12 +75,15 @@ const TaiKhoanIdPage = async ({
               <AvatarForm user={user} />
             </div>
             <div className="row-span-2 col-span-2">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+              <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-x-6">
                 <div>
                   <NameForm user={user} />
                 </div>
                 <div>
                   <EmailForm user={user} />
+                </div>
+                <div>
+                  <RoleForm user={user} />
                 </div>
               </div>
             </div>

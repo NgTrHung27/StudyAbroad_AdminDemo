@@ -31,7 +31,7 @@ model User {
   dob         DateTime
   address     String
   phoneNumber String
-  gender      Boolean  @default(false)
+  gender      String
   cccd        String   @unique
   description String?
   avatar      String?
@@ -73,7 +73,7 @@ model Account {
 
 model ActivateToken {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
-  token String @unique
+  token String
   otp   String @unique
 
   expiresAt DateTime
@@ -83,6 +83,7 @@ model ActivateToken {
   userId String @db.ObjectId
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([token, userId])
   @@index([userId])
 }
 

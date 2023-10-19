@@ -15,15 +15,29 @@ interface FileUploadProps {
 const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
   if (value) {
     return (
-      <div className="relative h-20 w-20">
-        <Image fill src={value} alt="Upload" className="rounded-full" />
-        <button
-          onClick={() => onChange("")}
-          className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm"
-        >
-          <X className="h-4 w-4" />
-        </button>
-      </div>
+      <>
+        {endpoint === "userIdentifier" ? (
+          <div className="relative w-full h-[200px]">
+            <Image fill src={value} alt="Upload" className="object-cover" />
+            <button
+              onClick={() => onChange("")}
+              className="bg-rose-500 text-white p-1 rounded-full absolute -top-2 -right-2 shadow-sm"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        ) : (
+          <div className="relative h-20 w-20">
+            <Image fill src={value} alt="Upload" className="rounded-full" />
+            <button
+              onClick={() => onChange("")}
+              className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        )}
+      </>
     );
   }
   return (

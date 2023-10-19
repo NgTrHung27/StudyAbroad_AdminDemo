@@ -5,6 +5,7 @@ import verifyEmail from "@/templates/verifyEmailTemplate";
 import { NextResponse } from "next/server";
 
 const jwt = require("jsonwebtoken");
+const otpGenerator = require("otp-generator");
 
 export async function POST(
   req: Request,
@@ -23,6 +24,11 @@ export async function POST(
 
     const token = jwt.sign({ email: email }, process.env.JWT_SECRET_KEY, {
       expiresIn: "30m",
+    });
+
+    const otp = otpGenerator.generate(6, {
+      upperCaseAlphabets: false,
+      specialChars: false,
     });
 
     if (!email) {
@@ -47,11 +53,21 @@ export async function POST(
       });
     }
 
-    const confirmToken = await db.activateToken.create({
-      data: {
+    const confirmToken = await db.activateToken.upsert({
+      where: {
+        token_userId: {
+          userId: params.userId,
+          token,
+        },
+      },
+      update: {
+        token,
+        expiresAt: new Date(Date.now() + 60 * 30 * 1000),
+      },
+      create: {
         userId: params.userId,
         token,
-        otp: "123456",
+        otp,
         expiresAt: new Date(Date.now() + 60 * 30 * 1000),
       },
     });

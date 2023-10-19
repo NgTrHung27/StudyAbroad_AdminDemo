@@ -18,7 +18,7 @@ const AvatarForm = ({ user }: AvatarFormProps) => {
         <div className="relative">
           <Avatar className="h-32 w-32 border-4 border-slate-200">
             <AvatarImage
-              src={user?.image ? user.image : "/placeholder.jpg"}
+              src={user?.avatar ? user.avatar : "/placeholder.jpg"}
               alt="avatar"
             />
           </Avatar>

@@ -52,7 +52,7 @@ export const AvatarModal = () => {
 
   useEffect(() => {
     if (user) {
-      form.setValue("image", user.image!);
+      form.setValue("image", user.avatar!);
     }
   }, [user, form]);
 

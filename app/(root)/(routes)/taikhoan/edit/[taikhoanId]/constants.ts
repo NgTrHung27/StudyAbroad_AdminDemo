@@ -17,3 +17,9 @@ export const formEmailSchema = z.object({
     message: "Yêu cầu nhập tên khóa học",
   }),
 });
+
+export const formRoleSchema = z.object({
+  role: z.string({
+    required_error: "Vui lòng chọn vai trò",
+  }),
+});
