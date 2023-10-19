@@ -158,9 +158,9 @@ export default function Header() {
             </div>
           </div>
           <ul className="list-disc ml-[90px] md:ml-[520px] text-[18px]">
-            <li className="mt-3">Tiếng anh 12 - điểm cuối kỳ tối thiểu "C"</li>
-            <li className="mt-3">Văn học tiếng anh 12 - điểm tối thiểu "C"</li>
-            <li className="mt-3">Giao tiếp 12 - điểm cuối kỳ tối thiểu "B"</li>
+            <li className="mt-3">Tiếng anh 12 - điểm cuối kỳ tối thiểu &quot;C&quot;</li>
+            <li className="mt-3">Văn học tiếng anh 12 - điểm tối thiểu &quot;C&quot;</li>
+            <li className="mt-3">Giao tiếp 12 - điểm cuối kỳ tối thiểu &quot;B&quot;</li>
             <li className="mt-3">
               Tiếng anh 12 dân tộc bản địa - điểm cuối kỳ tối thiểu "C"
             </li>
