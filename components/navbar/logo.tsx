@@ -15,7 +15,7 @@ const Logo = () => {
       onClick={() => router.push("/")}
       alt="Logo"
       className="cursor-pointer"
-      src="/logo.png"
+      src="/logoCEMCwhite.png"
     />
   );
 };
