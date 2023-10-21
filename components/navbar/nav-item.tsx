@@ -17,6 +17,9 @@ const NavItem = () => {
       <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[22px] ">
         <Link href={"NganhHoc"}>Ngành Học</Link>
       </div>
+       <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
+          <a href="/id/ThongTinCacTruong">So Sánh</a>
+        </div>
     </div>
   );
 };
