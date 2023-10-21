@@ -18,15 +18,15 @@ const page = () => {
           ĐỐI TÁC HỖ TRỢ VIỆC LÀM BEEZNESTS
         </p>
       </div>
-      <div className="w-full">
+    
         <Image
-          width={1800}
-          height={300}
+          width={0}
+          height={0}
           alt="Icon"
           src="/Doitac/DoiTac_1.png"
-          className="object-cover"
+          className="object-cover w-full md:h-auto"
+          sizes="100vw"
         />
-      </div>
 
       <div className="container font-medium text-center mt-8 md:text-2xl">
         Tất cả các sinh viên đăng kí và học bằng đôi (dual diplomas) tại
