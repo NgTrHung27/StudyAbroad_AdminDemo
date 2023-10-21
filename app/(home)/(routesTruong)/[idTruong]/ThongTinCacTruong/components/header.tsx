@@ -5,7 +5,7 @@ export const Header = () => {
   return (
     <>
       <div className="text-[60px] font-bold text-center my-[40px]">
-        Thông tin so sánh các trường{" "}
+        Thông tin so sánh các trường
       </div>
       <Image
         alt=""
@@ -15,7 +15,6 @@ export const Header = () => {
         sizes="100vw"
         className="w-5/6 h-auto mx-auto"
       />
-
       <div className="text-[50px] italic font-bold my-[50px] text-center">
         Số lượng đánh giá 5 sao
       </div>

@@ -2,18 +2,26 @@ import bcrypt from "bcrypt";
 
 import { NextResponse } from "next/server";
 import prismadb from "../../../lib/prismadb";
+import { formRegisterSchema } from "../../(auth)/(routes)/sign-up/constants";
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { email, username, password } = body;
+  const { email, name, dob, address, phone, gender, cccd, description } =
+    formRegisterSchema.parse(body);
 
-  const hashedPassword = await bcrypt.hash(password, 12);
+  const hashedPassword = await bcrypt.hash("test", 12);
 
   const user = await prismadb.user.create({
     data: {
       email,
-      username,
       hashedPassword,
+      name,
+      dob,
+      address,
+      phoneNumber: phone,
+      gender,
+      cccd,
+      description,
     },
   });
 

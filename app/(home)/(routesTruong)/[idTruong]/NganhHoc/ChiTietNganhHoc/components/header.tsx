@@ -11,7 +11,7 @@ export const Header = () => {
         height={0}
         sizes="100vw"
         src="/ChiTietNganhHoc/nav.png"
-        className="w-full h-[150px]"
+        className="w-full h-[auto]"
       />
     </>
   );

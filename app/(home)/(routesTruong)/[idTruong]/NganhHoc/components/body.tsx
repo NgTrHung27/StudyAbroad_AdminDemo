@@ -10,7 +10,7 @@ export const Body = () => {
                 <div className='w-1 h-9 bg-red-700'></div>
                 <div className='flex flex-row '>
                 <Image src={"/NganhHoc/listNganhHocicon.png"} alt='/' width={29} height={29} className=' ml-[-13px] pt-2' />
-                <p className='mt-2 ml-2 font-semibold text-[20px] text-[#475F79]'>Quản lý khách sạn</p>
+                <p className='mt-2 ml-2 font-semibold text-[20px] text-[#475F79]'><a href='NganhHoc\ChiTietNganhHoc'>Quản lý khách sạn</a></p>
                 </div>
             </div>
             <div className='flex flex-col relative mt-3 '>
