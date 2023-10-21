@@ -5,9 +5,9 @@ const Procedure = () => {
   return (
     <div>
       <div className="w-full min-h-screen ">
-        <div className="bg-white w-full h-[770px] relative">
+        <div className="bg-white w-full h-fit relative md:h-[800px]">
           <div className="h-full w-full grid grid-cols-1 md:grid-cols-10">
-            <div className="col-span-6">
+            <div className="order-2 md:order-1 col-span-1 md:col-span-6">
               <div className="flex items-center justify-between gap-x-3 px-12 mt-8">
                 <h1 className="text-5xl capitalize font-bold">
                   Quy trình đặt cọc
@@ -21,9 +21,9 @@ const Procedure = () => {
                   />
                 </div>
               </div>
-              <div className="mx-12 pt-2 max-w-[60%]">
+              <div className="mx-12 pt-2 max-w-[60%] grid grid-cols-1">
                 <ul className="list-none decoration-slice text-lg font-medium space-y-2 text-[#777E90]">
-                  <li className="flex justify-between">
+                  <li className="flex">
                     <div>
                       <FaLocationCrosshairs className="mr-2 w-6 h-6 text-[#FF4415]" />
                     </div>
@@ -67,12 +67,12 @@ const Procedure = () => {
                 </ul>
               </div>
             </div>
-            <div className="relative col-span-4 ">
+            <div className="order-1 md:order-2 relative col-span-1 md:col-span-4 ">
               <Image
                 fill
                 src={"/Truong1/procedure.png"}
                 alt="procedure"
-                className="object-contain"
+                className="object-contain md:visible invisible"
               />
             </div>
           </div>
@@ -81,7 +81,7 @@ const Procedure = () => {
               fill
               src={"/Truong1/logostudent.png"}
               alt="logostudent"
-              className="absolute bottom-0"
+              className="absolute bottom-0 md:visible invisible"
             />
           </div>
           <div className="w-full h-8 bg-blue-950 rounded-t-xl absolute bottom-0" />
