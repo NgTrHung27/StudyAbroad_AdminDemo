@@ -10,12 +10,12 @@ const Logo = () => {
 
   return (
     <Image
-      width={170}
-      height={80}
+      width={72}
+      height={72}
       onClick={() => router.push("/")}
       alt="Logo"
       className="cursor-pointer"
-      src="/logoipsum.svg"
+      src="/logo.png"
     />
   );
 };

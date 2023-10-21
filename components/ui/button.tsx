@@ -17,7 +17,7 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
-          "text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 px-3",
+          "text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-black/90 px-3 hover:bg-accent",
         link: "text-primary underline-offset-4 hover:underline",
         login: "bg-[#7D1F1F] text-primary-foreground hover:bg-[#7D1F1F]/90",
       },
@@ -26,6 +26,7 @@ const buttonVariants = cva(
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        login: "max-w-[142px] h-[63px]",
       },
     },
     defaultVariants: {

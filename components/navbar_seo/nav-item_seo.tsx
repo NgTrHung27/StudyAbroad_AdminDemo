@@ -2,19 +2,15 @@
 
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "../../lib/utils";
-import { Button } from "../../components/ui/button";
+import { Button } from "../ui/button";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "../../components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../components/ui/popover";
+} from "../ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { ComboboxDemo } from "../ui/combobox";
 
 const frameworks = [
@@ -48,12 +44,19 @@ const NavItem = () => {
 
   return (
     <>
-      <div className="hidden lg:flex md:flex-row items-center justify-normal mx-auto ">
-        <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 ">
+      <div className="hidden lg:flex md:flex-row items-center justify-normal mx-auto gap-3 relative ">
+        <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
           Trang chủ
         </div>
-        <div className="text-white text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-white/90 ">
+        <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[22px]">
           <ComboboxDemo />
+        </div>
+
+        <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
+          <a href="LienHe">Liên Hệ</a>
+        </div>
+        <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
+          <a href="/TruongHoc/id/ThongTinCacTruong">So Sánh</a>
         </div>
       </div>
     </>
