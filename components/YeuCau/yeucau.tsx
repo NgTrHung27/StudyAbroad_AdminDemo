@@ -187,6 +187,7 @@ export default function YeuCauPage() {
             <div className="mt-[10px] bg-black rounded-full w-[15px] h-[15px]"></div>
             <div className="ml-[20px] text-[24px]">
               <p>
+
                 Giao tiếp kỹ thuật và chuyên nghiệp 12 - điểm tối thiểu
                 &quot;C&quot;
                 <br /> hoặc tiếng anh hoặc văn học - điểm tối thiểu 3
