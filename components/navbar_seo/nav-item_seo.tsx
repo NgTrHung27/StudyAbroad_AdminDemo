@@ -53,10 +53,10 @@ const NavItem = () => {
         </div>
 
         <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
-          <a href="">Liên Hệ</a>
+          <a href="LienHe">Liên Hệ</a>
         </div>
         <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
-          <a href="/id/ThongTinCacTruong">So Sánh</a>
+          <a href="/TruongHoc/id/ThongTinCacTruong">So Sánh</a>
         </div>
       </div>
     </>

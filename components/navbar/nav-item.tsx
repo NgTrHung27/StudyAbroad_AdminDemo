@@ -9,13 +9,13 @@ const NavItem = () => {
         <Link href={"/"}>Trang chủ</Link>
       </div>
       <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[22px] ">
-        <Link href={"/id/YeuCau"}>Yêu Cầu</Link>
+        <Link href={"YeuCau"}>Yêu Cầu</Link>
       </div>
       <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[22px] ">
-        <Link href={"/id/DoiTac"}> Đối Tác</Link>
+        <Link href={"DoiTac"}> Đối Tác</Link>
       </div>
       <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[22px] ">
-        <Link href={"/id/NganhHoc"}>Ngành Học</Link>
+        <Link href={"NganhHoc"}>Ngành Học</Link>
       </div>
     </div>
   );
