@@ -12,7 +12,7 @@ function page({ params }) {
     <div>
       <Welcome />
       <History />
-      <Operation />
+      {/*<Operation />*/}
       <Procedure />
       <Connect />
       <Blogs />
