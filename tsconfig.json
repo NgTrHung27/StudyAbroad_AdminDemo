@@ -20,6 +20,6 @@
     ],
     "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "app/(home)/TruongHoc/(routesTruong)/[idTruong]/SoSanh/components/Example.js"],
   "exclude": ["node_modules"]
 }
