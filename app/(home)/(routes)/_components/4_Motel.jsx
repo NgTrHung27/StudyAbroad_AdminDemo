@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 const Motel = () => {
@@ -20,12 +20,12 @@ const Motel = () => {
           <p className="bg-[#7D1F1F] rounded-l-lg p-2 pl-9 text-white text-3xl font-bold italic md:text-4x1 md:text-left text-center">
             Nhà trọ tiện nghi
           </p>
-          <p className="text-2xl p-3 w-full">
+          <d className="text-2xl p-3 w-full">
             <p className="w-auto md:mr-52">
               Sinh viên không cần phải lo lắng về nơi ở khi học tập, luôn có
               những khu nhà trọ hiện đại, tiện nghi ở gần trường.
             </p>
-          </p>
+          </d>
         </div>
       </div>
 
