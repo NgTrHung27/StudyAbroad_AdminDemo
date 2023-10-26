@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import Carousel from "./_components/1_Carousel";
 import Benefit from "./_components/2_Benefit";
@@ -10,9 +11,7 @@ import HighlightSchool from "./_components/6_HightlightSchool";
 const HomePage = () => {
   return (
     <>
-      <div className="w-10/12 h-full mx-auto ">
-        <Carousel />
-      </div>
+      <div className="w-10/12 h-full mx-auto ">{/* <Carousel /> */}</div>
       <div>
         <Benefit />
       </div>

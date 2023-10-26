@@ -4,6 +4,15 @@ import React from "react";
 import Image from "next/image";
 
 const Motel = () => {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  });
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <div className="mt-16 ">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -20,12 +29,12 @@ const Motel = () => {
           <p className="bg-[#7D1F1F] rounded-l-lg p-2 pl-9 text-white text-3xl font-bold italic md:text-4x1 md:text-left text-center">
             Nhà trọ tiện nghi
           </p>
-          <p className="text-2xl p-3 w-full">
+          <div className="text-2xl p-3 w-full">
             <p className="w-auto md:mr-52">
               Sinh viên không cần phải lo lắng về nơi ở khi học tập, luôn có
               những khu nhà trọ hiện đại, tiện nghi ở gần trường.
             </p>
-          </p>
+          </div>
         </div>
       </div>
 
