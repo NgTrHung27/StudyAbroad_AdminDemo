@@ -1,5 +1,5 @@
-import NavBtHome from "../../../components/navbar_Home/navbar_Home";
-import FooterDemo from "../../../components/Footer/footer";
+import NavBtHome from "../../components/navbar_Home/navbar_Home";
+import FooterDemo from "../../components/Footer/footer";
 import React from "react";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
