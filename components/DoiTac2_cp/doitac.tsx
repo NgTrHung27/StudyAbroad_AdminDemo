@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 export default function DoiTac2() {
   return (
     <>

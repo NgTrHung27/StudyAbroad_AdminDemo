@@ -1,20 +1,6 @@
 import { Metadata } from "next"
 import Image from "next/image"
 
-import { Button } from "../../../../../../../components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../../../../../components/ui/card"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "../../../../../../../components/ui/tabs"
 import TeamSwitcher from "./team-switcher"
 import { MainNav } from "./main-nav"
 import { Search } from "./search"
@@ -22,6 +8,9 @@ import { UserNav } from "./user-nav"
 import { CalendarDateRangePicker } from "./date-range-piker"
 import { Overview } from "./overview"
 import { RecentSales } from "./recent-sales"
+import { Button } from "../../../../components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/ui/tabs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../components/ui/card"
 
 export const metadata: Metadata = {
   title: "Dashboard",
