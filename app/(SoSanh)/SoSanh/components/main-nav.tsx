@@ -1,6 +1,7 @@
 import Link from "next/link"
+import { cn } from "../../../../lib/utils"
 
-import { cn } from "../../../../../../../lib/utils"
+
 
 export function MainNav({
     className,

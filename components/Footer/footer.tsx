@@ -16,7 +16,7 @@ export default function FooterDemo() {
     <footer className="bg-[#F8F8F8] w-full">
       <div className="container grid md:grid-cols-3 grid-cols-1 mx-auto py-10">
         <div className="w-auto mb-4">
-          <Image width={130} height={100} src="/LOGO_RED.png" alt="" />
+          <Image width={130} height={100} src="/login/LOGO_RED.png" alt="" />
           <div className="md:w-2/3">
             <p className="text-base text-[#767676] w-auto">
               Tầm nhìn cung cấp một nền giáo dục chất lượng và dễ tiếp cận cho

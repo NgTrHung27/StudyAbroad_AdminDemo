@@ -8,7 +8,7 @@ const HightlightSchool = () => {
       <div className="text-center text-4xl mt-14 font-bold text-[#7D1F1F] ">
         Các trường nổi bật
       </div>
-      <div className=" mt-10 container snap-x flex snap-mandatory h-150 w-300 mx-auto overflow-x-auto gap-10 scrollbar-default cursor-pointer">
+      <div className=" mt-10 container snap-x flex snap-mandatory h-150 w-300 mx-auto overflow-x-auto gap-10 cursor-pointer">
         <div className="snap-start h-150 w-300 flex-shrink-0 flex flex-item">
           <Image
             width={300}

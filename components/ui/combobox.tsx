@@ -67,7 +67,7 @@ export function ComboboxDemo() {
                 onSelect={(currentValue) => {
                   setValue(currentValue === value ? "" : currentValue);
                   setOpen(false);
-                  router.push(`/${truongHoc.label}`);
+                  router.push(`/TruongHoc/${truongHoc.label}`);
                 }}
               >
                 <Check
