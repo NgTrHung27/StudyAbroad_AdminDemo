@@ -10,13 +10,14 @@ interface FileUploadProps {
   onChange: (url?: string) => void;
   value: string;
   endpoint: keyof typeof ourFileRouter;
+  disabled?: boolean;
 }
 
 const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
   if (value) {
     return (
       <>
-        {endpoint === "userIdentifier" ? (
+        {endpoint === "schoolBackground" ? (
           <div className="relative w-full h-[200px]">
             <Image fill src={value} alt="Upload" className="object-cover" />
             <button
@@ -27,7 +28,7 @@ const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
             </button>
           </div>
         ) : (
-          <div className="relative h-20 w-20">
+          <div className="relative h-40 w-40">
             <Image fill src={value} alt="Upload" className="rounded-full" />
             <button
               onClick={() => onChange("")}

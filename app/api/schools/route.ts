@@ -1,0 +1,36 @@
+import getCurrentUser from "@/actions/get-current-user";
+import { formCreateSchoolSchema } from "@/app/(root)/(routes)/truonghoc/create/constants";
+import db from "@/lib/db";
+import { NextResponse } from "next/server";
+
+export async function POST(req: Request) {
+  try {
+    const currentuser = await getCurrentUser();
+
+    if (!currentuser) {
+      return new NextResponse("Chưa xác thực", { status: 401 });
+    }
+
+    const body = await req.json();
+
+    const { name, colorValue, description, backgroundUrl, logoUrl } =
+      formCreateSchoolSchema.parse(body);
+
+    const school = await db.school.create({
+      data: {
+        name,
+        colorValue,
+        backgroundUrl,
+        description,
+        logoUrl,
+      },
+    });
+
+    return NextResponse.json(school);
+  } catch (error) {
+    console.log("CREATE USER", error);
+    return new NextResponse("Tạo trường học thất bại", {
+      status: 500,
+    });
+  }
+}

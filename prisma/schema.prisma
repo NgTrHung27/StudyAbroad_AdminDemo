@@ -106,6 +106,9 @@ model Certificate {
   userId String @db.ObjectId
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([userId])
 }
 
@@ -122,6 +125,9 @@ model School {
   operations Operation[]
   blogs      Blog[]
   programs   Program[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 // Bảng cơ sở của trường học
@@ -134,6 +140,9 @@ model Operation {
 
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([schoolId])
 }
@@ -149,6 +158,9 @@ model Blog {
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([userId, schoolId])
 }
 
@@ -162,6 +174,9 @@ model Program {
 
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([schoolId])
 }
