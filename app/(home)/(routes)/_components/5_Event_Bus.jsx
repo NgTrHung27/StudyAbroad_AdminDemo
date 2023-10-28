@@ -3,6 +3,14 @@
 import React from "react";
 import Image from "next/image";
 const Event = () => {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  });
+
+  if (!mounted) {
+    return null;
+  }
   return (
     <div>
       <div>

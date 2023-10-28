@@ -5,7 +5,7 @@ module.exports = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx,jsx}",
     "./app/**/*.{ts,tsx,jsx}",
     "./src/**/*.{ts,tsx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
@@ -76,6 +76,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate"), nextui()],
-
-  darkMode: "class",
 };
