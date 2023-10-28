@@ -7,8 +7,13 @@ import NavItem from "./nav-item";
 import Search from "./search";
 import UserMenu from "./user-menu";
 import Link from "next/link";
+import { School } from "@prisma/client";
 
-const Navbar = () => {
+interface Props {
+  schools: School[];
+}
+
+const Navbar = ({ schools }: Props) => {
   return (
     <div className="fixed w-full inset-y-0 h-[72px] z-50 ">
       <div className="h-full bg-[#7D1F1F]">

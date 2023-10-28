@@ -14,31 +14,13 @@ import {
   CommandItem,
 } from "./command";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { School } from "@prisma/client";
 
-const truongHocs = [
-  {
-    value: "Cornerstone International Community College of Canada",
-    label: "Cornerstone International Community College of Canada",
-  },
-  {
-    value: "Metropolitan Community College",
-    label: "Metropolitan Community College",
-  },
-  {
-    value: "UCW University Canada West",
-    label: "UCW University Canada West",
-  },
-  {
-    value: "University of the Fraser Valley",
-    label: "University of the Fraser Valley",
-  },
-  {
-    value: "Sprott Shaw College",
-    label: "Sprott Shaw College",
-  },
-];
+interface Props {
+  schools: School[];
+}
 
-export function ComboboxDemo() {
+export function TruongHocCombobox({ schools }: Props) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
@@ -54,29 +36,29 @@ export function ComboboxDemo() {
           className="w-[150px] justify-center"
         >
           {value
-            ? truongHocs.find((truongHoc) => truongHoc.value === value)?.label
+            ? schools.find((school) => school.name === value)?.name
             : "Trường Học"}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[400px] p-0">
         <Command>
           <CommandGroup>
-            {truongHocs.map((truongHoc) => (
+            {schools.map((school) => (
               <CommandItem
-                key={truongHoc.value}
+                key={school.name}
                 onSelect={(currentValue) => {
                   setValue(currentValue === value ? "" : currentValue);
                   setOpen(false);
-                  router.push(`/TruongHoc/${truongHoc.label}`);
+                  router.push(`/TruongHoc/${school.name}`);
                 }}
               >
                 <Check
                   className={cn(
                     "mr-2 h-5 w-4",
-                    value === truongHoc.value ? "opacity-100" : "opacity-0"
+                    value === school.name ? "opacity-100" : "opacity-0"
                   )}
                 />
-                {truongHoc.label}
+                {school.name}
               </CommandItem>
             ))}
           </CommandGroup>

@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Carousel from "./_components/1_Carousel";
 import Benefit from "./_components/2_Benefit";

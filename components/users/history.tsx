@@ -1,9 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import { School } from "@prisma/client";
 
-export const History = () => {
+interface Props {
+  school: School;
+}
+
+export const History = ({ school }: Props) => {
   return (
-    <div className="w-full h-fit relative bg-yellow-500 " >
+    <div className="w-full h-fit relative bg-yellow-500 ">
       <div className="w-full h-[209px] relative">
         <Image
           alt="/"
@@ -12,13 +17,20 @@ export const History = () => {
           className="absolute w-full h-full"
         />
         <div className="relative bg-blue-950 bg-opacity-90 z-10 inset-0 w-full h-full text-center tracking-tight items-center flex justify-center text-[24px] md:text-5xl font-bold text-white">
-          <p className=" font-bold text-white " >Lịch sử của<br/>
-          Cornerstone International Community College</p>
+          <p className=" font-bold text-white ">
+            Lịch sử của
+            <br />
+            {school.name}
+          </p>
         </div>
       </div>
       <div className="w-full h-full grid-cols-1 md:grid-cols-3 grid relative">
         <div className="col-span-1">
-          <img alt="/2" src="/Truong1/truong1.png" className="w-full h-full  " />
+          <img
+            alt="/2"
+            src="/Truong1/truong1.png"
+            className="w-full h-full  "
+          />
         </div>
         <div className="col-span-2 relative z-0 flex justify-center">
           <div className="bg-white my-4 z-10 ">
