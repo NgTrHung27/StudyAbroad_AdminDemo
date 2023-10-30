@@ -11,34 +11,16 @@ import {
   CommandItem,
 } from "../ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { ComboboxDemo } from "../ui/combobox";
-
-const frameworks = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-];
+import { TruongHocCombobox } from "../ui/truonghoc-combobox";
 
 import React from "react";
+import { School } from "@prisma/client";
 
-const NavItem = () => {
+interface Props {
+  schools: School[];
+}
+
+const NavItem = ({ schools }: Props) => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
@@ -49,14 +31,17 @@ const NavItem = () => {
           Trang chủ
         </div>
         <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[22px]">
-          <ComboboxDemo />
+          <TruongHocCombobox schools={schools} />
         </div>
 
         <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
           <a href="LienHe">Liên Hệ</a>
         </div>
         <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
-          <a href="/TruongHoc/id/ThongTinCacTruong">So Sánh</a>
+          <a href="/SoSanh">So Sánh</a>
+        </div>
+        <div className="text-white text-lg font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 p-[28px]">
+          <a href="/HocPhi">Học Phí</a>
         </div>
       </div>
     </>

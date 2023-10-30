@@ -44,7 +44,7 @@ const LoginModal = () => {
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center p-0 m-0 gap-0">
-      <div className="absolute top-0 mt-12 w-[193px] h-[95px]">
+      <div className="relative flex items-center justify-center w-[193px] h-[120px]">
         <Image fill alt="Logo" src={"/login/LOGO_RED.png"} />
       </div>
       <Heading

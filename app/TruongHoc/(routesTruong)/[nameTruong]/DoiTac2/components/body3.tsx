@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import { Blogs } from "../../../../../../../components/users/blogs";
+import { Blogs } from "../../../../../../components/users/blogs";
+
 
 export const Body3 = () => {
   return (

@@ -3,6 +3,14 @@
 import React from "react";
 import Image from "next/image";
 const Event = () => {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  });
+
+  if (!mounted) {
+    return null;
+  }
   return (
     <div>
       <div>
@@ -11,13 +19,13 @@ const Event = () => {
             <p className="bg-[#7D1F1F] rounded-r-lg p-3 pl-9 text-white text-4xl font-bold italic md:text-right text-center">
               Sự kiện &nbsp; &nbsp;
             </p>
-            <p className="text-2xl p-3 w-full">
+            <div className="text-2xl p-3 w-full">
               <p className="w-auto md:ml-60  ">
                 {" "}
                 Sẽ luôn có những sự kiện, hoạt động ngoại khóa giúp sinh viên có
                 thể kết nối được với nhau trên toàn thế giới
               </p>
-            </p>
+            </div>
           </div>
           <div>
             <Image

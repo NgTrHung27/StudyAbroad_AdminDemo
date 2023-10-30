@@ -1,16 +1,27 @@
-import FooterDemo from "../../../../components/Footer/footer";
-import Navbar from "../../../../components/navbar/navbar";
+import FooterDemo from "../../../components/Footer/footer";
+import Navbar from "../../../components/navbar/navbar";
+import prismadb from "../../../lib/prismadb";
 
-const AuthLayout = ({ children: children }: { children: React.ReactNode }) => {
+const TruongHocLayout = async ({
+  children: children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const schools = await prismadb.school.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
   return (
     <div className="h-full flex flex-col">
       <div className="flex-1">
-        <Navbar />
-        <main className="pt-[72px]">{children}</main>
+        <Navbar schools={schools} />
+        <main className="h-full w-full pt-[72px]">{children}</main>
         <FooterDemo />
       </div>
     </div>
   );
 };
 
-export default AuthLayout;
+export default TruongHocLayout;

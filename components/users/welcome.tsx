@@ -1,7 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import { School } from "@prisma/client";
 
-export const Welcome = () => {
+interface Props {
+  school: School;
+}
+
+export const Welcome = ({ school }: Props) => {
   return (
     <div className="w-full h-[120vh] relative flex justify-center items-center">
       <Image
@@ -22,7 +27,7 @@ export const Welcome = () => {
           </div>
           <div className="text-blue-900 font-bold md:text-5xl text-3xl ">
             <p>Welcome to</p>
-            <p className="mt-[-0.5rem]">Cornerstone International</p>
+            <p className="mt-[-0.5rem]">{school.name}</p>
             <p className="mt-[-0.5rem]">Community College</p>
           </div>
         </div>
