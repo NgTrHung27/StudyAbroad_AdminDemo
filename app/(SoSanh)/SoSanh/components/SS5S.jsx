@@ -3,7 +3,6 @@ const SS5S = () => {
     return (  <>
     <h1>Đánh Giá 5*</h1>
     
-    
     </>);
 }
  
