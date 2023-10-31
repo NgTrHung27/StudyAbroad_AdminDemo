@@ -6,7 +6,6 @@ export default function page() {
   return (
     <>
       <TTSS />
-
     </>
 
   )
