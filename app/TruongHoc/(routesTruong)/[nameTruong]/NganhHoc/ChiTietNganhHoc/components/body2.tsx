@@ -8,7 +8,7 @@ export const Body2 = () => {
       </div>
       <div className="bg-[#D8D9DA] mt-7 border-2 rounded-3xl border-[#61677A]">
         <div className="grid grid-cols-3 ">
-          <div className="col-span-2">
+          <div className="col-span-3 md:col-span-2">
             <div className="ml-3">
               <p className="my-6">
                 <b> Mục tiêu chương trình:</b> Mục tiêu của chương trình này có
@@ -42,13 +42,17 @@ export const Body2 = () => {
               </p>
             </div>
           </div>
-          <Image
-            width={360}
-            height={330}
-            alt=""
-            src={"/ChiTietNganhHoc/SS-giao-tiep-trong-kinh-doanh 2.png"}
-            className=" col-span-1 mt-[100px] rounded-lg mr-0"
-          />
+          <div className=" invisible md:visible my-auto">
+            <Image
+              width={360}
+              height={330}
+              alt=""
+              src={"/ChiTietNganhHoc/SS-giao-tiep-trong-kinh-doanh 2.png"}
+              className="col-span-1  rounded-lg mr-0"
+            />
+
+          </div>
+
         </div>
       </div>
     </>
