@@ -12,17 +12,18 @@ const AuthLayout = async ({
     orderBy: {
       createdAt: "desc",
     },
-  });
-  return (
-    <div className="h-full">
-      <div className="fixed w-full h-[80px] inset-y-0 z-10 shadow-sm">
-        <NavBtHome schools={schools} />
+  }); ({ children }: { children: React.ReactNode }) => {
+    return (
+      <div className="h-full">
+        <div className="fixed w-full h-[80px] inset-y-0 z-10 shadow-sm">
+          <NavBtHome schools={schools} />
+        </div>
+        <main className="flex-1 pt-[72px] h-full">
+          {children}
+          <FooterDemo />
+        </main>
       </div>
-      <main className="flex-1 pt-[72px] h-full">
-        {children}
-        <FooterDemo />
-      </main>
-    </div>
-  );
+    );
+  };
 };
 export default AuthLayout;
