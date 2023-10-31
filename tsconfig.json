@@ -20,6 +20,6 @@
     ],
     "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "app/(home)/TruongHoc/(routesTruong)/[idTruong]/SoSanh/components/Example.js"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "app/(home)/TruongHoc/(routesTruong)/[idTruong]/SoSanh/components/Example.js", "app/(SoSanh)/SoSanh/components/SS5S.jsx"],
   "exclude": ["node_modules"]
 }

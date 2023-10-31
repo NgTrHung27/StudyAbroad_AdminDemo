@@ -62,15 +62,13 @@ export default function Header() {
           </div>
 
           <div className="md:flex md:flex-row mt-[50px] md:items-center">
-            <div className="invisible md:visible">
-              <div className="w-[172px] h-[4px] bg-[#7D1F1F]"></div>
+            <div className="invisible md:visible w-[15%] h-[4px] bg-[#7D1F1F]">
             </div>
 
-            <div className="ml-[20px] font-bold text-[24px] md:text-[36px]">
+            <div className="ml-[20px] font-bold text-[24px] md:w-[50%] md:text-[36px]">
               <p>Yêu cầu nhập học cho các khóa học tiếng anh</p>
             </div>
-            <div className="invisible md:visible">
-              <div className=" ml-[30px] md:w-[420px] h-[4px] bg-[#7D1F1F] items-end"></div>
+            <div className="invisible md:visible w-[35%] md:h-[4px] bg-[#7D1F1F]">
             </div>
           </div>
 
@@ -93,12 +91,15 @@ export default function Header() {
               </p>
             </div>
           </div>
-          <div className="flex flex-row mt-[50px] items-center">
-            <div className="w-[241px] h-[4px] bg-[#FEB618]"></div>
-            <div className="ml-[20px] font-bold text-[24px] md:text-[36px]">
+          <div className="md:flex md:flex-row mt-[50px] md:items-center relative">
+            <div className="invisible md:visible md:w-[15%] h-[4px] bg-[#FEB618]">
+            </div>
+
+            <div className="ml-[20px] font-bold text-[24px] md:w-[50%] md:text-[36px]">
               <p>Yêu cầu nhập học cho chương trình diploma</p>
             </div>
-            <div className=" ml-[20px] w-[461px] h-[4px] bg-[#FEB618]"></div>
+            <div className="invisible md:visible md:w-[35%] md:h-[4px] bg-[#FEB618]">
+            </div>
           </div>
 
           <div className="flex flex-row md:ml-[208px] ml-[30px]">
