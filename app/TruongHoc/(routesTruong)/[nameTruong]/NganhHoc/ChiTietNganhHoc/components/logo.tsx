@@ -4,7 +4,7 @@ import Image from "next/image";
 export const Logo = () => {
   return (
     <>
-      <div className=" bg-black relative h-[132px] w-full">
+      <div className="relative h-[132px] w-full">
         <Image
           width={205}
           height={123}
