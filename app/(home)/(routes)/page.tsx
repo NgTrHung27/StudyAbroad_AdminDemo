@@ -9,7 +9,9 @@ import HighlightSchool from "./_components/6_HightlightSchool";
 const HomePage = () => {
   return (
     <>
-      <div className="w-10/12 h-full mx-auto ">{/* <Carousel /> */}</div>
+      <div className="w-10/12 h-full mx-auto ">
+        <Carousel />
+      </div>
       <div>
         <Benefit />
       </div>
