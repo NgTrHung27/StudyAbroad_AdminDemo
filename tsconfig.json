@@ -2,6 +2,7 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext", "ES2017", "es6"],
     "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "strict": false,
     "noEmit": true,
@@ -19,6 +20,6 @@
     ],
     "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "app/(home)/TruongHoc/(routesTruong)/[idTruong]/SoSanh/components/Example.js", "app/(SoSanh)/SoSanh/components/SS5S.jsx"],
   "exclude": ["node_modules"]
 }

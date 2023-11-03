@@ -107,8 +107,9 @@ const RegisterModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formRegisterSchema>) => {
     try {
-      console.log(values);
+      await axios.post("/api/register", values);
       registerForm.reset();
+      router.push("/trangchu");
     } catch (error) {
       console.log(error);
     } finally {
@@ -223,12 +224,14 @@ const RegisterModal = () => {
               defaultValue={field.value}
             >
               <FormControl>
-                <SelectTrigger>
+                <SelectTrigger className="outline outline-2 text-base text-black">
                   <SelectValue placeholder="Chọn giới tính" />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value="Nam">Nam</SelectItem>
+                <SelectItem value="Nam" className="text-black">
+                  Nam
+                </SelectItem>
                 <SelectItem value="Nữ">Nữ</SelectItem>
               </SelectContent>
             </Select>
@@ -355,7 +358,7 @@ const RegisterModal = () => {
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center p-0 m-0 gap-0">
-      <div className="relative flex items-center justify-center w-[193px] h-[95px]">
+      <div className="relative flex items-center justify-center w-[193px] h-[120px]">
         <Image fill alt="Logo" src={"/login/LOGO_RED.png"} />
       </div>
       <Heading

@@ -73,7 +73,7 @@ model Account {
 
 model ActivateToken {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
-  token String @unique
+  token String
   otp   String @unique
 
   expiresAt DateTime
@@ -83,6 +83,7 @@ model ActivateToken {
   userId String @db.ObjectId
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([token, userId])
   @@index([userId])
 }
 
@@ -105,6 +106,9 @@ model Certificate {
   userId String @db.ObjectId
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([userId])
 }
 
@@ -113,7 +117,7 @@ model School {
 
   logoUrl       String @db.String
   backgroundUrl String @db.String
-  name          String
+  name          String @unique
   description   String @db.String
   colorValue    String
 
@@ -121,6 +125,9 @@ model School {
   operations Operation[]
   blogs      Blog[]
   programs   Program[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 // Bảng cơ sở của trường học
@@ -133,6 +140,9 @@ model Operation {
 
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([schoolId])
 }
@@ -148,6 +158,9 @@ model Blog {
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([userId, schoolId])
 }
 
@@ -162,5 +175,54 @@ model Program {
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([schoolId])
+}
+
+model Contact {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name        String
+  email       String
+  phoneNumber String
+  textContent String @db.String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum SemesterCategory {
+  HocKyMot
+  HocKyHai
+  HocKyBa
+}
+
+model StudentScore {
+  id           String           @id @default(auto()) @map("_id") @db.ObjectId
+  midtermScore Float
+  finalScore   Float
+  isPassed     Boolean          @default(false)
+  note         String           @db.String
+  semester     SemesterCategory
+  schoolYear   Int
+
+  miniScores MiniScore[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MiniScore {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  score Float
+
+  studentScoreId String       @db.ObjectId
+  studentScore   StudentScore @relation(fields: [studentScoreId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([studentScoreId])
 }
