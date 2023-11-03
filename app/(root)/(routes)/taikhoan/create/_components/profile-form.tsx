@@ -63,7 +63,7 @@ export function ProfileForm() {
     defaultValues: {
       name: "",
       address: "",
-      phone: "",
+      phoneNumber: "",
       gender: "",
       cccd: "",
       email: "",
@@ -206,7 +206,7 @@ export function ProfileForm() {
             {/* Số điện thoại */}
             <FormField
               control={form.control}
-              name="phone"
+              name="phoneNumber"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Số điện thoại</FormLabel>

@@ -36,7 +36,6 @@ export function SchoolForm() {
     resolver: zodResolver(formCreateSchoolSchema),
     defaultValues: {
       name: "",
-      description: "",
       logoUrl: "",
       backgroundUrl: "",
       colorValue: "",
@@ -119,24 +118,6 @@ export function SchoolForm() {
                     />
                   </FormControl>
                   <FormDescription>Ví dụ: Cornerstone</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {/* Mô tả lý do du học */}
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Mô tả lý do du học</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Mô tả lý trường học"
-                      className="resize-none"
-                      {...field}
-                    />
-                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}

@@ -4,9 +4,6 @@ export const formCreateSchoolSchema = z.object({
   name: z.string().min(1, {
     message: "Vui lòng nhập tên đăng nhập",
   }),
-  description: z.string().min(1, {
-    message: "Vui lòng miêu tả lý do du học",
-  }),
   logoUrl: z.string({
     required_error: "Vui lòng chọn logo",
   }),

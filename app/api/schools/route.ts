@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
-    const { name, colorValue, description, backgroundUrl, logoUrl } =
+    const { name, colorValue, backgroundUrl, logoUrl } =
       formCreateSchoolSchema.parse(body);
 
     const school = await db.school.create({
@@ -21,7 +21,6 @@ export async function POST(req: Request) {
         name,
         colorValue,
         backgroundUrl,
-        description,
         logoUrl,
       },
     });
