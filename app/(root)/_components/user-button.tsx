@@ -33,7 +33,7 @@ export function UserButton({ currentUser }: UserButtonProps) {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>{currentUser?.username}</DropdownMenuLabel>
+        <DropdownMenuLabel>{currentUser?.name}</DropdownMenuLabel>
         <p className="px-2 text-xs text-muted-foreground font-medium">
           {currentUser?.email}
         </p>

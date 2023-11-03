@@ -10,7 +10,7 @@ export const formCreateUserSchema = z.object({
   address: z.string().min(1, {
     message: "Vui lòng nhập địa chỉ",
   }),
-  phone: z.string().min(1, {
+  phoneNumber: z.string().min(1, {
     message: "Vui lòng nhập số điện thoại",
   }),
   gender: z.string({
