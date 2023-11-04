@@ -1,17 +1,13 @@
+import getSchools from "../../../action/get-schools";
 import FooterDemo from "../../../components/Footer/footer";
 import Navbar from "../../../components/navbar/navbar";
-import prismadb from "../../../lib/prismadb";
 
 const TruongHocLayout = async ({
   children: children,
 }: {
   children: React.ReactNode;
 }) => {
-  const schools = await prismadb.school.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  const schools = await getSchools();
 
   return (
     <div className="h-full flex flex-col">
