@@ -66,7 +66,7 @@ const RegisterModal = () => {
     defaultValues: {
       name: "",
       address: "",
-      phone: "",
+      phoneNumber: "",
       gender: "",
       cccd: "",
       email: "",
@@ -109,11 +109,11 @@ const RegisterModal = () => {
     try {
       await axios.post("/api/register", values);
       registerForm.reset();
-      router.push("/trangchu");
+      router.push("/");
     } catch (error) {
       console.log(error);
     } finally {
-      router.refresh();
+      window.location.reload;
     }
   };
 
@@ -196,7 +196,7 @@ const RegisterModal = () => {
       />
       <FormField
         control={registerForm.control}
-        name="phone"
+        name="phoneNumber"
         render={({ field }) => (
           <FormItem>
             <FormControl>
