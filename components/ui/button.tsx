@@ -17,7 +17,7 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
-          "text-black text-lg font-semibold hover:underline transtion hover:cursor-pointer hover:text-black/90 px-3 hover:bg-accent",
+          "text-white md:text-lg text-xs font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-[72px] md:min-w-full flex justify-center text-center items-center md:px-5 px-3 rounded-[-20px]",
         link: "text-primary underline-offset-4 hover:underline",
         login: "bg-[#7D1F1F] text-primary-foreground hover:bg-[#7D1F1F]/90",
       },
