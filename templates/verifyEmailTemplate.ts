@@ -99,14 +99,14 @@ Use this link to confirm your account and log in</div>
                     <tr>
                       <td class="sm-px-24"
                         style="--bg-opacity: 1; background-color: #ffffff;  border-radius: 4px; font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif; font-size: 14px; line-height: 24px; padding: 48px; text-align: left; --text-opacity: 1; color: #626262;"
-                         align="left">
+                        align="left">
                         <p style="font-weight: 600; font-size: 18px; margin-bottom: 0;">Xin chào,</p>
 
                         <p style="margin: 0 0 24px;">
                           Một yêu cầu xác thực email từ trang Quản lý du học đã được gửi cho bạn. Vui lòng nhấn vào đường dẫn bên dưới để xác thực hoặc nhập mã OTP
                         </p>
 
-                        <a href="http://localhost:3000/taikhoan/edit/${userId}/confirmEmail/${token}">
+                        <a href="${process.env.NEXT_PUBLIC_ADMIN_URL}/taikhoan/edit/${userId}/confirmEmail/${token}">
                           Nhấn vào đây để tiếp tục
                         </a>
                         <table style="font-family: 'Montserrat',Arial,sans-serif;" cellpadding="0" cellspacing="0"

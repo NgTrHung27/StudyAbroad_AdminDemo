@@ -12,12 +12,6 @@ const ConfirmEmailPage = async ({
     tokenId: string;
   };
 }) => {
-  const currentUser = await getCurrentUser();
-
-  if (!currentUser) {
-    return redirect("/");
-  }
-
   const { taikhoanId, tokenId } = params;
 
   if (!taikhoanId) {
@@ -70,7 +64,11 @@ const ConfirmEmailPage = async ({
     console.log("CONFIRM EMAIL", error);
     return redirect("/");
   }
-  return redirect(`/taikhoan/edit/${taikhoanId}`);
+  return (
+    <div className="w-full h-full flex items-enter justify-center">
+      <h2 className="font-bold text-3xl">Xác thực Email thành công</h2>
+    </div>
+  );
 };
 
 export default ConfirmEmailPage;
