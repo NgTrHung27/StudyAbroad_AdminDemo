@@ -1,17 +1,13 @@
 import Navbar from "../../components/navbar/navbar";
 import FooterDemo from "../../components/Footer/footer";
-import prismadb from "../../lib/prismadb";
+import getSchools from "../../action/get-schools";
 
-const LienHeLayout = async ({
+const ScoreLayout = async ({
   children: children,
 }: {
   children: React.ReactNode;
 }) => {
-  const schools = await prismadb.school.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  const schools = await getSchools();
   return (
     <div className="h-full flex flex-col">
       <div className="flex-1">
@@ -23,4 +19,4 @@ const LienHeLayout = async ({
   );
 };
 
-export default LienHeLayout;
+export default ScoreLayout;
