@@ -46,6 +46,12 @@ export const routes = [
     icon: Settings,
     description: "Cài đặt chung",
   },
+   {
+    label: "Ngành Học",
+    href: "/nganhhoc",
+    icon: Settings,
+    description: "Ngành Học",
+  },
 ];
 
 export type SafeUser = Omit<
