@@ -18,7 +18,7 @@ const Navbar = ({ schools }: Props) => {
     <div className="fixed w-full inset-y-0 h-[72px] z-50 ">
       <div className="h-full bg-[#7D1F1F]">
         <Container>
-          <div className="flex flex-row items-center justify-between gap-3 md:gap-2 ">
+          <div className="flex flex-row items-center justify-between gap-3 md:gap-2 relative ">
             <Link href={"/"}>
               <Logo />
             </Link>
