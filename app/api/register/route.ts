@@ -1,29 +1,37 @@
 import bcrypt from "bcrypt";
 
 import { NextResponse } from "next/server";
-import prismadb from "../../../lib/prismadb";
 import { formRegisterSchema } from "../../(auth)/(routes)/sign-up/constants";
+import { getAuthSession } from "../../../lib/nextauth";
+import axios from "axios";
 
 export async function POST(req: Request) {
-  const body = await req.json();
-  const { email, name, dob, address, phone, gender, cccd, description } =
-    formRegisterSchema.parse(body);
+  try {
+    const session = await getAuthSession();
 
-  const hashedPassword = await bcrypt.hash("test", 12);
+    if (!session) {
+      return new NextResponse("Chưa xác thực", { status: 401 });
+    }
 
-  const user = await prismadb.user.create({
-    data: {
-      email,
-      hashedPassword,
-      name,
-      dob,
-      address,
-      phoneNumber: phone,
-      gender,
-      cccd,
-      description,
-    },
-  });
+    const body = await req.json();
+    const { dob } = body;
+    if (typeof dob === "string") {
+      body.dob = new Date(dob);
+    }
 
-  return NextResponse.json(user);
+    const { ...values } = formRegisterSchema.parse(body);
+
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_ADMIN_URL}/users`,
+      {
+        session,
+        ...values,
+      }
+    );
+
+    return NextResponse.json(response.data);
+  } catch (error) {
+    console.log(error);
+    return new NextResponse("Tạo tài khoản thất bại", { status: 500 });
+  }
 }
