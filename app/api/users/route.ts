@@ -1,4 +1,4 @@
-import getCurrentUser from "@/actions/get-current-user";
+import getCurrentUser, { getSession } from "@/actions/get-current-user";
 import db from "@/lib/db";
 import { UserRole } from "@prisma/client";
 import { NextResponse } from "next/server";
@@ -13,30 +13,43 @@ const otpGenerator = require("otp-generator");
 
 export async function POST(req: Request) {
   try {
-    const currentuser = await getCurrentUser();
-
-    if (!currentuser) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
     const body = await req.json();
 
-    const { role, password } = body;
-
-    const { ...values } = formCreateUserSchema.parse(body);
-
-    const hasRole = role === UserRole.ADMIN || role === UserRole.USER;
-
-    if (!hasRole) {
-      return new NextResponse("Role not found", { status: 404 });
+    const { dob: birth, session } = body;
+    if (typeof birth === "string") {
+      body.dob = new Date(birth);
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
+    console.log(session);
+
+    if (!session) {
+      return new NextResponse("Chưa xác thực", { status: 401 });
+    }
+
+    const {
+      name,
+      address,
+      cccd,
+      description,
+      dob,
+      email,
+      gender,
+      phoneNumber,
+    } = formCreateUserSchema.parse(body);
+
+    const hashedPassword = await bcrypt.hash("test", 12);
 
     const user = await db.user.create({
       data: {
         hashedPassword,
-        ...values,
+        name,
+        address,
+        cccd,
+        description,
+        dob,
+        email,
+        gender,
+        phoneNumber,
       },
     });
 

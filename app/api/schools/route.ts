@@ -33,3 +33,14 @@ export async function POST(req: Request) {
     });
   }
 }
+
+export async function GET(req: Request) {
+  try {
+    const schools = await db.school.findMany();
+
+    return NextResponse.json(schools);
+  } catch (error) {
+    console.log(error);
+    return new NextResponse("Lấy thông tin trường học thất bại");
+  }
+}
