@@ -34,7 +34,7 @@ const HomeMenu = () => {
       <div className="flex flex-row items-center gap-3">
         <div
           onClick={toggleOpen}
-          className="py-1 px-2 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer transition"
+          className="py-1 px-2 mr-3 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer transition"
         >
           <AiOutlineMenuUnfold className="text-white font-bold text-lg " />
         </div>
