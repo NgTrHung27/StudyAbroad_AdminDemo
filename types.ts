@@ -1,5 +1,8 @@
 import { User, UserRole } from "@prisma/client";
 import {
+  BookA,
+  BookAIcon,
+  BookMarked,
   FileSpreadsheet,
   GraduationCap,
   Home,
@@ -45,6 +48,12 @@ export const routes = [
     href: "/caidat",
     icon: Settings,
     description: "Cài đặt chung",
+  },
+  {
+    label: "Liên Hệ",
+    href: "/lienhe",
+    icon: BookMarked,
+    description: "Liên Hệ",
   },
 ];
 
