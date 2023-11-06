@@ -16,7 +16,7 @@ const Navbar = ({ schools }: Props) => {
     <div className="fixed w-full inset-y-0 h-[72px] z-50">
       <div className="bg-[#7D1F1F] h-full ">
         <Container>
-          <div className="flex flex-row items-center justify-between gap-3 md:gap-2 relative  ">
+          <div className="flex flex-row items-center justify-between gap-1 md:gap-3 relative  ">
             <LogoHome />
             <NavItemHome schools={schools} />
             <NavBtHome />
