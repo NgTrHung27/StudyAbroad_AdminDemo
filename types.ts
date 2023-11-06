@@ -55,6 +55,12 @@ export const routes = [
     icon: BookMarked,
     description: "Liên Hệ",
   },
+  {
+    label: "Ngành Học",
+    href: "/nganhhoc",
+    icon: Settings,
+    description: "Ngành Học",
+  },
 ];
 
 export type SafeUser = Omit<
