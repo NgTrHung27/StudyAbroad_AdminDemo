@@ -1,25 +1,24 @@
 import NavBtHome from "../../../components/navbar_Home/navbar_Home";
 import FooterDemo from "../../../components/Footer/footer";
-import React from "react";
-import prismadb from "../../../lib/prismadb";
+import React, { Suspense } from "react";
+import getSchools from "../../../action/get-schools";
+import Loading from "./loading";
 
 const TrangChuLayout = async ({ children }: { children: React.ReactNode }) => {
-  const schools = await prismadb.school.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  const schools = await getSchools();
 
   return (
-    <div className="h-full">
-      <div className="fixed w-full h-[80px] inset-y-0 z-10 shadow-sm">
-        <NavBtHome schools={schools} />
+    <Suspense fallback={<Loading />}>
+      <div className="h-full">
+        <div className="fixed w-full h-[80px] inset-y-0 z-10 shadow-sm">
+          <NavBtHome schools={schools} />
+        </div>
+        <main className="flex-1 pt-[72px] h-full">
+          {children}
+          <FooterDemo />
+        </main>
       </div>
-      <main className="flex-1 pt-[72px] h-full">
-        {children}
-        <FooterDemo />
-      </main>
-    </div>
+    </Suspense>
   );
 };
 export default TrangChuLayout;

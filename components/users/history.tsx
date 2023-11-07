@@ -26,11 +26,7 @@ export const History = ({ school }: Props) => {
       </div>
       <div className="w-full h-full grid-cols-1 md:grid-cols-3 grid relative">
         <div className="col-span-1">
-          <img
-            alt="/2"
-            src="/Truong1/truong1.png"
-            className="w-full h-full  "
-          />
+          <img alt="/2" src="/Truong1/truong1.png" className="w-full h-full" />
         </div>
         <div className="col-span-2 relative z-0 flex justify-center">
           <div className="bg-white my-4 z-10 ">

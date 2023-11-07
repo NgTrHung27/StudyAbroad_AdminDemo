@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import IconBenefit from "../_components/7_Icon_Benefit";
+import IconBenefit from "./7_Icon_Benefit";
 
 const Benefit = () => {
   return (
@@ -19,7 +19,7 @@ const Benefit = () => {
         <IconBenefit src="/IconNha.png" description="Nhiều chỗ ở tiện nghi" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-3 md:pt-8 md:mx-52 md:mt-[-50px]">
-      <IconBenefit
+        <IconBenefit
           src="/IconJob.png"
           description="Gặp gỡ và giao lưu bạn bè trên thế giới"
         />
