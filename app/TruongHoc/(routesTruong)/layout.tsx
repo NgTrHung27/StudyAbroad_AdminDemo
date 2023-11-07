@@ -1,4 +1,4 @@
-import getSchools from "../../../action/get-schools";
+import getSchool from "../../../action/get-school";
 import FooterDemo from "../../../components/Footer/footer";
 import Navbar from "../../../components/navbar/navbar";
 
@@ -7,13 +7,10 @@ const TruongHocLayout = async ({
 }: {
   children: React.ReactNode;
 }) => {
-  const schools = await getSchools();
-
   return (
     <div className="h-full flex flex-col">
       <div className="flex-1">
-        <Navbar schools={schools} />
-        <main className="h-full w-full pt-[72px]">{children}</main>
+        {children}
         <FooterDemo />
       </div>
     </div>

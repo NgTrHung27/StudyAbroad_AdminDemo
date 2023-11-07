@@ -164,19 +164,17 @@ model Blog {
 }
 
 model Program {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-
-  description String @db.String
-  fee         Float
-  picOne      String @db.String
-  picTwo      String @db.String
-
+ id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String @db.String
+  description1 String @db.String
+  description2 String @db.String
+  Price        Float
+  Image1      String @db.String
+  Image2      String @db.String
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   @@index([schoolId])
 }
 
