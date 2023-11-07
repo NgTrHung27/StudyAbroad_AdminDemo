@@ -118,7 +118,6 @@ model School {
   logoUrl       String @db.String
   backgroundUrl String @db.String
   name          String @unique
-  description   String @db.String
   colorValue    String
 
   users      User[]
@@ -187,6 +186,7 @@ model Contact {
   name        String
   email       String
   phoneNumber String
+  title       String @db.String
   textContent String @db.String
 
   createdAt DateTime @default(now())
