@@ -8,30 +8,34 @@ import { Connect } from "../../../../components/users/connect";
 import { Blogs } from "../../../../components/users/blogs";
 import prismadb from "../../../../lib/prismadb";
 import { redirect } from "next/navigation";
+import NavbarTruong from "../../../../components/navbar/navbar";
+import getSchool from "../../../../action/get-school";
 
-const TruongHocNamePage = async ({
-  params,
-}: {
-  params: { nameTruong: string };
-}) => {
-  const school = await prismadb.school.findUnique({
-    where: {
-      name: params.nameTruong,
-    },
-  });
+const TruongHocNamePage = async (
+  {
+    params,
+  }:
+    {
+      params: { nameTruong: string };
+    }) => {
+
+  const school = await getSchool(params.nameTruong);
 
   if (!school) {
     return redirect("/");
   }
   return (
     <div>
-      <Welcome school={school} />
-      <History school={school} />
-      <OperationTop />
-      <OperationBody />
-      <Procedure />
-      <Connect />
-      <Blogs />
+      <NavbarTruong school={school} />
+      <div className="h-full w-full pt-[72px]">
+        <Welcome school={school} />
+        <History school={school} />
+        <OperationTop />
+        <OperationBody />
+        <Procedure />
+        <Connect />
+        <Blogs />
+      </div>
     </div>
   );
 };
