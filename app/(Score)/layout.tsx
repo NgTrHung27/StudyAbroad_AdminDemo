@@ -1,4 +1,4 @@
-import Navbar from "../../components/navbar/navbar";
+import NavbarTruong from "../../components/navbar/navbar";
 import FooterDemo from "../../components/Footer/footer";
 import getSchools from "../../action/get-schools";
 
@@ -11,7 +11,7 @@ const ScoreLayout = async ({
   return (
     <div className="h-full flex flex-col">
       <div className="flex-1">
-        <Navbar schools={schools} />
+        <NavbarTruong schools={schools} />
         <main className="w-full pt-[72px]">{children}</main>
         <FooterDemo />
       </div>
