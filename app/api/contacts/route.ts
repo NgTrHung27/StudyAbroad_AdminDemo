@@ -1,46 +1,23 @@
-import getCurrentUser from "@/actions/get-current-user";
-import { formCreateSchoolSchema } from "@/app/(root)/(routes)/truonghoc/create/constants";
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
+import { formContactSchema } from "@/app/(root)/(routes)/lienhe/constants";
 
 export async function POST(req: Request) {
   try {
-    const currentuser = await getCurrentUser();
-
-    if (!currentuser) {
-      return new NextResponse("Chưa xác thực", { status: 401 });
-    }
-
     const body = await req.json();
+    console.log(body);
+    const { ...values } = formContactSchema.parse(body);
 
-    const { name, colorValue, backgroundUrl, logoUrl } =
-      formCreateSchoolSchema.parse(body);
-
-    const school = await db.school.create({
+    const contact = await db.contact.create({
       data: {
-        name,
-        colorValue,
-        backgroundUrl,
-        logoUrl,
+        ...values,
       },
     });
-
-    return NextResponse.json(school);
+    return new NextResponse("OK", { status: 200 });
   } catch (error) {
     console.log("CREATE USER", error);
-    return new NextResponse("Tạo trường học thất bại", {
+    return new NextResponse("Gửi liên hệ thất bại", {
       status: 500,
     });
-  }
-}
-
-export async function GET(req: Request) {
-  try {
-    const schools = await db.school.findMany();
-
-    return NextResponse.json(schools);
-  } catch (error) {
-    console.log(error);
-    return new NextResponse("Lấy thông tin trường học thất bại");
   }
 }

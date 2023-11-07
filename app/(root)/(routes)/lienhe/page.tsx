@@ -4,14 +4,14 @@ import { redirect } from "next/navigation";
 import db from "@/lib/db";
 import getCurrentUser from "@/actions/get-current-user";
 
-const TaiKhoanPage = async () => {
+const LienHePage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
     redirect("/sign-in");
   }
 
-  const schools = await db.school.findMany({
+  const contacts = await db.contact.findMany({
     orderBy: {
       createdAt: "desc",
     },
@@ -19,9 +19,9 @@ const TaiKhoanPage = async () => {
 
   return (
     <div className="p-6">
-      <DataTable columns={columns} data={schools} />
+      <DataTable columns={columns} data={contacts} />
     </div>
   );
 };
 
-export default TaiKhoanPage;
+export default LienHePage;

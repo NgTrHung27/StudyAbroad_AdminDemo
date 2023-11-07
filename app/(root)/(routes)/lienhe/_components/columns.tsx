@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { School, UserRole } from "@prisma/client";
+import { Contact, User, UserRole } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
 import {
@@ -15,9 +15,10 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
+import { format } from "date-fns";
+import { vi } from "date-fns/locale";
 
-export const columns: ColumnDef<School>[] = [
+export const columns: ColumnDef<Contact>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -25,68 +26,63 @@ export const columns: ColumnDef<School>[] = [
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="p-0"
         >
-          Tên trường học
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => {
-      return (
-        <div className="flex items-center">
-          <div className="relative w-[30px] h-[30px]">
-            <Image fill alt={row.original.name} src={row.original.logoUrl} />
-          </div>
-          <div className="ml-2 text-muted-foreground">{row.original.name}</div>
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "description",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant={"ghost"}
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="p-0"
-        >
-          Mô tả
+          Tên tài khoản
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
   {
-    accessorKey: "colorValue",
+    accessorKey: "email",
     header: ({ column }) => {
       return (
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="p-0"
         >
-          Màu sắc
+          Email
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
+    },
+  },
+  {
+    accessorKey: "phoneNumber",
+    header: ({ column }) => {
+      return <Button variant={"ghost"}>Số điện thoại</Button>;
+    },
+  },
+  {
+    accessorKey: "title",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={"ghost"}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Tiêu đề
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "createdAt",
+    header: ({ column }) => {
+      return <Button variant={"ghost"}>Thời gian</Button>;
     },
     cell: ({ row }) => (
-      <div className="flex items-center gap-x-2">
-        {row.original.colorValue}
-        <div
-          className="h-6 w-6 rounded-full border"
-          style={{ backgroundColor: row.original.colorValue }}
-        />
+      <div>
+        {format(row.original.createdAt, "do MMM, yyyy", { locale: vi })}
       </div>
     ),
   },
+
   {
     id: "actions",
     cell: ({ row }) => {
       const { id } = row.original;
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -96,7 +92,7 @@ export const columns: ColumnDef<School>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <Link href={`/truonghoc/edit/${id}`}>
+            <Link href={`/taikhoan/edit/${id}`}>
               <DropdownMenuItem>
                 <Pencil className="h-4 w-4 mr-2" />
                 Xem thông tin chi tiết

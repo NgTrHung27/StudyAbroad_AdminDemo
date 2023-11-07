@@ -72,7 +72,7 @@ export function DataTable<TData, TValue>({
     <div>
       <div className="flex items-center py-4 justify-between gap-x-2">
         <Input
-          placeholder="Bộ lọc tên trường học..."
+          placeholder="Bộ lọc Người liên hệ"
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
@@ -99,20 +99,15 @@ export function DataTable<TData, TValue>({
                     }
                   >
                     {column.id === "name" && "Tên tài khoản"}
-                    {column.id === "description" && "Mô tả"}
-                    {column.id === "colorValue" && "Màu sắc"}
-                    {column.id === "actions" && "Tùy chọn"}
+                    {column.id === "email" && "email"}
+                    {column.id === "phoneNumber" && "Số điện thoại"}
+                    {column.id === "createdAt" && "Ngày gửi"}
+                    {column.id === "title" && "Tiêu đề"}
                   </DropdownMenuCheckboxItem>
                 );
               })}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Link href={"/truonghoc/create"} className="ml-auto">
-          <Button>
-            <PlusCircle className="h-4 w-4 mr-2" />
-            Tạo trường học
-          </Button>
-        </Link>
       </div>
       <div className="rounded-md border">
         <Table>
