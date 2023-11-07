@@ -118,9 +118,8 @@ model School {
 
   logoUrl       String @db.String
   backgroundUrl String @db.String
-  name          String
+  name          String @unique
   colorValue    String
-
   users      User[]
   operations Operation[]
   history    History[]
