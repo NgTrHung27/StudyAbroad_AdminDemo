@@ -148,7 +148,7 @@ export function SchoolForm() {
             />
 
             <Button disabled={isSubmitting || !isValid} type="submit">
-              Tạo tài khoản
+              Tạo trường học
             </Button>
           </form>
         </Form>
