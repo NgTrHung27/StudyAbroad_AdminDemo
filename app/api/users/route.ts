@@ -94,3 +94,14 @@ export async function POST(req: Request) {
     });
   }
 }
+
+export async function GET(req: Request) {
+  try {
+    const users = await db.user.findMany();
+
+    return NextResponse.json(users);
+  } catch (error) {
+    console.log(error);
+    return new NextResponse("Lấy người dùng thất bại", { status: 500 });
+  }
+}

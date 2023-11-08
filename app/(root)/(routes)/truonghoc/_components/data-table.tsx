@@ -99,7 +99,6 @@ export function DataTable<TData, TValue>({
                     }
                   >
                     {column.id === "name" && "Tên tài khoản"}
-                    {column.id === "description" && "Mô tả"}
                     {column.id === "colorValue" && "Màu sắc"}
                     {column.id === "actions" && "Tùy chọn"}
                   </DropdownMenuCheckboxItem>
