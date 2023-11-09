@@ -1,6 +1,6 @@
 import { School } from "@prisma/client";
 
-const URL = `${process.env.NEXT_PUBLIC_ADMIN_URL}/schools`;
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/schools`;
 
 const getSchool = async (nameTruong: string): Promise<School> => {
   const res = await fetch(`${URL}/${nameTruong}`);

@@ -2,6 +2,8 @@ import getSchool from "../../../action/get-school";
 import FooterDemo from "../../../components/Footer/footer";
 import Navbar from "../../../components/navbar/navbar";
 
+export const revalidate = 0;
+
 const TruongHocLayout = async ({
   children: children,
 }: {
