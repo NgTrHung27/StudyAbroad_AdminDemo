@@ -4,7 +4,7 @@ import { Blogscard } from "./blogscard";
 
 export const Blogs = () => {
   return (
-    <div className="w-full min-h-fit p-3 bg-black flex items-center justify-center flex-col relative">
+    <div className="w-full min-h-fit p-6 bg-black flex items-center justify-center flex-col relative">
       <div className="flex flex-row text-center  ">
         <Image
           src={"/Truong1/blogsicon.png"}
@@ -17,7 +17,7 @@ export const Blogs = () => {
           BLOGS
         </p>
       </div>
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-4 mt-16 ">
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-4 mt-16">
         <div className="col-span-1">
           <Blogscard />
         </div>

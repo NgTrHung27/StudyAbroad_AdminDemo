@@ -5,7 +5,7 @@ export const Body2 = () => {
   return (
     <div className='w-full h-fit bg-white'>
         <div className='w-full md:h-[151px] h-fit bg-blue-900 text-center justify-center font-bold text-[30px] md:text-[48px] py-9 text-white'><p>Theo dõi quá trình học ở canada</p></div>
-        <div className='w-full h-full md:ml-[274px] ml-[40px] flex flex-col text-[#475F79] font-semibold text-[14px] md:text-[20px]'>
+        <div className='w-full h-full md:pl-[274px] pl-[40px] flex flex-col text-[#475F79] font-semibold text-[14px] md:text-[20px]'>
             <div className='flex flex-col relative '>
                 <div className='w-1 h-9 bg-red-700'></div>
                 <div className='flex flex-row '>
