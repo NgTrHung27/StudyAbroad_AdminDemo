@@ -1,11 +1,11 @@
 import { School } from "@prisma/client";
 
-const URL = `${process.env.NEXT_PUBLIC_ADMIN_URL}/schools`;
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/schools`;
 
 const getSchools = async (): Promise<School[]> => {
-  const res = await fetch(URL);
+  const res = await fetch(URL, {next: {tags: ["school"]}});
 
-  return res.json();
+  return await res.json();
 };
 
 export default getSchools;

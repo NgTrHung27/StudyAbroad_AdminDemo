@@ -12,6 +12,8 @@ const AuthLayout = async ({
       createdAt: "desc",
     },
   });
+
+  console.log(schools);
   return (
     <div className="h-full">
       <div className="fixed w-full h-[80px] inset-y-0 z-10 shadow-sm">

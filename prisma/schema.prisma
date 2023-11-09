@@ -44,6 +44,7 @@ model User {
   activateTokens ActivateToken[]
   certificates   Certificate[]
   blogs          Blog[]
+  studentScores  StudentScore[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -118,16 +119,29 @@ model School {
   logoUrl       String @db.String
   backgroundUrl String @db.String
   name          String @unique
-  description   String @db.String
   colorValue    String
 
   users      User[]
   operations Operation[]
+  history    History[]
   blogs      Blog[]
   programs   Program[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model History {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  imageUrl     String @db.String
+  description1 String @db.String
+  description2 String @db.String
+
+  schoolId String? @db.ObjectId
+  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@index([schoolId])
 }
 
 // Bảng cơ sở của trường học
@@ -181,6 +195,12 @@ model Program {
   @@index([schoolId])
 }
 
+model MonHoc {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name String @db.String
+}
+
 model Contact {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
@@ -207,6 +227,9 @@ model StudentScore {
   note         String           @db.String
   semester     SemesterCategory
   schoolYear   Int
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   miniScores MiniScore[]
 

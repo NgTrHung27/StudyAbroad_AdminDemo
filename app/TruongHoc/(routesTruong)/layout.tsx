@@ -1,14 +1,18 @@
+import { revalidateTag } from "next/cache";
 import getSchools from "../../../action/get-schools";
 import FooterDemo from "../../../components/Footer/footer";
 import Navbar from "../../../components/navbar/navbar";
+
+export const revalidate = 0;
 
 const TruongHocLayout = async ({
   children: children,
 }: {
   children: React.ReactNode;
 }) => {
-  const schools = await getSchools();
 
+  const schools = await getSchools();
+  
   return (
     <div className="h-full flex flex-col">
       <div className="flex-1">
