@@ -22,10 +22,6 @@ export async function POST(req: Request) {
 
     console.log(session);
 
-    if (!session) {
-      return new NextResponse("Chưa xác thực", { status: 401 });
-    }
-
     const {
       name,
       address,
