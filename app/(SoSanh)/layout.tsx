@@ -2,7 +2,10 @@ import NavBtHome from "../../components/navbar_Home/navbar_Home";
 import FooterDemo from "../../components/Footer/footer";
 import React from "react";
 import getSchools from "../../action/get-schools";
-const AuthLayout = async ({
+
+export const revalidate = 0;
+
+const SoSanhLayout = async ({
   children: children,
 }: {
   children: React.ReactNode;
@@ -20,4 +23,4 @@ const AuthLayout = async ({
     </div>
   );
 };
-export default AuthLayout;
+export default SoSanhLayout;
