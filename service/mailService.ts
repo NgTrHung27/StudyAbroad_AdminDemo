@@ -1,7 +1,4 @@
-import verifyEmail from "@/templates/verifyEmailTemplate";
 import nodemailer from "nodemailer";
-import toast from "react-hot-toast";
-
 interface MailProps {
   options: {
     to: string;
@@ -13,7 +10,6 @@ interface MailProps {
     html?: string;
   };
 }
-
 export async function sendMail({ options }: MailProps) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -22,7 +18,6 @@ export async function sendMail({ options }: MailProps) {
       pass: process.env.NODEMAILER_PW,
     },
   });
-
   var mailOptions = {
     from: `"Phùng Quang Long" ${process.env.NODEMAILER_EMAIL || options.from}`,
     to: options.to,
