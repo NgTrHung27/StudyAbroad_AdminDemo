@@ -85,7 +85,7 @@ export async function POST(req: Request) {
     return NextResponse.json(user);
   } catch (error) {
     console.log("CREATE USER", error);
-    return new NextResponse("Tạo tài khoản người dùng thất bại", {
+    return new NextResponse(`Tạo tài khoản người dùng thất bại, ${error}`, {
       status: 500,
     });
   }
