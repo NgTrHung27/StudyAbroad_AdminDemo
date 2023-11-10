@@ -8,7 +8,7 @@ export const Operationcard_1 = () => {
       <div>
         <Image alt='/' src='/Truong1/truong2.png' width={291} height={281} className='z-[2]' />
       </div>
-      <div className='bg-white w-[394px] py-6 h-fit rounded-[16px] relative z-[1] px-9 -mt-12 '>
+      <div className='bg-white w-[100%] py-6 h-fit rounded-[16px] relative z-[1] px-9 -mt-12 '>
         <div className='flex flex-col justify-center items-center '>
           <div className='mt-9 flex flex-row'>
             <Image alt='/' src='/Truong1/award.png' width={24} height={24} />

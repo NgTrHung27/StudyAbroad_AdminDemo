@@ -1,19 +1,16 @@
 import NavBtHome from "../../components/navbar_Home/navbar_Home";
 import FooterDemo from "../../components/Footer/footer";
 import React from "react";
-import prismadb from "../../lib/prismadb";
-const AuthLayout = async ({
+import getSchools from "../../action/get-schools";
+
+export const revalidate = 0;
+
+const SoSanhLayout = async ({
   children: children,
 }: {
   children: React.ReactNode;
 }) => {
-  const schools = await prismadb.school.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-
-  console.log(schools);
+  const schools = await getSchools();
   return (
     <div className="h-full">
       <div className="fixed w-full h-[80px] inset-y-0 z-10 shadow-sm">
@@ -26,5 +23,4 @@ const AuthLayout = async ({
     </div>
   );
 };
-export default AuthLayout;
-
+export default SoSanhLayout;

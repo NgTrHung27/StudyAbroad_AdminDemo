@@ -13,10 +13,10 @@ interface Props {
 
 const Navbar = ({ schools }: Props) => {
   return (
-    <div className="">
-      <div className="bg-[#7D1F1F] ">
+    <div className="fixed w-full inset-y-0 h-[72px] z-50">
+      <div className="bg-[#7D1F1F] h-full ">
         <Container>
-          <div className="flex flex-row items-center justify-center gap-3 ">
+          <div className="flex flex-row items-center justify-between gap-1 md:gap-3 relative  ">
             <LogoHome />
             <NavItemHome schools={schools} />
             <NavBtHome />

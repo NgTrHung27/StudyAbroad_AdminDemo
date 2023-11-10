@@ -11,5 +11,4 @@ const getSchools = async (): Promise<School[]> => {
 
   return await res.json();
 };
-
 export default getSchools;
