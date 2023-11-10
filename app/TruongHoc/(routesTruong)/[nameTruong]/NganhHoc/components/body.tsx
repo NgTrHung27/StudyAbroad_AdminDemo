@@ -6,7 +6,6 @@ interface Props {
     programs: Program[];
 }
 export const Body = ({ programs }: Props) => {
-    console.log(programs);
     return (
         <div className='w-full h-auto bg-white '>
             <div className='w-[514px] h-full md:ml-[274px] ml-[40px] flex flex-col  text-[#475F79] font-semibold text-[15px] md:text-[20px] '>
