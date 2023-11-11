@@ -120,7 +120,6 @@ model School {
   backgroundUrl String @db.String
   name          String @unique
   colorValue    String
-
   users      User[]
   operations Operation[]
   history    History[]
@@ -179,11 +178,11 @@ model Blog {
 }
 
 model Program {
- id String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
   name String @db.String
   description1 String @db.String
   description2 String @db.String
-  Price        Float
+  Price        Float 
   Image1      String @db.String
   Image2      String @db.String
   schoolId String? @db.ObjectId
