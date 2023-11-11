@@ -5,6 +5,7 @@ import WhyCEMC from "./_components/3_WhyCEMC";
 import Motel from "./_components/4_Motel";
 import Event from "./_components/5_Event_Bus";
 import HighlightSchool from "./_components/6_HightlightSchool";
+import News_Home from "./_components/8_News/News_Home";
 
 const HomePage = () => {
   return (
@@ -20,6 +21,9 @@ const HomePage = () => {
       <Event />
       <div className="mt-16 p-4 bg-[url('/Home_Bg_Hightlight.png')]">
         <HighlightSchool />
+      </div>
+      <div >
+        <News_Home/>
       </div>
     </>
   );
