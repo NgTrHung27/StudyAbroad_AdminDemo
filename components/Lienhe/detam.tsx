@@ -1,5 +1,3 @@
-"use client";
-
 import axios from "axios";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
@@ -38,29 +36,25 @@ import { Textarea } from "../ui/textarea";
 
 const Contact = () => {
   //
-  const [isMounted, setIsMounted] = useState(false);
+
   const router = useRouter();
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const ContactForm = useForm<z.infer<typeof formContactSchema>>({
+  const registerForm = useForm<z.infer<typeof formContactSchema>>({
     resolver: zodResolver(formContactSchema),
     defaultValues: {
       name: "",
       phoneNumber: "",
       email: "",
-      title: "",
       textContent: "",
     },
   });
 
-  const { isSubmitting, isValid } = ContactForm.formState;
+  const { isSubmitting, isValid } = registerForm.formState;
+
   const onSubmit = async (values: z.infer<typeof formContactSchema>) => {
     try {
       await axios.post("/api/contact", values);
-      ContactForm.reset();
+      registerForm.reset();
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -72,7 +66,7 @@ const Contact = () => {
   const informationContent = (
     <>
       <FormField
-        control={ContactForm.control}
+        control={registerForm.control}
         name="name"
         render={({ field }) => (
           <FormItem>
@@ -81,76 +75,6 @@ const Contact = () => {
                 className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
                 disabled={isSubmitting}
                 placeholder="Họ và tên"
-                {...field}
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={ContactForm.control}
-        name="phoneNumber"
-        render={({ field }) => (
-          <FormItem>
-            <FormControl>
-              <PhoneInput
-                disabled={isSubmitting}
-                className={cn(
-                  "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
-                )}
-                placeholder="Số điện thoại"
-                {...field}
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={ContactForm.control}
-        name="email"
-        render={({ field }) => (
-          <FormItem>
-            <FormControl>
-              <Input
-                className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
-                disabled={isSubmitting}
-                placeholder="Email"
-                {...field}
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={ContactForm.control}
-        name="title"
-        render={({ field }) => (
-          <FormItem>
-            <FormControl>
-              <Input
-                className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
-                disabled={isSubmitting}
-                placeholder="Tiêu đề"
-                {...field}
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={ContactForm.control}
-        name="textContent"
-        render={({ field }) => (
-          <FormItem>
-            <FormControl>
-              <Textarea
-                disabled={isSubmitting}
-                placeholder="Mời nhập nội dung liên hệ"
-                className="resize-none"
                 {...field}
               />
             </FormControl>
@@ -211,22 +135,46 @@ const Contact = () => {
           </ul>
         </div>
       </div>
-      <div className="">
-        <Form {...ContactForm}>
-          <form
-            onSubmit={ContactForm.handleSubmit(onSubmit)}
-            className="flex flex-col justify-center gap-y-4 w-[350px] focus-within::shadow-sm gap-2"
-          >
-            {informationContent}
-            <Button
-              disabled={isSubmitting}
-              className="bg-[#7D1F1F] text-white px-4 py-2"
-            >
-              {" "}
-              Liên Hệ với chúng tôi{" "}
-            </Button>
+      <div className="my-auto ">
+        <div className="flex items-center justify-between gap-x-3 px-12">
+          <div className="capitalize font-bold mt-3">
+            <h1>Thông tin liên hệ</h1>
+          </div>
+        </div>
+        <div className="mx-12 pb-10 mt-6">
+          <form>
+            <Input
+              type="text"
+              className="w-full h-full my-6 text-black border outline outline-1 focus-visible:ring-offset-500 focus-visible:ring-sky-500"
+              placeholder="Họ và tên(*)"
+            />
+            <Input
+              type="email"
+              className="w-full h-full my-6 text-black border outline outline-1 focus-visible:ring-offset-500 focus-visible:ring-sky-500"
+              placeholder="Email"
+            />
+            <Input
+              type="phone"
+              className="w-full h-full my-6 text-black border outline outline-1 focus-visible:ring-offset-500 focus-visible:ring-sky-500"
+              placeholder="Số điện thoại"
+            />
+            <Input
+              type="text"
+              className="w-full h-full my-6 text-black border outline outline-1 focus-visible:ring-offset-500 focus-visible:ring-sky-500"
+              placeholder="Nội dung cần tư vấn"
+            />
           </form>
-        </Form>
+          <button
+            type="submit"
+            className="bg-[#7D1F1F] text-white px-4 py-2 w-full h-full"
+          >
+            Liên hệ với chúng tôi
+          </button>
+          <span className="flex flex-col text-[12px] md:text-15px">
+            *Sau khi nhận được thông tin, chúng tôi sẽ tư vấn cho bạn hoàn toàn
+            miễn phí
+          </span>
+        </div>
       </div>
     </div>
   );

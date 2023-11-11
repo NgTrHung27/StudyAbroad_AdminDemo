@@ -6,7 +6,6 @@ import { OperationBody } from "../../../../components/users/operationbody";
 import Procedure from "../../../../components/users/procedure";
 import { Connect } from "../../../../components/users/connect";
 import { Blogs } from "../../../../components/users/blogs";
-import prismadb from "../../../../lib/prismadb";
 import { redirect } from "next/navigation";
 import NavbarTruong from "../../../../components/navbar/navbar";
 import getSchool from "../../../../action/get-school";
