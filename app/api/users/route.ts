@@ -4,7 +4,7 @@ import { UserRole } from "@prisma/client";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { randomUUID } from "crypto";
-import { formCreateUserSchema } from "@/app/(root)/(routes)/taikhoan/create/constants";
+import { formCreateUserSchema } from "@/constaints-create/constants-user";
 import verifyEmail from "@/templates/verifyEmailTemplate";
 import { sendMail } from "@/service/mailService";
 

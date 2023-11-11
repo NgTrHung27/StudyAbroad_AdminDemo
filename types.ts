@@ -6,6 +6,7 @@ import {
   FileSpreadsheet,
   GraduationCap,
   Home,
+  Layers3,
   Newspaper,
   PlusCircle,
   School,
@@ -58,7 +59,7 @@ export const routes = [
   {
     label: "Ngành Học",
     href: "/nganhhoc",
-    icon: Settings,
+    icon: Layers3,
     description: "Ngành Học",
   },
 ];
