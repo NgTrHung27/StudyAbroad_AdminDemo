@@ -37,7 +37,7 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   try {
     const schools = await db.school.findMany();
-
+    console.log(schools);
     return NextResponse.json(schools);
   } catch (error) {
     console.log(error);
