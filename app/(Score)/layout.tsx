@@ -11,7 +11,7 @@ const ScoreLayout = async ({
   return (
     <div className="h-full flex flex-col">
       <div className="flex-1">
-        <NavbarTruong schools={schools} />
+        <NavbarTruong />
         <main className="w-full pt-[72px]">{children}</main>
         <FooterDemo />
       </div>
