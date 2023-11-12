@@ -8,7 +8,7 @@ const TaiKhoanPage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    redirect("/sign-in");
+    redirect("/dangnhap");
   }
 
   const users = await db.user.findMany({

@@ -1,6 +1,6 @@
+import { formContactSchema } from "@/constants/create-contact-schema";
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
-import { formContactSchema } from "@/app/(root)/(routes)/lienhe/constants";
 
 export async function POST(req: Request) {
   try {

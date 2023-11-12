@@ -1,4 +1,4 @@
-import { User, UserRole } from "@prisma/client";
+import { School, Student, User, UserRole } from "@prisma/client";
 import {
   BookA,
   BookAIcon,
@@ -8,7 +8,7 @@ import {
   Home,
   Newspaper,
   PlusCircle,
-  School,
+  School as SchoolIcon,
   Settings,
   User as UserIcon,
 } from "lucide-react";
@@ -34,7 +34,7 @@ export const routes = [
   {
     label: "Trường học",
     href: "/truonghoc",
-    icon: School,
+    icon: SchoolIcon,
     description: "Quản lý trường học và điều chỉnh thông tin cần thiết",
   },
   {
@@ -167,4 +167,12 @@ export const cccd_matsau = {
       type: "xxxx",
     },
   ],
+};
+
+export type SchoolFull = School & {
+  students: (Student & { user: User })[];
+};
+
+export type StudentProfile = Student & {
+  user: User;
 };

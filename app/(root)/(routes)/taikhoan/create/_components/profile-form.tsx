@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { format } from "date-fns";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -26,7 +25,6 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { formCreateUserSchema } from "../constants";
 import axios from "axios";
 import {
   Popover,
@@ -40,7 +38,7 @@ import Script from "next/script";
 import { Loader } from "@googlemaps/js-api-loader";
 import { useEffect, useState } from "react";
 import PhoneInput from "react-phone-number-input";
-import FileUpload from "@/components/file-upload";
+import { formCreateUserSchema } from "@/constants/create-user-schema";
 
 const loader = new Loader({
   apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY!,
