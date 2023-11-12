@@ -8,7 +8,7 @@ const LienHePage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    redirect("/sign-in");
+    redirect("/dangnhap");
   }
 
   const contacts = await db.contact.findMany({

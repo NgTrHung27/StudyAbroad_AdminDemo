@@ -37,17 +37,34 @@ model User {
   avatar      String?
   isPublished Boolean  @default(false)
 
-  schoolId String? @db.ObjectId
-  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-
   accounts       Account[]
   activateTokens ActivateToken[]
-  certificates   Certificate[]
-  blogs          Blog[]
-  studentScores  StudentScore[]
+  students       Student[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Blog Blog[]
+}
+
+model Student {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  schoolId String? @db.ObjectId
+  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  certificates  Certificate[]
+  blogs         Blog[]
+  studentScores StudentScore[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, schoolId])
+  @@index([schoolId, userId])
 }
 
 model Account {
@@ -104,13 +121,13 @@ model Certificate {
   category SchoolCategory      @default(THPT)
   english  CertificateCategory @default(IELTS)
 
-  userId String @db.ObjectId
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studentId String  @db.ObjectId
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([userId])
+  @@index([studentId])
 }
 
 model School {
@@ -120,11 +137,12 @@ model School {
   backgroundUrl String @db.String
   name          String @unique
   colorValue    String
-  users      User[]
+
   operations Operation[]
   history    History[]
   blogs      Blog[]
   programs   Program[]
+  students   Student[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -173,22 +191,27 @@ model Blog {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Student   Student? @relation(fields: [studentId], references: [id])
+  studentId String?  @db.ObjectId
 
   @@index([userId, schoolId])
 }
 
 model Program {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String @db.String
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  name         String @db.String
   description1 String @db.String
   description2 String @db.String
-  Price        Float 
-  Image1      String @db.String
-  Image2      String @db.String
+  Price        Float
+  Image1       String @db.String
+  Image2       String @db.String
+
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
   @@index([schoolId])
 }
 
@@ -226,8 +249,8 @@ model StudentScore {
   semester     SemesterCategory
   schoolYear   Int
 
-  userId String @db.ObjectId
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studentId String  @db.ObjectId
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   miniScores MiniScore[]
 

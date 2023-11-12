@@ -1,12 +1,12 @@
 "use client";
 
 import { SafeUser, routes } from "@/types";
-import Heading from "../app/(root)/_components/heading";
-import { UserButton } from "../app/(root)/_components/user-button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
+import Heading from "./heading";
+import { UserButton } from "./user-button";
 
 interface NavbarRoutesProps {
   currentUser?: SafeUser | null;

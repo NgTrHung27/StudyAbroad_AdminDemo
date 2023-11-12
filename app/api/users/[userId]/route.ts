@@ -1,6 +1,6 @@
 import getCurrentUser from "@/actions/get-current-user";
 import db from "@/lib/db";
-import { redirect } from "next/navigation";
+import { UserRole } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export async function PATCH(

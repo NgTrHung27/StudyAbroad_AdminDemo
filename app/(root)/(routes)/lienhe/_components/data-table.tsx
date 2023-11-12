@@ -82,7 +82,7 @@ export function DataTable<TData, TValue>({
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline">Trường dữ liệu</Button>
+            <Button variant="outline">Hiển thị</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             {table

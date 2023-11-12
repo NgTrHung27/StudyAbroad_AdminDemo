@@ -1,43 +1,28 @@
-import getCurrentUser, { getSession } from "@/actions/get-current-user";
 import db from "@/lib/db";
-import { UserRole } from "@prisma/client";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { randomUUID } from "crypto";
-import { formCreateUserSchema } from "@/app/(root)/(routes)/taikhoan/create/constants";
 import verifyEmail from "@/templates/verifyEmailTemplate";
 import { sendMail } from "@/service/mailService";
+import { formCreateUserSchema } from "@/constants/create-user-schema";
 
 const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
 
 export async function POST(req: Request) {
-  try {
-    const body = await req.json();
+  const body = await req.json();
+  const { password } = body;
 
-    const { dob: birth, session } = body;
-    if (typeof birth === "string") {
-      body.dob = new Date(birth);
-    }
+  if (!password) {
+    try {
+      const { dob: birth, session } = body;
+      if (typeof birth === "string") {
+        body.dob = new Date(birth);
+      }
+      if (!session) {
+        return new NextResponse("Chưa xác thực", { status: 401 });
+      }
 
-    console.log(session);
-
-    const {
-      name,
-      address,
-      cccd,
-      description,
-      dob,
-      email,
-      gender,
-      phoneNumber,
-    } = formCreateUserSchema.parse(body);
-
-    const hashedPassword = await bcrypt.hash("test", 12);
-
-    const user = await db.user.create({
-      data: {
-        hashedPassword,
+      const {
         name,
         address,
         cccd,
@@ -46,48 +31,90 @@ export async function POST(req: Request) {
         email,
         gender,
         phoneNumber,
-      },
-    });
+      } = formCreateUserSchema.parse(body);
 
-    const confirmToken = jwt.sign(
-      { email: user.email },
-      process.env.JWT_SECRET_KEY,
-      {
-        expiresIn: "30m",
+      const hashedPassword = await bcrypt.hash("test", 12);
+
+      const user = await db.user.create({
+        data: {
+          hashedPassword,
+          name,
+          address,
+          cccd,
+          description,
+          dob,
+          email,
+          gender,
+          phoneNumber,
+        },
+      });
+
+      const confirmToken = jwt.sign(
+        { email: user.email },
+        process.env.JWT_SECRET_KEY,
+        {
+          expiresIn: "30m",
+        }
+      );
+
+      const otp = otpGenerator.generate(6, {
+        upperCaseAlphabets: false,
+        specialChars: false,
+      });
+
+      const token = await db.activateToken.create({
+        data: {
+          otp,
+          expiresAt: new Date(Date.now() + 60 * 30 * 1000),
+          token: confirmToken,
+          userId: user.id,
+        },
+      });
+
+      const emailTemplate = verifyEmail(user.id, token.token, token.otp);
+
+      const options = {
+        to: user.email,
+        subject: "Xác thực email để tiếp tục",
+        text: emailTemplate.text,
+        html: emailTemplate.html,
+      };
+
+      await sendMail({ options });
+
+      return NextResponse.json(user);
+    } catch (error) {
+      console.log(error);
+      return new NextResponse("Đăng ký thất bại", { status: 500 });
+    }
+  } else {
+    try {
+      const { email } = body;
+
+      const user = await db.user.findUnique({
+        where: {
+          email: email,
+        },
+      });
+
+      if (!user) {
+        return new NextResponse("Người dùng không tồn tại", { status: 404 });
       }
-    );
 
-    const otp = otpGenerator.generate(6, {
-      upperCaseAlphabets: false,
-      specialChars: false,
-    });
+      const isPasswordCorrect = await bcrypt.compare(
+        password,
+        user.hashedPassword
+      );
 
-    const token = await db.activateToken.create({
-      data: {
-        otp,
-        expiresAt: new Date(Date.now() + 60 * 30 * 1000),
-        token: confirmToken,
-        userId: user.id,
-      },
-    });
+      if (!isPasswordCorrect) {
+        return new NextResponse("Thông tin tài khoản không chính xác");
+      }
 
-    const emailTemplate = verifyEmail(user.id, token.token, token.otp);
-
-    const options = {
-      to: user.email,
-      subject: "Xác thực email để tiếp tục",
-      text: emailTemplate.text,
-      html: emailTemplate.html,
-    };
-
-    await sendMail({ options });
-
-    return NextResponse.json(user);
-  } catch (error) {
-    console.log("CREATE USER", error);
-    return new NextResponse(`Tạo tài khoản người dùng thất bại, ${error}`, {
-      status: 500,
-    });
+      return NextResponse.json(user);
+    } catch (error) {
+      console.log(error);
+      return new NextResponse("Đăng nhập thất bại", { status: 500 });
+    }
   }
 }
 

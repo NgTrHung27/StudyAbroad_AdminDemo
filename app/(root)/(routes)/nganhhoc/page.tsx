@@ -5,22 +5,22 @@ import getCurrentUser from "@/actions/get-current-user";
 import { columns } from "./_components/columns";
 
 const TaiKhoanPage = async () => {
-    const currentUser = await getCurrentUser();
+  const currentUser = await getCurrentUser();
 
-    if (!currentUser) {
-        redirect("/sign-in");
-    }
+  if (!currentUser) {
+    redirect("/dangnhap");
+  }
 
-    const program = await db.program.findMany({
-        orderBy: {
-            createdAt: "desc",
-        },
-    });
-    return (
-        <div className="p-6">
-            <DataTable columns={columns} data={program} />
-        </div>
-    );
+  const program = await db.program.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return (
+    <div className="p-6">
+      <DataTable columns={columns} data={program} />
+    </div>
+  );
 };
 
 export default TaiKhoanPage;
