@@ -1,8 +1,11 @@
-import * as z from "zod";
+import { z } from "zod";
 
-export const formRegisterSchema = z.object({
+export const formCreateUserSchema = z.object({
   name: z.string().min(1, {
     message: "Vui lòng nhập tên đăng nhập",
+  }),
+  password: z.string().min(1, {
+    message: "Vui lòng nhập mật khẩu",
   }),
   dob: z.date({
     required_error: "Vui lòng chọn ngày sinh",
@@ -22,14 +25,14 @@ export const formRegisterSchema = z.object({
   email: z.string().min(1, {
     message: "Vui lòng nhập email",
   }),
-  studyCategory: z.string({
-    required_error: "Vui lòng chọn trình độ học vấn",
+  schoolName: z.string().min(1, {
+    message: "Vui lòng chọn trường",
   }),
   certificateCategory: z.string({
-    required_error: "Vui lòng chọn loại chứng chỉ Tiếng Anh",
+    required_error: "Vui lòng chọn loại chứng chỉ",
   }),
   schoolCategory: z.string({
-    required_error: "Vui lòng chọn trường",
+    required_error: "Vui lòng chọn cấp bậc học vấn",
   }),
   description: z.string().min(1, {
     message: "Vui lòng miêu tả lý do du học",
