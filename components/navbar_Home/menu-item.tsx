@@ -6,12 +6,13 @@ import { cn } from "../../lib/utils";
 interface MenuItemProps {
   onClick: () => void;
   label: string;
+  href: string; // Thêm prop mới
 }
 
-const MenuItem = ({ onClick, label }: MenuItemProps) => {
-
+const MenuItem = ({ onClick, label, href }: MenuItemProps) => {
   return (
-    <div
+    <a // Thay thế 'div' bằng 'a'
+      href={href} // Sử dụng prop 'href'
       onClick={onClick}
       className={cn(
         "text-black px-4 py-3 hover:bg-neutral-100 transition font-semibold text-center",
@@ -19,7 +20,7 @@ const MenuItem = ({ onClick, label }: MenuItemProps) => {
       )}
     >
       {label}
-    </div>
+    </a>
   );
 };
 

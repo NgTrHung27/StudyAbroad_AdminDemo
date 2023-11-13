@@ -24,7 +24,7 @@ export const History = ({ school }: Props) => {
           </p>
         </div>
       </div>
-      <div className="w-full h-full grid-cols-3 md:grid-cols-3 grid relative">
+      <div className="w-full h-full grid-cols-1 md:grid-cols-3 grid relative">
         <div className="col-span-1 relative">
           <Image alt="/2" src="/Truong1/truong1.png" fill className="w-full h-full absolute" />
         </div>
@@ -41,7 +41,7 @@ export const History = ({ school }: Props) => {
                 </div>
               </div>
               <div className="bg-yellow-500 w-[3px] h-[140px] ml-[37px] mt-12 absolute"></div>
-              <div className="flex flex-row pl-[22px] pr-[58px] mt-[175px]">
+              <div className="flex flex-row pl-[22px] pr-[58px] md:mt-[175px] mt-[150px]">
                 <div className=" p-0 w-8 h-8 rounded-full border-yellow-500 border-[2px] border-dashed justify-center items-center font-bold flex absolute">
                   <p>02</p>
                 </div>
