@@ -24,7 +24,10 @@ export function UserButton({ currentUser }: UserButtonProps) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar>
-          <AvatarImage src="/placeholder.jpg" alt="avatar" />
+          <AvatarImage
+            src={currentUser?.avatar || "/placeholder.jpg"}
+            alt="avatar"
+          />
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">

@@ -20,40 +20,47 @@ import { useSchoolModal } from "@/hooks/use-school-modal";
 import { Modal } from "../modal";
 import FileUpload from "../file-upload";
 import { useState } from "react";
-import { formCreateSchoolSchema } from "@/constants/create-school-schema";
+import { formCreateOperationSchema } from "@/constants/create-opeartion-schema";
+import { useRouter } from "next/navigation";
+import { Editor } from "../editor";
 
 enum STEPS {
   NAME = 0,
-  LOGO = 1,
+  DESCRIPTION = 1,
   BACKGROUND = 2,
-  COLOR = 3,
 }
 
-export const SchoolModal = () => {
-  const { type, isOpen, onClose } = useSchoolModal();
-  const isModalOpen = isOpen && type === "createSchool";
+export const OperationModal = () => {
+  const router = useRouter();
+  const { type, isOpen, onClose, data } = useSchoolModal();
+  const isModalOpen = isOpen && type === "createOperation";
   const [step, setStep] = useState(STEPS.NAME);
 
-  const form = useForm<z.infer<typeof formCreateSchoolSchema>>({
-    resolver: zodResolver(formCreateSchoolSchema),
+  const { school } = data;
+
+  const form = useForm<z.infer<typeof formCreateOperationSchema>>({
+    resolver: zodResolver(formCreateOperationSchema),
     defaultValues: {
       name: "",
-      logoUrl: "",
+      description: "",
       backgroundUrl: "",
-      colorValue: "",
     },
   });
 
   const { isLoading, isValid, isSubmitting } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formCreateSchoolSchema>) => {
+  const onSubmit = async (
+    values: z.infer<typeof formCreateOperationSchema>
+  ) => {
     try {
-      const response = await axios.post("/api/schools", values);
-      window.location.assign(`/truonghoc/edit/${response.data.id}`);
+      await axios.post(`/api/schools/${school?.name}/operations`, values);
 
-      toast.success("Thêm trường học thành công");
+      router.refresh();
+      toast.success("Thêm cơ sở thành công");
     } catch (error) {
-      toast.error("Lỗi xảy ra khi xử lý dữ liệu " + error);
+      toast.error("Thêm cơ sở thất bại " + error);
+    } finally {
+      onClose();
     }
   };
 
@@ -64,7 +71,7 @@ export const SchoolModal = () => {
   };
 
   const handleNext = () => {
-    if (step === STEPS.COLOR) return;
+    if (step === STEPS.BACKGROUND) return;
 
     setStep((currentStep) => currentStep + 1);
   };
@@ -75,7 +82,7 @@ export const SchoolModal = () => {
       name="name"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Tên trường học</FormLabel>
+          <FormLabel>Tên cơ sở</FormLabel>
           <FormControl>
             <Input
               disabled={isLoading || isSubmitting}
@@ -90,20 +97,18 @@ export const SchoolModal = () => {
     />
   );
 
-  const logoField = (
+  const descriptionField = (
     <FormField
       control={form.control}
-      name="logoUrl"
+      name="description"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Logo trường học</FormLabel>
+          <FormLabel>Mô tả cơ sở</FormLabel>
           <FormControl>
-            <FileUpload
+            <Editor
               {...field}
-              value={form.getValues("logoUrl")}
-              disabled={isSubmitting || isLoading}
+              value={form.getValues("description")}
               onChange={field.onChange}
-              endpoint="logoImage"
             />
           </FormControl>
           <FormMessage />
@@ -118,7 +123,7 @@ export const SchoolModal = () => {
       name="backgroundUrl"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Hình nền trường học</FormLabel>
+          <FormLabel>Hình nền cơ sở</FormLabel>
           <FormControl>
             <FileUpload
               {...field}
@@ -127,33 +132,6 @@ export const SchoolModal = () => {
               onChange={field.onChange}
               endpoint="schoolBackground"
             />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-  );
-
-  const colorField = (
-    <FormField
-      control={form.control}
-      name="colorValue"
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>Màu sắc</FormLabel>
-          <FormControl>
-            <div className="flex items-center gap-x-4">
-              <Input
-                disabled={isSubmitting}
-                placeholder="Nhập giá trị màu sắc"
-                {...field}
-                value={form.getValues("colorValue")}
-              />
-              <div
-                className="border p-4 rounded-full"
-                style={{ backgroundColor: field.value }}
-              ></div>
-            </div>
           </FormControl>
           <FormMessage />
         </FormItem>
@@ -178,7 +156,7 @@ export const SchoolModal = () => {
 
   const nextBtn = (
     <>
-      {step === STEPS.COLOR ? (
+      {step === STEPS.BACKGROUND ? (
         <Button
           disabled={isLoading || isSubmitting || !isValid}
           type="button"
@@ -194,21 +172,15 @@ export const SchoolModal = () => {
     </>
   );
 
-  const formStepField = [nameField, logoField, backgroundField, colorField];
+  const formStepField = [nameField, descriptionField, backgroundField];
 
   const requiredFields = [
     form.getValues("name"),
-    form.getValues("logoUrl"),
+    form.getValues("description"),
     form.getValues("backgroundUrl"),
-    form.getValues("colorValue"),
   ];
 
-  const requiredFieldNames = [
-    "Tên trường học",
-    "Logo",
-    "Hình nền",
-    "Màu đại diện",
-  ];
+  const requiredFieldNames = ["Tên cơ sở", "Mô tả cơ sở", "Hình nền"];
 
   const isComplete = requiredFields.every(Boolean);
 
@@ -223,8 +195,8 @@ export const SchoolModal = () => {
 
   return (
     <Modal
-      title="Thêm trường học"
-      description="Thêm một trường học để bắt đầu quản lý thông tin và các ngành học, học sinh"
+      title="Thêm cơ sở"
+      description="Thêm cơ sở để quản lý các thông tin liên quan đến cơ sở của trường học"
       isOpen={isModalOpen}
       onClose={onClose}
       warning={warningText}

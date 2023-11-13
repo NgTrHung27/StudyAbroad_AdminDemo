@@ -9,7 +9,7 @@ const SetupSchool = () => {
 
   useEffect(() => {
     if (!isOpen) {
-      onOpen();
+      onOpen("createSchool");
     }
   }, [isOpen, onOpen]);
 

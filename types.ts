@@ -1,4 +1,4 @@
-import { School, Student, User, UserRole } from "@prisma/client";
+import { Operation, School, Student, User, UserRole } from "@prisma/client";
 import {
   BookA,
   BookAIcon,
@@ -26,28 +26,10 @@ export const routes = [
     description: "Quản lý và theo dõi danh sách các tài khoản người dùng",
   },
   {
-    label: "Hồ sơ thông tin",
-    href: "/hoso",
-    icon: FileSpreadsheet,
-    description: "Kiểm tra hồ sơ thông tin cá nhân và tùy chọn thay đổi",
-  },
-  {
     label: "Trường học",
     href: "/truonghoc",
     icon: SchoolIcon,
     description: "Quản lý trường học và điều chỉnh thông tin cần thiết",
-  },
-  {
-    label: "Học sinh",
-    href: "/hocsinh",
-    icon: GraduationCap,
-    description: "Theo dõi các bảng thông tin của học sinh",
-  },
-  {
-    label: "Cài đặt",
-    href: "/caidat",
-    icon: Settings,
-    description: "Cài đặt chung",
   },
   {
     label: "Liên Hệ",
@@ -56,10 +38,10 @@ export const routes = [
     description: "Liên Hệ",
   },
   {
-    label: "Ngành Học",
-    href: "/nganhhoc",
+    label: "Cài đặt",
+    href: "/caidat",
     icon: Settings,
-    description: "Ngành Học",
+    description: "Cài đặt chung",
   },
 ];
 
@@ -171,6 +153,7 @@ export const cccd_matsau = {
 
 export type SchoolFull = School & {
   students: (Student & { user: User })[];
+  operations: Operation[];
 };
 
 export type StudentProfile = Student & {

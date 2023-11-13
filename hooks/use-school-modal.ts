@@ -1,11 +1,20 @@
-import { School, Student, User } from "@prisma/client";
+import { Operation, School, Student, User } from "@prisma/client";
 import { create } from "zustand";
 
 interface useSchoolModalStore {
+  data: ModalData;
+  type: ModalType | null;
   isOpen: boolean;
-  onOpen: () => void;
+  onOpen: (type: ModalType, data?: ModalData) => void;
   onClose: () => void;
 }
+
+type ModalType =
+  | "createSchool"
+  | "createOperation"
+  | "createHistory"
+  | "createBlog"
+  | "createProgram";
 
 interface useAddStudentSchoolModalStore {
   data: ModalData;
@@ -21,6 +30,7 @@ interface useAddStudentSchoolModalStore {
 }
 
 interface ModalData {
+  operation?: Operation;
   students?: Student[];
   school?: School;
   users?: User[];
@@ -28,9 +38,11 @@ interface ModalData {
 }
 
 export const useSchoolModal = create<useSchoolModalStore>((set) => ({
+  data: {},
+  type: null,
   isOpen: false,
-  onOpen: () => set({ isOpen: true }),
-  onClose: () => set({ isOpen: false }),
+  onOpen: (type, data = {}) => set({ isOpen: true, type, data }),
+  onClose: () => set({ type: null, isOpen: false }),
 }));
 
 export const useAddStudentSchoolModal = create<useAddStudentSchoolModalStore>(

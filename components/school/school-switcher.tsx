@@ -35,7 +35,8 @@ export default function SchoolSwitcher({
   className,
   items = [],
 }: SchoolSwitcherProps) {
-  const schoolModal = useSchoolModal();
+  const { onOpen } = useSchoolModal();
+
   const params = useParams();
   const router = useRouter();
 
@@ -67,7 +68,7 @@ export default function SchoolSwitcher({
           role="combobox"
           aria-expanded={open}
           aria-label="Chọn một trường học"
-          className={cn("w-[400px] justify-between", className)}
+          className={cn("w-[200px] justify-between", className)}
         >
           <Image
             width={16}
@@ -76,11 +77,11 @@ export default function SchoolSwitcher({
             src={currentSchool.logoUrl}
             className="mr-2"
           />
-          {currentSchool?.label}
+          <span className="truncate">{currentSchool?.label}</span>
           <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[400px] p-0">
+      <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandList>
             <CommandInput placeholder="Tìm kiếm..." />
@@ -99,7 +100,7 @@ export default function SchoolSwitcher({
                     src={school.logoUrl}
                     className="mr-2"
                   />
-                  {school.label}
+                  <span className="truncate">{school.label}</span>
                   <Check
                     className={cn(
                       "ml-auto h-4 w-4",
@@ -118,7 +119,7 @@ export default function SchoolSwitcher({
               <CommandItem
                 onSelect={() => {
                   setOpen(false);
-                  schoolModal.onOpen();
+                  onOpen("createSchool");
                 }}
               >
                 <PlusCircle className="mr-2 h-5 w-5" />

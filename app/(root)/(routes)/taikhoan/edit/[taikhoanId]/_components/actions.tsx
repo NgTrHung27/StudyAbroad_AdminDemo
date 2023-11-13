@@ -37,7 +37,7 @@ export const Actions = ({
         confetti.onOpen();
       }
     } catch (error) {
-      toast.error("Duyệt hồ so8 thất bại");
+      toast.error("Duyệt hồ sơ thất bại");
     } finally {
       router.refresh();
       setIsLoading(false);

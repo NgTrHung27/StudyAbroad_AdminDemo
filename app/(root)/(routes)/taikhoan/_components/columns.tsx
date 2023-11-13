@@ -69,6 +69,34 @@ export const columns: ColumnDef<User>[] = [
     },
   },
   {
+    accessorKey: "isPublished",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={"ghost"}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Trạng thái
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const isPublished = !!row.getValue("isPublished");
+
+      return (
+        <Badge
+          className={cn(
+            "bg-yellow-200 text-black",
+            isPublished && "bg-green-400"
+          )}
+        >
+          {isPublished ? "Đã xét duyệt" : "Chưa xét duyệt"}
+        </Badge>
+      );
+    },
+  },
+  {
     id: "actions",
     cell: ({ row }) => {
       const { id } = row.original;

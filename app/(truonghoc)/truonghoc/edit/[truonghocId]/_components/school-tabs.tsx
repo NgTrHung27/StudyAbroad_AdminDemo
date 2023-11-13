@@ -6,6 +6,9 @@ import React from "react";
 import { UsersDataTable } from "./_data/users-data-table";
 import { usersColumns } from "./_data/users-column";
 import { SchoolFull } from "@/types";
+import OperationTab from "./_tabs/operation-tab";
+import { OperationsDataTable } from "./_data/operations-data-table";
+import { operationsColumns } from "./_data/operations-columns";
 
 type Props = {
   school: SchoolFull;
@@ -30,6 +33,12 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
           school={school}
           users={users}
           schools={schools}
+        />
+      </TabsContent>
+      <TabsContent value="operations">
+        <OperationsDataTable
+          columns={operationsColumns}
+          data={school.operations}
         />
       </TabsContent>
     </Tabs>

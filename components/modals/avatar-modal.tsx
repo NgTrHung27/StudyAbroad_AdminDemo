@@ -29,7 +29,7 @@ import FileUpload from "../file-upload";
 import { useEffect } from "react";
 
 const formSchema = z.object({
-  image: z.string().min(1, {
+  avatar: z.string().min(1, {
     message: "Yêu cầu chọn hình đại diện.",
   }),
 });
@@ -46,13 +46,13 @@ export const AvatarModal = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      image: "",
+      avatar: "",
     },
   });
 
   useEffect(() => {
     if (user) {
-      form.setValue("image", user.avatar!);
+      form.setValue("avatar", user.avatar!);
     }
   }, [user, form]);
 
@@ -94,7 +94,7 @@ export const AvatarModal = () => {
               <div className="flex items-center justify-center text-center">
                 <FormField
                   control={form.control}
-                  name="image"
+                  name="avatar"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>

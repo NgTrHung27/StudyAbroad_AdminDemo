@@ -1,4 +1,5 @@
 import getCurrentUser from "@/actions/get-current-user";
+import { formCreateUserSchema } from "@/constants/create-user-schema";
 import db from "@/lib/db";
 import { UserRole } from "@prisma/client";
 import { NextResponse } from "next/server";
@@ -16,7 +17,9 @@ export async function PATCH(
   try {
     const currentUser = await getCurrentUser();
 
-    const values = await req.json();
+    const body = await req.json();
+
+    const { ...values } = body;
 
     if (!currentUser) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -40,7 +43,7 @@ export async function PATCH(
       where: {
         id: params.userId,
         NOT: {
-          email: "cigpbubu@gmail.com",
+          role: UserRole.ADMIN,
         },
       },
       data: {
