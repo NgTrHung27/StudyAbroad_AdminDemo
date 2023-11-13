@@ -1,6 +1,7 @@
 import getCurrentUser from "@/actions/get-current-user";
-import TransactionChart from "@/components/charts";
-import DashBoardStatsGrid from "@/components/dashboard";
+import DashBoardStatsGrid from "@/components/Home/Dashboard";
+import TransactionChart from "@/components/Home/TransactionChart";
+
 import { redirect } from "next/navigation";
 
 export default async function Home() {
@@ -11,7 +12,7 @@ export default async function Home() {
   return (
     <>
       <DashBoardStatsGrid />
-      <TransactionChart />;
+      <TransactionChart />
     </>
   );
 }
