@@ -494,7 +494,7 @@ export default function RegisterModal({ schools }: Props) {
             className="flex flex-col justify-center gap-y-4 w-[350px] focus-within::shadow-sm gap-2"
           >
             <div className="my-2">
-              <Banner variant={"warning"} label={text} />
+              {/* <Banner variant={"warning"} label={text} /> */}
             </div>
             {step === STEPS.INFORMATION && informationContent}
             {step === STEPS.CERTIFICATE && certificateContent}

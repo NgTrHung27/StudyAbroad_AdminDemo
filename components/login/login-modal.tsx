@@ -4,6 +4,7 @@ import axios from "axios";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
 import { Form, FormControl, FormField, FormItem } from "../ui/form";
 import { useForm } from "react-hook-form";
 import Heading from "../heading";
@@ -12,6 +13,7 @@ import { Button } from "../ui/button";
 import { formSchema } from "../../app/(auth)/(routes)/sign-in/constants";
 import Image from "next/image";
 import { Checkbox } from "../ui/checkbox";
+import { toast } from "../../app/action/use-toast";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -19,21 +21,33 @@ const LoginModal = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
 
-  const isLoading = form.formState.isLoading;
-
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/login`,
-        values
-      );
+      signIn("credentials", {
+        ...values,
+        redirect: false,
+      }).then((callback) => {
+        if (callback?.ok) {
+          toast({
+            title: "Đăng nhập thành công",
+          });
+          router.push("/");
+          form.reset();
+        }
 
-      console.log(response.data);
+        if (callback?.error) {
+          console.log(callback?.error);
+          toast({
+            title: "Đăng nhập thất bại",
+          });
+        }
+      });
+
       form.reset();
     } catch (error) {
       console.log(error);
@@ -41,6 +55,8 @@ const LoginModal = () => {
       router.refresh();
     }
   };
+
+  const { isLoading, isSubmitting, isValid } = form.formState;
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center p-0 m-0 gap-0">
@@ -58,7 +74,7 @@ const LoginModal = () => {
             className="flex flex-col justify-center gap-y-4 w-[350px] focus-within::shadow-sm gap-2"
           >
             <FormField
-              name="username"
+              name="email"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -107,7 +123,7 @@ const LoginModal = () => {
                 className="my-4 w-full text-base font-semibold uppercase"
                 variant="login"
                 size="login"
-                disabled={isLoading}
+                disabled={isLoading || isSubmitting || !isValid}
               >
                 Đăng nhập
               </Button>
