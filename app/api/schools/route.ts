@@ -1,5 +1,5 @@
 import getCurrentUser from "@/actions/get-current-user";
-import { formCreateSchoolSchema } from "@/constants/create-school-schema";
+import { formCreateSchoolSchema } from "@/constaints-create/constants-school";
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
@@ -27,8 +27,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json(school);
   } catch (error) {
-    console.log("CREATE SCHOOL", error);
-    return new NextResponse("Tạo trường học thất bại", {
+    console.log("CREATE USER", error);
+    return new NextResponse(`Tạo trường học thất bại ${error}`, {
       status: 500,
     });
   }

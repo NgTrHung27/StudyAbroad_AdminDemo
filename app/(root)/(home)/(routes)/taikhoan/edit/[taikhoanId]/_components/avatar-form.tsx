@@ -1,5 +1,4 @@
 "use client";
-
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useModal } from "@/hooks/use-modal-store";
 import { User } from "@prisma/client";

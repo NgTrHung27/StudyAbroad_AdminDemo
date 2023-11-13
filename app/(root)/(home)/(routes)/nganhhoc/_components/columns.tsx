@@ -7,13 +7,9 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 
 export const columns: ColumnDef<Program>[] = [
@@ -107,15 +103,16 @@ export const columns: ColumnDef<Program>[] = [
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant={"ghost"} className="h-4 w-8 p-0">
-                            <span className="sr-only">Tùy chọn</span>
+                            <span className="sr-only"></span>
                             <MoreHorizontal className="h4 w-4" />
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <Link href={`/truonghoc/edit/${id}`}>
+                        <Link href={`/nganhhoc/edit/${id}`}>
                             <DropdownMenuItem>
-                                <Pencil className="h-4 w-4 mr-2" />
-                                Xem thông tin chi tiết
+
+                                Chỉnh sửa
+                                <Pencil className="ml-1 h-4 w-4 mr-2" />
                             </DropdownMenuItem>
                         </Link>
                     </DropdownMenuContent>

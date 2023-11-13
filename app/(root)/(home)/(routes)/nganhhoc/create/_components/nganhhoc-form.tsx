@@ -21,18 +21,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import FileUpload from "@/components/file-upload";
 import { formCreateNganhHocSchema } from "@/constants/create-nganhhoc-schema";
+import { formCreateProgramSchema } from "@/constaints-create/constants-program";
 
 export function NganhHocForm() {
   const [isMounted, setIsMounted] = useState(false);
 
-  const router = useRouter();
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const form = useForm<z.infer<typeof formCreateNganhHocSchema>>({
-    resolver: zodResolver(formCreateNganhHocSchema),
+  const form = useForm<z.infer<typeof formCreateProgramSchema>>({
+    resolver: zodResolver(formCreateProgramSchema),
     defaultValues: {
       name: "",
       description1: "",
@@ -43,9 +38,15 @@ export function NganhHocForm() {
     },
   });
 
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formCreateNganhHocSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formCreateProgramSchema>) => {
     try {
       await axios.post("/api/program", values);
       toast.success("Tạo ngành học thành công");

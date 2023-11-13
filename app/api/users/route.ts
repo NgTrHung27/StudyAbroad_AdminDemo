@@ -1,6 +1,7 @@
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import { randomUUID } from "crypto";
 import verifyEmail from "@/templates/verifyEmailTemplate";
 import { sendMail } from "@/service/mailService";
 import { formCreateUserSchema } from "@/constants/create-user-schema";

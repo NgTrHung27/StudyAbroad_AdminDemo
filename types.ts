@@ -6,6 +6,7 @@ import {
   FileSpreadsheet,
   GraduationCap,
   Home,
+  Layers3,
   Newspaper,
   PlusCircle,
   School as SchoolIcon,

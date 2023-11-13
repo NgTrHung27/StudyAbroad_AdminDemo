@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { formNameSchema } from "../constants";
+import { formNameSchema } from "../../../../../../../../constaints-edit/constants-user";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { User } from "@prisma/client";

@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
-import { UserRole } from "@prisma/client";
 
 import {
   Form,
@@ -17,30 +16,19 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { formRoleSchema } from "../constants";
+import { formEmailSchema } from "../../../../../../../../constaints-edit/constants-user";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { User } from "@prisma/client";
+import { IconBadge } from "@/components/icon-badge";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 interface nameFormProps {
   user: User;
 }
 
-const roleMap = {
-  [UserRole.ADMIN]: "bg-rose-500",
-  [UserRole.USER]: "bg-slate-500",
-};
-
-const RoleForm = ({ user }: nameFormProps) => {
+const EmailForm = ({ user }: nameFormProps) => {
   const router = useRouter();
 
   const [isEditting, setIsEditting] = useState(false);
@@ -49,16 +37,16 @@ const RoleForm = ({ user }: nameFormProps) => {
     setIsEditting((current) => !current);
   };
 
-  const form = useForm<z.infer<typeof formRoleSchema>>({
-    resolver: zodResolver(formRoleSchema),
+  const form = useForm<z.infer<typeof formEmailSchema>>({
+    resolver: zodResolver(formEmailSchema),
     defaultValues: {
-      role: "",
+      email: "",
     },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formRoleSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formEmailSchema>) => {
     try {
       await axios.patch(`/api/users/${user.id}`, values);
       toast.success("Cập nhật hồ sơ thành công");
@@ -71,29 +59,62 @@ const RoleForm = ({ user }: nameFormProps) => {
     }
   };
 
-  if (user.email === "cigpbubu@gmail.com") {
-    return null;
-  }
+  const sendEmail = async () => {
+    try {
+      const email = user.email;
+
+      await axios.post(`/api/users/${user.id}/sendEmail`, { email });
+
+      toast.success("Gửi email thành công");
+    } catch (error) {
+      console.log(error);
+      toast.error("Gửi email thất bại");
+    }
+  };
 
   return (
     <div className="mt-6 border bg-white rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Vai trò nguời dùng
+        Email liên hệ
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditting ? (
             <>Hủy</>
           ) : (
             <>
-              <Pencil className="h-4 w-4 mr-2" />
-              Chỉnh sửa
+              {!user.emailVerified && (
+                <>
+                  <Pencil className="h-4 w-4 mr-2" />
+                  Chỉnh sửa
+                </>
+              )}
             </>
           )}
         </Button>
       </div>
       {!isEditting ? (
-        <Badge className={cn(roleMap[user.role])}>
-          {user.role === UserRole.ADMIN ? "Quản trị viên" : "Người dùng"}
-        </Badge>
+        <div className="flex items-center justify-between">
+          <p className="text-sm mt-2">{user.email}</p>
+          <div className="flex flex-col items-end justify-between gap-y-2">
+            <Badge
+              className={cn(
+                "bg-slate-500 mt-2",
+                user.emailVerified
+                  ? "bg-emerald-500/80 border-black"
+                  : "bg-yellow-200/80 border-[1px] hover:cursor-default border-yellow-300 text-primary"
+              )}
+            >
+              {user.emailVerified ? "Đã xác thực" : "Chưa xác thực"}
+            </Badge>
+            {!user.emailVerified && (
+              <Badge
+                onClick={sendEmail}
+                className="bg-black text-white font-bold hover:bg-black/90 hover:cursor-pointer"
+              >
+                Gửi email xác thực
+              </Badge>
+            )}
+          </div>
+        </div>
       ) : (
         <Form {...form}>
           <form
@@ -102,26 +123,17 @@ const RoleForm = ({ user }: nameFormProps) => {
           >
             <FormField
               control={form.control}
-              name="role"
+              name="email"
               render={({ field }) => (
                 <FormItem>
-                  <Select
-                    disabled={isSubmitting}
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder={"Vui lòng chọn vai trò"} />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value={UserRole.ADMIN}>
-                        Quản trị viên
-                      </SelectItem>
-                      <SelectItem value={UserRole.USER}>Người dùng</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      disabled={isSubmitting}
+                      placeholder="Vd: abc@gmail.com"
+                      {...field}
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -138,4 +150,4 @@ const RoleForm = ({ user }: nameFormProps) => {
   );
 };
 
-export default RoleForm;
+export default EmailForm;

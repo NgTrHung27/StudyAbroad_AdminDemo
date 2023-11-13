@@ -1,75 +1,59 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { User, UserRole } from "@prisma/client";
+import { Student } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { format } from "date-fns";
+import { vi } from "date-fns/locale";
+import { StudentProfile } from "@/types";
 
-export const columns: ColumnDef<User>[] = [
+export const usersColumns: ColumnDef<StudentProfile>[] = [
   {
-    accessorKey: "name",
+    id: "name",
+    accessorKey: "user.name",
     header: ({ column }) => {
       return (
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Tên tài khoản
+          Tên học sinh
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
   {
-    accessorKey: "email",
+    id: "dob",
+    accessorKey: "user.dob",
     header: ({ column }) => {
       return (
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          Ngày sinh
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
+    cell: ({ row }) => (
+      <div>{format(row.original.user.dob, "do MMM, yyyy", { locale: vi })}</div>
+    ),
   },
   {
-    accessorKey: "role",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant={"ghost"}
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Vai trò
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => {
-      const isAdmin = row.getValue("role") === UserRole.ADMIN || false;
-
-      return (
-        <Badge className={cn("bg-slate-500", isAdmin && "bg-rose-500")}>
-          {isAdmin ? "Quản trị viên" : "Người dùng"}
-        </Badge>
-      );
-    },
-  },
-  {
-    accessorKey: "isPublished",
+    id: "isPublished",
+    accessorKey: "user.isPublished",
     header: ({ column }) => {
       return (
         <Button
