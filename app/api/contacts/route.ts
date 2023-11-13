@@ -21,3 +21,14 @@ export async function POST(req: Request) {
     });
   }
 }
+
+export async function GET(req: Request) {
+  try {
+    const contacts = await db.contact.findMany();
+
+    return NextResponse.json(contacts);
+  } catch (error) {
+    console.log(error);
+    return new NextResponse("Lỗi lấy thông tin liên hệ", { status: 500 });
+  }
+}
