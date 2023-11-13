@@ -37,17 +37,34 @@ model User {
   avatar      String?
   isPublished Boolean  @default(false)
 
-  schoolId String? @db.ObjectId
-  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-
   accounts       Account[]
   activateTokens ActivateToken[]
-  certificates   Certificate[]
-  blogs          Blog[]
-  studentScores  StudentScore[]
+  students       Student[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Blog Blog[]
+}
+
+model Student {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  schoolId String? @db.ObjectId
+  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  certificates  Certificate[]
+  blogs         Blog[]
+  studentScores StudentScore[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, schoolId])
+  @@index([schoolId, userId])
 }
 
 model Account {
@@ -104,13 +121,13 @@ model Certificate {
   category SchoolCategory      @default(THPT)
   english  CertificateCategory @default(IELTS)
 
-  userId String @db.ObjectId
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studentId String  @db.ObjectId
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([userId])
+  @@index([studentId])
 }
 
 model School {
@@ -120,11 +137,14 @@ model School {
   backgroundUrl String @db.String
   name          String @unique
   colorValue    String
-  users      User[]
+
   operations Operation[]
   history    History[]
   blogs      Blog[]
   programs   Program[]
+  students   Student[]
+  requests   Request[]
+  partners   Partner[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -147,7 +167,7 @@ model History {
 model Operation {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  name          String
+  name          String @unique
   description   String @db.String
   backgroundUrl String @db.String
 
@@ -173,22 +193,67 @@ model Blog {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Student   Student? @relation(fields: [studentId], references: [id])
+  studentId String?  @db.ObjectId
 
   @@index([userId, schoolId])
 }
 
 model Program {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String @db.String
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  name         String @db.String
   description1 String @db.String
   description2 String @db.String
-  Price        Float 
-  Image1      String @db.String
-  Image2      String @db.String
+  Price        Float
+  Image1       String @db.String
+  Image2       String @db.String
+
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([schoolId])
+}
+
+model Request {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  Name         String
+  Image1       String   @db.String
+  Content1     String
+  Title1       String
+  Content2     String
+  Title2       String
+  checkcontent String   @db.String
+  roundcontent String   @db.String
+  schoolId     String?  @db.ObjectId
+  school       School?  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([schoolId])
+}
+
+model Partner {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  ImageNav1     String
+  ImageNav2     String @db.String
+  Title         String
+  Content1      String
+  Image1        String
+  des1          String @db.String
+  des2          String @db.String
+  Title1        String @db.String
+  content2      String @db.String
+  contentlist   String @db.String
+  content_Tuvan String @db.String
+
+  schoolId  String?  @db.ObjectId
+  school    School?  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([schoolId])
 }
 
@@ -199,8 +264,7 @@ model MonHoc {
 }
 
 model Contact {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   email       String
   phoneNumber String
@@ -226,8 +290,8 @@ model StudentScore {
   semester     SemesterCategory
   schoolYear   Int
 
-  userId String @db.ObjectId
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studentId String  @db.ObjectId
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   miniScores MiniScore[]
 

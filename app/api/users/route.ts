@@ -1,12 +1,10 @@
-import getCurrentUser, { getSession } from "@/actions/get-current-user";
 import db from "@/lib/db";
-import { UserRole } from "@prisma/client";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { randomUUID } from "crypto";
-import { formCreateUserSchema } from "@/app/(root)/(routes)/taikhoan/create/constants";
 import verifyEmail from "@/templates/verifyEmailTemplate";
 import { sendMail } from "@/service/mailService";
+import { formCreateUserSchema } from "@/constants/create-user-schema";
 
 const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
@@ -15,41 +13,62 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const { dob: birth, session } = body;
+    const { dob: birth } = body;
+
     if (typeof birth === "string") {
       body.dob = new Date(birth);
     }
 
-    console.log(session);
-
-    if (!session) {
-      return new NextResponse("Chưa xác thực", { status: 401 });
-    }
-
     const {
-      name,
-      address,
-      cccd,
-      description,
-      dob,
-      email,
-      gender,
-      phoneNumber,
+      studyCategory,
+      certificateCategory,
+      schoolCategory,
+      schoolName,
+      password,
+      ...values
     } = formCreateUserSchema.parse(body);
 
-    const hashedPassword = await bcrypt.hash("test", 12);
+    if (!values.email) {
+      return new NextResponse("Không tìm thấy địa chỉ email", { status: 404 });
+    }
+
+    if (!password) {
+      return new NextResponse("Không tìm thấy mật khẩu", { status: 404 });
+    }
+
+    const existUser = await db.user.findUnique({
+      where: {
+        email: values.email,
+      },
+    });
+
+    if (existUser) {
+      return new NextResponse("Người dùng với email này đã tồn tại", {
+        status: 403,
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    const school = await db.school.findUnique({
+      where: {
+        name: schoolName,
+      },
+    });
+
+    if (!school) {
+      return new NextResponse("Không tìm thấy trường học", { status: 404 });
+    }
 
     const user = await db.user.create({
       data: {
+        students: {
+          create: {
+            schoolId: school.id,
+          },
+        },
         hashedPassword,
-        name,
-        address,
-        cccd,
-        description,
-        dob,
-        email,
-        gender,
-        phoneNumber,
+        ...values,
       },
     });
 
@@ -88,10 +107,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json(user);
   } catch (error) {
-    console.log("CREATE USER", error);
-    return new NextResponse("Tạo tài khoản người dùng thất bại", {
-      status: 500,
-    });
+    console.log(error);
+    return new NextResponse(`Đăng ký thất bại ${error}`, { status: 500 });
   }
 }
 

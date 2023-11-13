@@ -1,5 +1,5 @@
 import getCurrentUser from "@/actions/get-current-user";
-import { formCreateSchoolSchema } from "@/app/(root)/(routes)/truonghoc/create/constants";
+import { formCreateSchoolSchema } from "@/constaints-create/constants-school";
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     return NextResponse.json(school);
   } catch (error) {
     console.log("CREATE USER", error);
-    return new NextResponse("Tạo trường học thất bại", {
+    return new NextResponse(`Tạo trường học thất bại ${error}`, {
       status: 500,
     });
   }
@@ -36,7 +36,15 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
-    const schools = await db.school.findMany();
+    const schools = await db.school.findMany({
+      include: {
+        students: true,
+        blogs: true,
+        history: true,
+        operations: true,
+        programs: true,
+      },
+    });
     console.log(schools);
     return NextResponse.json(schools);
   } catch (error) {
