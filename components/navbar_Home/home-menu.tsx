@@ -42,10 +42,10 @@ const HomeMenu = () => {
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-40 bg-white overflow-hidden -left-28 top-12 text-sm">
           <div ref={ref} className="flex flex-col cursor-pointer">
-            <MenuItem onClick={() => {}} label="Trang chủ" />
-            <MenuItem onClick={() => {}} label="Liên hệ" />
-            <MenuItem onClick={() => {}} label="So sánh" />
-            <MenuItem onClick={() => {}} label="Học phí" />    
+            <MenuItem href="/" onClick={() => {}} label="Trang chủ" />
+            <MenuItem href="/LienHe" onClick={() => {}} label="Liên hệ" />
+            <MenuItem href="/SoSanh" onClick={() => {}} label="So sánh" />
+            <MenuItem href="/HocPhi" onClick={() => {}} label="Học phí" />    
           </div>
         </div>
       )}
