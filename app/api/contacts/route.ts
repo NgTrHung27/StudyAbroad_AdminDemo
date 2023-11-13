@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    console.log(body);
     const { ...values } = formContactSchema.parse(body);
 
     const contact = await db.contact.create({
@@ -13,7 +12,7 @@ export async function POST(req: Request) {
         ...values,
       },
     });
-    return new NextResponse("OK", { status: 200 });
+    return NextResponse.json(contact);
   } catch (error) {
     console.log("CREATE USER", error);
     return new NextResponse("Gửi liên hệ thất bại", {
