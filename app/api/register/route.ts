@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     const { ...values } = formRegisterSchema.parse(body);
 
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_ADMIN_URL}/users`,
+      `${process.env.NEXT_PUBLIC_API_URL}/users`,
       {
         session,
         ...values,
