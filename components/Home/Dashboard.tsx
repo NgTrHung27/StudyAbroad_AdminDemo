@@ -61,13 +61,13 @@ function DashBoardStatsGrid() {
         </div>
         <div className="pl-4">
           <span className="text-sm text-gray-500 font-light">
-            Hồ sơ chưa duyệt
+            Số lượng học sinh
           </span>
           <div className="flex items-center">
             <strong className="text-xl text-gray-700 font-semibold">
-              4953
+              25346
             </strong>
-            <span className="text-sm text-green-500 pl-3">+347</span>
+            <span className="text-sm text-green-500 pl-3">+450</span>
           </div>
         </div>
       </BoxWrapper>
