@@ -44,6 +44,12 @@ export const routes = [
     icon: Settings,
     description: "Cài đặt chung",
   },
+  {
+    label: "Tin tức",
+    href: "/tintuc",
+    icon: Newspaper,
+    description: "Tin tức",
+  },
 ];
 
 export type SafeUser = Omit<
