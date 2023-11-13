@@ -7,12 +7,6 @@ import { formCreateUserSchema } from "../../../constants/form-create-user-schema
 
 export async function POST(req: Request) {
   try {
-    const session = await getAuthSession();
-
-    if (!session) {
-      return new NextResponse("Chưa xác thực", { status: 401 });
-    }
-
     const body = await req.json();
     const { dob } = body;
     if (typeof dob === "string") {
@@ -24,7 +18,6 @@ export async function POST(req: Request) {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/users`,
       {
-        session,
         ...values,
       }
     );
