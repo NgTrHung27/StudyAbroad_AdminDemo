@@ -20,6 +20,7 @@ const buttonVariants = cva(
           "max-w-fit text-white md:text-lg text-xs font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-[72px] md:min-w-full flex justify-center text-center items-center md:px-5 px-1 rounded-[-20px]",
         link: "text-primary underline-offset-4 hover:underline",
         login: "bg-[#7D1F1F] text-primary-foreground hover:bg-[#7D1F1F]/90",
+        calendarDay: "w-full text-white md:text-lg text-xs font-semibold transition hover:cursor-pointer hover:bg-slate-200 text-black"
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 
 import { NextResponse } from "next/server";
-import { formRegisterSchema } from "../../(auth)/(routes)/sign-up/constants";
 import { getAuthSession } from "../../../lib/nextauth";
 import axios from "axios";
+import { formCreateUserSchema } from "../../../constants/form-create-user-schema";
 
 export async function POST(req: Request) {
   try {
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       body.dob = new Date(dob);
     }
 
-    const { ...values } = formRegisterSchema.parse(body);
+    const { ...values } = formCreateUserSchema.parse(body);
 
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/users`,
