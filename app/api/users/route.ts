@@ -10,112 +10,105 @@ const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
 
 export async function POST(req: Request) {
-  const body = await req.json();
-  const { password } = body;
+  try {
+    const body = await req.json();
 
-  if (!password) {
-    try {
-      const { dob: birth, session } = body;
-      if (typeof birth === "string") {
-        body.dob = new Date(birth);
-      }
-      if (!session) {
-        return new NextResponse("Chưa xác thực", { status: 401 });
-      }
+    const { dob: birth } = body;
 
-      const {
-        name,
-        address,
-        cccd,
-        description,
-        dob,
-        email,
-        gender,
-        phoneNumber,
-      } = formCreateUserSchema.parse(body);
-
-      const hashedPassword = await bcrypt.hash("test", 12);
-
-      const user = await db.user.create({
-        data: {
-          hashedPassword,
-          name,
-          address,
-          cccd,
-          description,
-          dob,
-          email,
-          gender,
-          phoneNumber,
-        },
-      });
-
-      const confirmToken = jwt.sign(
-        { email: user.email },
-        process.env.JWT_SECRET_KEY,
-        {
-          expiresIn: "30m",
-        }
-      );
-
-      const otp = otpGenerator.generate(6, {
-        upperCaseAlphabets: false,
-        specialChars: false,
-      });
-
-      const token = await db.activateToken.create({
-        data: {
-          otp,
-          expiresAt: new Date(Date.now() + 60 * 30 * 1000),
-          token: confirmToken,
-          userId: user.id,
-        },
-      });
-
-      const emailTemplate = verifyEmail(user.id, token.token, token.otp);
-
-      const options = {
-        to: user.email,
-        subject: "Xác thực email để tiếp tục",
-        text: emailTemplate.text,
-        html: emailTemplate.html,
-      };
-
-      await sendMail({ options });
-
-      return NextResponse.json(user);
-    } catch (error) {
-      console.log(error);
-      return new NextResponse("Đăng ký thất bại", { status: 500 });
+    if (typeof birth === "string") {
+      body.dob = new Date(birth);
     }
-  } else {
-    try {
-      const { email } = body;
 
-      const user = await db.user.findUnique({
-        where: {
-          email: email,
-        },
-      });
+    const {
+      studyCategory,
+      certificateCategory,
+      schoolCategory,
+      schoolName,
+      password,
+      ...values
+    } = formCreateUserSchema.parse(body);
 
-      if (!user) {
-        return new NextResponse("Người dùng không tồn tại", { status: 404 });
-      }
-
-      const isPasswordCorrect = await bcrypt.compare(
-        password,
-        user.hashedPassword
-      );
-
-      if (!isPasswordCorrect) {
-        return new NextResponse("Thông tin tài khoản không chính xác");
-      }
-
-      return NextResponse.json(user);
-    } catch (error) {
-      console.log(error);
-      return new NextResponse("Đăng nhập thất bại", { status: 500 });
+    if (!values.email) {
+      return new NextResponse("Không tìm thấy địa chỉ email", { status: 404 });
     }
+
+    if (!password) {
+      return new NextResponse("Không tìm thấy mật khẩu", { status: 404 });
+    }
+
+    const existUser = await db.user.findUnique({
+      where: {
+        email: values.email,
+      },
+    });
+
+    if (existUser) {
+      return new NextResponse("Người dùng với email này đã tồn tại", {
+        status: 403,
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    const school = await db.school.findUnique({
+      where: {
+        name: schoolName,
+      },
+    });
+
+    if (!school) {
+      return new NextResponse("Không tìm thấy trường học", { status: 404 });
+    }
+
+    const user = await db.user.create({
+      data: {
+        students: {
+          create: {
+            schoolId: school.id,
+          },
+        },
+        hashedPassword,
+        ...values,
+      },
+    });
+
+    const confirmToken = jwt.sign(
+      { email: user.email },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: "30m",
+      }
+    );
+
+    const otp = otpGenerator.generate(6, {
+      upperCaseAlphabets: false,
+      specialChars: false,
+    });
+
+    const token = await db.activateToken.create({
+      data: {
+        otp,
+        expiresAt: new Date(Date.now() + 60 * 30 * 1000),
+        token: confirmToken,
+        userId: user.id,
+      },
+    });
+
+    const emailTemplate = verifyEmail(user.id, token.token, token.otp);
+
+    const options = {
+      to: user.email,
+      subject: "Xác thực email để tiếp tục",
+      text: emailTemplate.text,
+      html: emailTemplate.html,
+    };
+
+    await sendMail({ options });
+
+    return NextResponse.json(user);
+  } catch (error) {
+    console.log(error);
+    return new NextResponse(`Đăng ký thất bại ${error}`, { status: 500 });
   }
 }
 
