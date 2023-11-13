@@ -45,10 +45,10 @@ const UserMenu = () => {
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-40 bg-white overflow-hidden right-0 top-14 text-sm">
           <div ref={ref} className="flex flex-col cursor-pointer">
-            <MenuItem onClick={() => {}} label="Trang chủ" />
-            <MenuItem onClick={() => {}} label="Yêu cầu" />
-            <MenuItem onClick={() => {}} label="Liên kết" />
-            <MenuItem onClick={() => {}} label="Ngành học" />
+            <MenuItem onClick={() => router.push("/")} label="Trang chủ" />
+            <MenuItem onClick={() => router.push("/YeuCau")} label="Yêu cầu" />
+            <MenuItem onClick={() => router.push("/LienKet")} label="Liên kết" />
+            <MenuItem onClick={() => router.push("/NganhHoc")} label="Ngành học" />
             <hr />
             <MenuItem
               onClick={() => router.push("/sign-in")}
