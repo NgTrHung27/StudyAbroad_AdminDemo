@@ -313,3 +313,12 @@ model MiniScore {
 
   @@index([studentScoreId])
 }
+model News {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  titlenews    String
+  descriptions  String   @db.String
+  author        String
+  imageNews     String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
