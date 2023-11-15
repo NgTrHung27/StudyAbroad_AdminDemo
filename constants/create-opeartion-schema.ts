@@ -7,6 +7,9 @@ export const formCreateOperationSchema = z.object({
   description: z.string().min(1, {
     message: "Vui lòng nhập nội dung mô tả cơ sở",
   }),
+  address: z.string().min(1, {
+    message: "Vui lòng nhập địa chỉ",
+  }),
   backgroundUrl: z.string().min(1, {
     message: "Vui lòng chọn hình đại diện cơ sở",
   }),

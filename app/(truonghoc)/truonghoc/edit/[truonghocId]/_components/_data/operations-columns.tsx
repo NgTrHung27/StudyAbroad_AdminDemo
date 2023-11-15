@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
+import { ArrowUpDown, Eye, MoreHorizontal, Pencil } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +18,7 @@ import {
 import { Preview } from "@/components/preview";
 import ReactStars from "react-stars";
 import Image from "next/image";
+import Link from "next/link";
 
 export const operationsColumns: ColumnDef<Operation>[] = [
   {
@@ -36,7 +37,15 @@ export const operationsColumns: ColumnDef<Operation>[] = [
     cell: ({ row }) => (
       <HoverCard>
         <HoverCardTrigger asChild>
-          <Button variant={"link"}>{row.original.name}</Button>
+          <div className="relative flex items-center">
+            <Image
+              alt="operationBackground"
+              width={30}
+              height={20}
+              src={row.original.backgroundUrl}
+            />
+            <Button variant={"link"}>{row.original.name}</Button>
+          </div>
         </HoverCardTrigger>
         <HoverCardContent className="w-[360px] h-full">
           <div className="w-full h-full flex justify-around space-x-4">
@@ -62,5 +71,54 @@ export const operationsColumns: ColumnDef<Operation>[] = [
         </HoverCardContent>
       </HoverCard>
     ),
+  },
+  {
+    accessorKey: "address",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={"ghost"}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Địa chỉ
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      const { id } = row.original;
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant={"ghost"} className="h-4 w-8 p-0">
+              <span className="sr-only">Tùy chọn</span>
+              <MoreHorizontal className="h4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <Link
+              href={`/truonghoc/edit/${row.original.schoolId}/coso/preview/${id}`}
+            >
+              <DropdownMenuItem>
+                <Eye className="h-4 w-4 mr-2" />
+                Xem trước
+              </DropdownMenuItem>
+            </Link>
+            <Link
+              href={`/truonghoc/edit/${row.original.schoolId}/coso/edit/${id}`}
+            >
+              <DropdownMenuItem>
+                <Pencil className="h-4 w-4 mr-2" />
+                Chỉnh sửa
+              </DropdownMenuItem>
+            </Link>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
   },
 ];

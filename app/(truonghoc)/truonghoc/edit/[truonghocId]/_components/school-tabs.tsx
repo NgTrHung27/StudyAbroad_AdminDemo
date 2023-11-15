@@ -39,6 +39,7 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
         <OperationsDataTable
           columns={operationsColumns}
           data={school.operations}
+          school={school}
         />
       </TabsContent>
     </Tabs>

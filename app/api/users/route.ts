@@ -20,7 +20,6 @@ export async function POST(req: Request) {
     }
 
     const {
-      studyCategory,
       certificateCategory,
       schoolCategory,
       schoolName,

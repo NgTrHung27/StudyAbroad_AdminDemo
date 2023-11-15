@@ -9,17 +9,19 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-interface ActionsProps {
+interface OperationActionsProps {
   disabled: boolean;
-  taikhoanId: string;
+  truonghocId: string;
+  cosoId: string;
   isPublished: boolean;
 }
 
-export const Actions = ({
+export const OperationActions = ({
   disabled,
-  taikhoanId,
+  truonghocId,
+  cosoId,
   isPublished,
-}: ActionsProps) => {
+}: OperationActionsProps) => {
   const router = useRouter();
   const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
@@ -29,15 +31,19 @@ export const Actions = ({
       setIsLoading(true);
 
       if (isPublished) {
-        await axios.patch(`/api/users/${taikhoanId}/unpublish`);
-        toast.success("Ngừng duyệt hồ sơ thành công");
+        await axios.patch(
+          `/api/schools/${truonghocId}/operations/${cosoId}/unpublish`
+        );
+        toast.success("Ngừng công khai cơ sở thành công");
       } else {
-        await axios.patch(`/api/users/${taikhoanId}/publish`);
-        toast.success("Duyệt hồ sơ thành công");
+        await axios.patch(
+          `/api/schools/${truonghocId}/operations/${cosoId}/publish`
+        );
+        toast.success("Công khai cơ sở thành công");
         confetti.onOpen();
       }
     } catch (error) {
-      toast.error("Duyệt hồ so8 thất bại");
+      toast.error("Công khai cơ sở thất bại");
     } finally {
       router.refresh();
       setIsLoading(false);
@@ -47,12 +53,12 @@ export const Actions = ({
   const onDelete = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/users/${taikhoanId}`);
-      toast.success("Xóa hồ sơ thành công");
+      await axios.delete(`/api/schools/${truonghocId}/operations/${cosoId}`);
+      toast.success("Xóa cơ sở thành công");
       router.refresh();
-      router.push(`/taikhoan`);
+      router.push(`/api/schools/${truonghocId}`);
     } catch (error) {
-      toast.error("Xóa hồ sơ thất bại");
+      toast.error("Xóa cơ sở thất bại");
     } finally {
       setIsLoading(false);
     }
@@ -65,7 +71,7 @@ export const Actions = ({
         variant={"outline"}
         size={"sm"}
       >
-        {isPublished ? "Ngừng duyệt" : "Duyệt"}
+        {isPublished ? "Ẩn cơ sở" : "Hiển thị"}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
         <Button size={"sm"} disabled={isLoading}>

@@ -1,10 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Image from "next/image";
 
-const font = Poppins({ weight: "500", subsets: ["latin"] });
+const font = Montserrat({ weight: "500", subsets: ["vietnamese"] });
 
 const Logo = () => {
   return (
@@ -22,7 +22,7 @@ const Logo = () => {
           font.className
         )}
       >
-        Quản Lý Du Học
+        <span>Quản lý du học</span>
       </p>
     </div>
   );

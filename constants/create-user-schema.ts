@@ -28,7 +28,6 @@ export const formCreateUserSchema = z.object({
   schoolName: z.string().min(1, {
     message: "Vui lòng chọn trường",
   }),
-  studyCategory: z.string(),
   certificateCategory: z.string(),
   schoolCategory: z.string(),
   description: z.string().min(1, {

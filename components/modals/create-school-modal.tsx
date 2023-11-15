@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -140,7 +141,7 @@ export const SchoolModal = () => {
       name="colorValue"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Màu sắc</FormLabel>
+          <FormLabel>Màu đại diện</FormLabel>
           <FormControl>
             <div className="flex items-center gap-x-4">
               <Input
@@ -155,6 +156,12 @@ export const SchoolModal = () => {
               ></div>
             </div>
           </FormControl>
+          {!form.getValues("colorValue").startsWith("#") && (
+            <FormDescription className="text-rose-500">
+              Mã màu phải là giá trị thập lục phân, chứa ít nhất 3 ký tự (VD:
+              #000000)
+            </FormDescription>
+          )}
           <FormMessage />
         </FormItem>
       )}

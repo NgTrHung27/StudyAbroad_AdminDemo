@@ -1,23 +1,21 @@
 "use client";
 
-import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { Button } from "@/components/ui/button";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
 import axios from "axios";
-import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 interface ActionsProps {
   disabled: boolean;
-  taikhoanId: string;
+  truonghocId: string;
   isPublished: boolean;
 }
 
-export const Actions = ({
+export const SchoolActions = ({
   disabled,
-  taikhoanId,
+  truonghocId,
   isPublished,
 }: ActionsProps) => {
   const router = useRouter();
@@ -29,31 +27,17 @@ export const Actions = ({
       setIsLoading(true);
 
       if (isPublished) {
-        await axios.patch(`/api/users/${taikhoanId}/unpublish`);
+        await axios.patch(`/api/schools/${truonghocId}/unpublish`);
         toast.success("Ngừng duyệt hồ sơ thành công");
       } else {
-        await axios.patch(`/api/users/${taikhoanId}/publish`);
-        toast.success("Duyệt hồ sơ thành công");
+        await axios.patch(`/api/schools/${truonghocId}/publish`);
+        toast.success("Hiển thị trường học thành công");
         confetti.onOpen();
       }
     } catch (error) {
-      toast.error("Duyệt hồ so8 thất bại");
+      toast.error("Hiển thị trường học thất bại");
     } finally {
       router.refresh();
-      setIsLoading(false);
-    }
-  };
-
-  const onDelete = async () => {
-    try {
-      setIsLoading(true);
-      await axios.delete(`/api/users/${taikhoanId}`);
-      toast.success("Xóa hồ sơ thành công");
-      router.refresh();
-      router.push(`/taikhoan`);
-    } catch (error) {
-      toast.error("Xóa hồ sơ thất bại");
-    } finally {
       setIsLoading(false);
     }
   };
@@ -65,13 +49,8 @@ export const Actions = ({
         variant={"outline"}
         size={"sm"}
       >
-        {isPublished ? "Ngừng duyệt" : "Duyệt"}
+        {isPublished ? "Ẩn trường học" : "Hiển thị"}
       </Button>
-      <ConfirmModal onConfirm={onDelete}>
-        <Button size={"sm"} disabled={isLoading}>
-          <Trash className="h-4 w-4" />
-        </Button>
-      </ConfirmModal>
     </div>
   );
 };
