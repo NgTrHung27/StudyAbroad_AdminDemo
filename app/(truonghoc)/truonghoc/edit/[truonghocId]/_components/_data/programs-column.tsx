@@ -55,15 +55,19 @@ export const programsColumns: ColumnDef<Program>[] = [
               <Image alt="operationBackground" fill src={row.original.Image2} />
             </div>
             <div className="space-y-2">
-              <h4 className="text-sm font-semibold">{row.original.name}</h4>
-              <Preview
-                value={
-                  row.original.description1 +
-                  "<br />" +
-                  row.original.description2
-                }
-              />
-              Chi phí: <Currency value={row.original.Price} />
+              <h2 className=" text-lg font-semibold py-2">
+                Tên ngành học: {row.original.name}
+              </h2>
+              <div className="flex flex-col gap-y-2">
+                <p className="font-semibold">Thông tin ngành học</p>
+                <Preview value={row.original.description1} />
+                <p className="font-semibold">Chi tiết ngành học</p>
+                <Preview value={row.original.description2} />
+              </div>
+              <div className="flex items-center gap-x-2">
+                <p className="font-semibold">Chi phí:</p>
+                <Currency value={row.original.Price} />
+              </div>
             </div>
           </div>
         </HoverCardContent>
@@ -85,7 +89,7 @@ export const programsColumns: ColumnDef<Program>[] = [
     },
     cell: ({ row }) => (
       <div>
-        <Currency value={row.original.Price} />
+        <Currency value={row.original.Price} />/ Tháng
       </div>
     ),
   },

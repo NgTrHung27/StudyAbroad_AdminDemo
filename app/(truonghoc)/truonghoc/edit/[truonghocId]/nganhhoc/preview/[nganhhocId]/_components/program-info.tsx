@@ -30,15 +30,13 @@ const ProgramInfo: React.FC<InfoProps> = ({ data }) => {
       <h1 className="text-3xl font-bold text-gray-900">{data.name}</h1>
       <div className="mt-3 flex items-end justify-between">
         <p className="text-2xl text-gray-900">
-          <Currency value={data.Price} />/ Tháng
+          <Currency value={data.Price} />
         </p>
       </div>
       <hr className="my-4" />
       <div className="flex flex-col gap-y-6">
-        <div className="flex items-center gap-x-4">
-          <h3 className="font-semibold text-black">Thông tin ngành học:</h3>
-          <Preview value={data.description1} />
-        </div>
+        <h3 className="font-semibold text-black">Thông tin ngành học:</h3>
+        <Preview value={data.description1} />
         <h3 className="font-semibold text-black">Chi tiết ngành học:</h3>
         <Preview value={data.description2} />
       </div>

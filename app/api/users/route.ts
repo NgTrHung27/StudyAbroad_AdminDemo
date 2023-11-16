@@ -95,7 +95,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const emailTemplate = verifyEmail(user.id, token.token, token.otp);
+    const emailTemplate = verifyEmail(token.id, token.token, token.otp);
 
     const options = {
       to: user.email,
