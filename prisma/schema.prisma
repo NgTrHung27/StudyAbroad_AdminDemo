@@ -144,7 +144,7 @@ model School {
   programs   Program[]
   students   Student[]
   requests   Request[]
-  partners   Partner[]
+  partners   Partner[] 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

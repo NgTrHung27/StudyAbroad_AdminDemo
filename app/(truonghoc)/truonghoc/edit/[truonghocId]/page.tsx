@@ -1,5 +1,4 @@
 import getCurrentUser from "@/actions/get-current-user";
-
 import db from "@/lib/db";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -17,7 +16,6 @@ import { ColorPicker } from "./_components/color-picker";
 import LogoForm from "./_components/logo-form";
 import SchoolTabs from "./_components/school-tabs";
 import { UserRole } from "@prisma/client";
-
 type Props = {
   params: {
     truonghocId: string;
@@ -30,10 +28,9 @@ const TruongHocIdPage = async ({ params }: Props) => {
   if (!currentUser) {
     return redirect("/dangnhap");
   }
-
   const schools = await db.school.findMany();
-
   const school = await db.school.findUnique({
+
     where: {
       id: params.truonghocId,
     },
