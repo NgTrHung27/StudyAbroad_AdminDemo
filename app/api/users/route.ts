@@ -61,13 +61,15 @@ export async function POST(req: Request) {
 
     const user = await db.user.create({
       data: {
-        students: {
-          create: {
-            schoolId: school.id,
-          },
-        },
         hashedPassword,
         ...values,
+      },
+    });
+
+    await db.student.create({
+      data: {
+        schoolId: school.id,
+        userId: user.id,
       },
     });
 
