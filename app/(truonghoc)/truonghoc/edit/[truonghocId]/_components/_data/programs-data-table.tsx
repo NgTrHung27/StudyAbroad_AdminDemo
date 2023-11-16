@@ -42,7 +42,7 @@ interface DataTableProps<TData, TValue> {
   school: School;
 }
 
-export function OperationsDataTable<TData, TValue>({
+export function ProgramsDataTable<TData, TValue>({
   columns,
   data,
   school,
@@ -76,7 +76,7 @@ export function OperationsDataTable<TData, TValue>({
     <div>
       <div className="flex items-center py-4 justify-between gap-x-2">
         <Input
-          placeholder="Bộ lọc tên cơ sở..."
+          placeholder="Bộ lọc tên ngành học..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
@@ -103,7 +103,7 @@ export function OperationsDataTable<TData, TValue>({
                     }
                   >
                     {column.id === "name" && "Tên cơ sở"}
-                    {column.id === "address" && "Địa chỉ"}
+                    {column.id === "Price" && "Chi phí"}
                     {column.id === "isPublished" && "Trạng thái"}
                     {column.id === "actions" && "Tùy chọn"}
                   </DropdownMenuCheckboxItem>
@@ -112,11 +112,11 @@ export function OperationsDataTable<TData, TValue>({
           </DropdownMenuContent>
         </DropdownMenu>
         <Button
-          onClick={() => onOpen("createOperation", { school })}
+          onClick={() => onOpen("createProgram", { school })}
           className="ml-auto"
         >
           <PlusCircle className="h-4 w-4 mr-2" />
-          Thêm cơ sở mới
+          Thêm ngành học mới
         </Button>
       </div>
       <div className="rounded-md border">
@@ -171,7 +171,7 @@ export function OperationsDataTable<TData, TValue>({
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          Tổng số {table.getFilteredRowModel().rows.length} cơ sở
+          Tổng số {table.getFilteredRowModel().rows.length} ngành học
         </div>
         <div className="space-x-2">
           <Button

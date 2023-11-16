@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
-import toast from "react-hot-toast";
 
 import {
   Form,
@@ -15,29 +14,28 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Editor } from "@/components/editor";
-import { Preview } from "@/components/preview";
 
-interface OperationDescriptionFormProps {
-  description: string;
+interface ProgramPriceProps {
+  price: number;
   truonghocId: string;
-  cosoId: string;
+  nganhhocId: string;
 }
 
-const formDescriptionSchema = z.object({
-  description: z.string().min(1, {
-    message: "Vui lòng nhập mô tả cơ sở",
+const formNameSchema = z.object({
+  Price: z.coerce.number().min(1, {
+    message: "Vui lòng nhập chi phí",
   }),
 });
 
-const OperationDescriptionForm = ({
-  description,
+const ProgramPriceForm = ({
+  price,
   truonghocId,
-  cosoId,
-}: OperationDescriptionFormProps) => {
+  nganhhocId,
+}: ProgramPriceProps) => {
   const router = useRouter();
 
   const [isEditting, setIsEditting] = useState(false);
@@ -46,35 +44,35 @@ const OperationDescriptionForm = ({
     setIsEditting((current) => !current);
   };
 
-  const form = useForm<z.infer<typeof formDescriptionSchema>>({
-    resolver: zodResolver(formDescriptionSchema),
+  const form = useForm<z.infer<typeof formNameSchema>>({
+    resolver: zodResolver(formNameSchema),
     defaultValues: {
-      description: description || "",
+      Price: price || 100000,
     },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formDescriptionSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formNameSchema>) => {
     try {
       await axios.patch(
-        `/api/schools/${truonghocId}/operations/${cosoId}`,
+        `/api/schools/${truonghocId}/programs/${nganhhocId}`,
         values
       );
-      toast.success("Cập nhật cơ sở thành công");
-      form.reset();
+      toast.success("Cập nhật ngành học thành công");
       toggleEdit();
     } catch (error) {
-      toast.error("Cập nhật cơ sở thất bại");
+      toast.error("Cập nhật ngành học thất bại");
     } finally {
       router.refresh();
+      form.reset();
     }
   };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Mô tả cơ sở
+        Chi phí
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditting ? (
             <>Hủy</>
@@ -87,15 +85,7 @@ const OperationDescriptionForm = ({
         </Button>
       </div>
       {!isEditting ? (
-        <div
-          className={cn(
-            "text-sm mt-2",
-            !description && "text-slate-500 italic"
-          )}
-        >
-          {!description && "Không có mô tả"}
-          {description && <Preview value={description} />}
-        </div>
+        <p className="text-sm mt-2">{price}</p>
       ) : (
         <Form {...form}>
           <form
@@ -104,11 +94,17 @@ const OperationDescriptionForm = ({
           >
             <FormField
               control={form.control}
-              name="description"
+              name="Price"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Editor {...field} />
+                    <Input
+                      type="number"
+                      disabled={isSubmitting}
+                      min={1000}
+                      max={1000000000}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -126,4 +122,4 @@ const OperationDescriptionForm = ({
   );
 };
 
-export default OperationDescriptionForm;
+export default ProgramPriceForm;

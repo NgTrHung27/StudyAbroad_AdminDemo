@@ -1,14 +1,14 @@
 "use client";
 
-import { Operation } from "@prisma/client";
-import OperationCard from "./operation-card";
+import { Program } from "@prisma/client";
+import ProgramCard from "./program-card";
 
-interface OperationListProps {
+interface ProgramListProps {
   title: string;
-  items: Operation[];
+  items: Program[];
 }
 
-const OperationList: React.FC<OperationListProps> = ({ title, items }) => {
+const ProgramList: React.FC<ProgramListProps> = ({ title, items }) => {
   return (
     <div className="space-y-4">
       <h3 className="font-bold text-3xl">{title}</h3>
@@ -19,11 +19,11 @@ const OperationList: React.FC<OperationListProps> = ({ title, items }) => {
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {items.map((item) => (
-          <OperationCard key={item.id} operation={item} />
+          <ProgramCard key={item.id} program={item} />
         ))}
       </div>
     </div>
   );
 };
 
-export default OperationList;
+export default ProgramList;

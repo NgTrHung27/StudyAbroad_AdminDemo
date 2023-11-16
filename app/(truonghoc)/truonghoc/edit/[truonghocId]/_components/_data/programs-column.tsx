@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Operation } from "@prisma/client";
+import { Program } from "@prisma/client";
 import {
   HoverCard,
   HoverCardContent,
@@ -21,8 +21,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import Currency from "@/components/currency";
 
-export const operationsColumns: ColumnDef<Operation>[] = [
+export const programsColumns: ColumnDef<Program>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -31,7 +32,7 @@ export const operationsColumns: ColumnDef<Operation>[] = [
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Tên cơ sở
+          Tên ngành học
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -44,30 +45,26 @@ export const operationsColumns: ColumnDef<Operation>[] = [
               alt="operationBackground"
               width={30}
               height={20}
-              src={row.original.backgroundUrl}
+              src={row.original.Image1}
             />
             <Button variant={"link"}>{row.original.name}</Button>
           </div>
         </HoverCardTrigger>
-        <HoverCardContent className="w-[360px] h-full">
-          <div className="w-full h-full flex justify-around space-x-4">
+        <HoverCardContent className="w-[500px] h-full">
+          <div className="w-full h-full flex flex-col justify-around space-x-4">
             <div className="relative aspect-video w-full">
-              <Image
-                alt="operationBackground"
-                fill
-                src={row.original.backgroundUrl}
-              />
+              <Image alt="operationBackground" fill src={row.original.Image2} />
             </div>
             <div className="space-y-2">
               <h4 className="text-sm font-semibold">{row.original.name}</h4>
-              <Preview value={row.original.description} />
-              <ReactStars
-                count={5}
-                value={4.8}
-                size={24}
-                color2={"#ffd700"}
-                edit={false}
+              <Preview
+                value={
+                  row.original.description1 +
+                  "<br />" +
+                  row.original.description2
+                }
               />
+              Chi phí: <Currency value={row.original.Price} />
             </div>
           </div>
         </HoverCardContent>
@@ -75,18 +72,23 @@ export const operationsColumns: ColumnDef<Operation>[] = [
     ),
   },
   {
-    accessorKey: "address",
+    accessorKey: "Price",
     header: ({ column }) => {
       return (
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Địa chỉ
+          Chi phí
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
+    cell: ({ row }) => (
+      <div>
+        <Currency value={row.original.Price} />
+      </div>
+    ),
   },
   {
     accessorKey: "isPublished",
@@ -131,7 +133,7 @@ export const operationsColumns: ColumnDef<Operation>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <Link
-              href={`/truonghoc/edit/${row.original.schoolId}/coso/preview/${id}`}
+              href={`/truonghoc/edit/${row.original.schoolId}/nganhhoc/preview/${id}`}
             >
               <DropdownMenuItem>
                 <Eye className="h-4 w-4 mr-2" />
@@ -139,7 +141,7 @@ export const operationsColumns: ColumnDef<Operation>[] = [
               </DropdownMenuItem>
             </Link>
             <Link
-              href={`/truonghoc/edit/${row.original.schoolId}/coso/edit/${id}`}
+              href={`/truonghoc/edit/${row.original.schoolId}/nganhhoc/edit/${id}`}
             >
               <DropdownMenuItem>
                 <Pencil className="h-4 w-4 mr-2" />

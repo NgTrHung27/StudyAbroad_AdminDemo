@@ -7,14 +7,16 @@ import GalleryTab from "@/app/(truonghoc)/truonghoc/edit/[truonghocId]/coso/prev
 
 const PreviewModal = () => {
   const previewModal = usePreviewModal();
-  const operation = usePreviewModal((state) => state.data);
+  const { operation } = usePreviewModal((state) => state.data);
+
+  const isModalOpen = previewModal.isOpen && previewModal.type === "operation";
 
   if (!operation) {
     return null;
   }
 
   return (
-    <OperationModal open={previewModal.isOpen} onClose={previewModal.onClose}>
+    <OperationModal open={isModalOpen} onClose={previewModal.onClose}>
       <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
         <div className="sm:col-span-4 lg:col-span-5">
           <GalleryTab background={operation.backgroundUrl} />

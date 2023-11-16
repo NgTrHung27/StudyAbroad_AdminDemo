@@ -1,33 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { Expand, ShoppingCart } from "lucide-react";
+import { Expand } from "lucide-react";
 import { MouseEventHandler } from "react";
 
 import { useRouter } from "next/navigation";
 import usePreviewModal from "@/hooks/use-preview-modal";
-import { Operation } from "@prisma/client";
+import { Program } from "@prisma/client";
 import IconButton from "./icon-button";
 import ReactStars from "react-stars";
+import Currency from "@/components/currency";
+import { Preview } from "@/components/preview";
 
-interface OperationCardProps {
-  operation: Operation;
+interface ProgramCardProps {
+  program: Program;
 }
 
-const OperationCard: React.FC<OperationCardProps> = ({ operation }) => {
+const ProgramCard: React.FC<ProgramCardProps> = ({ program }) => {
   const previewModal = usePreviewModal();
   const router = useRouter();
 
   const handleClick = () => {
     router.push(
-      `/truonghoc/edit/${operation.schoolId}/coso/preview/${operation?.id}`
+      `/truonghoc/edit/${program.schoolId}/nganhhoc/preview/${program?.id}`
     );
   };
 
   const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
 
-    previewModal.onOpen("operation", { operation });
+    previewModal.onOpen("program", { program });
   };
 
   return (
@@ -38,7 +40,7 @@ const OperationCard: React.FC<OperationCardProps> = ({ operation }) => {
       {/* Images and Actions */}
       <div className="aspect-square roudned-xl bg-gray-100 relative">
         <Image
-          src={operation.backgroundUrl}
+          src={program.Image1}
           fill
           alt="Image"
           className="aspect-square rounded-md"
@@ -54,21 +56,17 @@ const OperationCard: React.FC<OperationCardProps> = ({ operation }) => {
       </div>
       {/* Description */}
       <div>
-        <p className="font-semibold text-lg">{operation.name}</p>
-        <p className="text-sm text-gray-500">{operation.address}</p>
+        <p className="font-semibold text-lg">{program.name}</p>
+        <div className="text-sm font-semibold line-clamp-2">
+          <Preview value={program.description1} />
+        </div>
       </div>
       {/* Price */}
       <div className="flex items-center justify-between">
-        <ReactStars
-          count={5}
-          value={4.8}
-          size={24}
-          color2={"#ffd700"}
-          edit={false}
-        />
+        <Currency value={program.Price} />
       </div>
     </div>
   );
 };
 
-export default OperationCard;
+export default ProgramCard;

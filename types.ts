@@ -1,7 +1,15 @@
-import { Operation, School, Student, User, UserRole } from "@prisma/client";
+import {
+  Operation,
+  Program,
+  School,
+  Student,
+  User,
+  UserRole,
+} from "@prisma/client";
 import {
   BookMarked,
   Home,
+  Newspaper,
   School as SchoolIcon,
   Settings,
   User as UserIcon,
@@ -159,6 +167,7 @@ export const cccd_matsau = {
 export type SchoolFull = School & {
   students: (Student & { user: User })[];
   operations: Operation[];
+  programs: Program[];
 };
 
 export type StudentProfile = Student & {

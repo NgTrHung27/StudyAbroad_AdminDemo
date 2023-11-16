@@ -202,13 +202,14 @@ model Blog {
 }
 
 model Program {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
-  name         String @db.String
-  description1 String @db.String
-  description2 String @db.String
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  name         String  @db.String
+  description1 String  @db.String
+  description2 String  @db.String
   Price        Float
-  Image1       String @db.String
-  Image2       String @db.String
+  Image1       String  @db.String
+  Image2       String  @db.String
+  isPublished  Boolean @default(false)
 
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
@@ -313,12 +314,13 @@ model MiniScore {
 
   @@index([studentScoreId])
 }
+
 model News {
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   titlenews    String
-  descriptions  String   @db.String
-  author        String
-  imageNews     String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  descriptions String   @db.String
+  author       String
+  imageNews    String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }

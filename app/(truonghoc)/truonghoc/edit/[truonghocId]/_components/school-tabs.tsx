@@ -9,6 +9,8 @@ import { SchoolFull } from "@/types";
 import OperationTab from "./_tabs/operation-tab";
 import { OperationsDataTable } from "./_data/operations-data-table";
 import { operationsColumns } from "./_data/operations-columns";
+import { ProgramsDataTable } from "./_data/programs-data-table";
+import { programsColumns } from "./_data/programs-column";
 
 type Props = {
   school: SchoolFull;
@@ -39,6 +41,13 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
         <OperationsDataTable
           columns={operationsColumns}
           data={school.operations}
+          school={school}
+        />
+      </TabsContent>
+      <TabsContent value="programs">
+        <ProgramsDataTable
+          columns={programsColumns}
+          data={school.programs}
           school={school}
         />
       </TabsContent>

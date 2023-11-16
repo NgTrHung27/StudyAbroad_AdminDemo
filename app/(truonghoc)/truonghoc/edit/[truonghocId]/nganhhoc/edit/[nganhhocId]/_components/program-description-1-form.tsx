@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 import {
   Form,
@@ -17,58 +16,67 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { News } from "@prisma/client";
-import { Preview } from "@/components/preview";
 import { Editor } from "@/components/editor";
+import { Preview } from "@/components/preview";
 
-interface DescriptionFormProps {
-  initialData: News;
-  eventId: string;
+interface ProgramDescription1FormProps {
+  description: string;
+  truonghocId: string;
+  nganhhocId: string;
 }
 
-const formSchema = z.object({
-  description: z.string().min(1, {
-    message: "Yêu cầu nhập mô tả hoạt động",
+const formDescriptionSchema = z.object({
+  description1: z.string().min(1, {
+    message: "Vui lòng nhập thông tin ngành học",
   }),
 });
 
-export const DescriptionForm = ({
-  initialData,
-  eventId,
-}: DescriptionFormProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-
-  const toggleEdit = () => setIsEditing((current) => !current);
-
+const ProgramDescription1Form = ({
+  description,
+  truonghocId,
+  nganhhocId,
+}: ProgramDescription1FormProps) => {
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const [isEditting, setIsEditting] = useState(false);
+
+  const toggleEdit = () => {
+    setIsEditting((current) => !current);
+  };
+
+  const form = useForm<z.infer<typeof formDescriptionSchema>>({
+    resolver: zodResolver(formDescriptionSchema),
     defaultValues: {
-      description: initialData?.descriptions || "",
+      description1: description || "",
     },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formDescriptionSchema>) => {
     try {
-      await axios.patch(`/api/events/${eventId}`, values);
-      toast.success("Cập nhật mô tả thành công");
+      await axios.patch(
+        `/api/schools/${truonghocId}/programs/${nganhhocId}`,
+        values
+      );
+      toast.success("Cập nhật ngành học thành công");
+      form.reset();
       toggleEdit();
+    } catch (error) {
+      toast.error("Cập nhật ngành học thất bại");
+    } finally {
       router.refresh();
-    } catch {
-      toast.error("Cập nhật mô tả thất bại");
     }
   };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Mô tả hoạt động
-        <Button onClick={toggleEdit} variant="ghost">
-          {isEditing ? (
+        Thông tin ngành học
+        <Button onClick={toggleEdit} variant={"ghost"}>
+          {isEditting ? (
             <>Hủy</>
           ) : (
             <>
@@ -78,20 +86,17 @@ export const DescriptionForm = ({
           )}
         </Button>
       </div>
-      {!isEditing && (
-        <p
+      {!isEditting ? (
+        <div
           className={cn(
             "text-sm mt-2",
-            !initialData.descriptions && "text-slate-500 italic"
+            !description && "text-slate-500 italic"
           )}
         >
-          {!initialData.descriptions && "Không có mô tả"}
-          {initialData.descriptions && (
-            <Preview value={initialData.descriptions} />
-          )}
-        </p>
-      )}
-      {isEditing && (
+          {!description && "Không có thông tin"}
+          {description && <Preview value={description} />}
+        </div>
+      ) : (
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -99,7 +104,7 @@ export const DescriptionForm = ({
           >
             <FormField
               control={form.control}
-              name="description"
+              name="description1"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -110,7 +115,7 @@ export const DescriptionForm = ({
               )}
             />
             <div className="flex items-center gap-x-2">
-              <Button disabled={!isValid || isSubmitting} type="submit">
+              <Button disabled={isSubmitting || !isValid} type="submit">
                 Lưu thay đổi
               </Button>
             </div>
@@ -120,3 +125,5 @@ export const DescriptionForm = ({
     </div>
   );
 };
+
+export default ProgramDescription1Form;
