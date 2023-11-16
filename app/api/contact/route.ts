@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const { ...values } = formContactSchema.parse(body);
 
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_ADMIN_URL}/contacts`,
+      `${process.env.NEXT_PUBLIC_API_URL}/contacts`,
       values
     );
 
