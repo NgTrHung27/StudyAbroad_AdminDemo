@@ -3,10 +3,9 @@
 import { Button } from "@/components/ui/button";
 import usePreviewModal from "@/hooks/use-preview-modal";
 import { Operation } from "@prisma/client";
-import { Pencil, ShoppingCart } from "lucide-react";
+import { Pencil } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ReactStars from "react-stars";
 
 interface InfoProps {
   data: Operation;
@@ -34,13 +33,6 @@ const OperationInfo: React.FC<InfoProps> = ({ data }) => {
       <div className="flex flex-col gap-y-6">
         <div className="flex items-center gap-x-4">
           <h3 className="font-semibold text-black">Đánh giá:</h3>
-          <ReactStars
-            count={5}
-            value={4.8}
-            size={24}
-            color2={"#ffd700"}
-            edit={false}
-          />
         </div>
       </div>
       <div className="mt-10 flex items-center gap-x-3">

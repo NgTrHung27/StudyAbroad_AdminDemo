@@ -16,7 +16,6 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Preview } from "@/components/preview";
-import ReactStars from "react-stars";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";

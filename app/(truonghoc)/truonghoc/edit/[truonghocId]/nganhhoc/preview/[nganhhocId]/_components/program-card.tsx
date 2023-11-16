@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import usePreviewModal from "@/hooks/use-preview-modal";
 import { Program } from "@prisma/client";
 import IconButton from "./icon-button";
-import ReactStars from "react-stars";
 import Currency from "@/components/currency";
 import { Preview } from "@/components/preview";
 

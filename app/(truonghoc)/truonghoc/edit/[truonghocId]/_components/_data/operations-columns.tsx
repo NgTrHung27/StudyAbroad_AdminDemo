@@ -16,7 +16,6 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Preview } from "@/components/preview";
-import ReactStars from "react-stars";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -61,13 +60,6 @@ export const operationsColumns: ColumnDef<Operation>[] = [
             <div className="space-y-2">
               <h4 className="text-sm font-semibold">{row.original.name}</h4>
               <Preview value={row.original.description} />
-              <ReactStars
-                count={5}
-                value={4.8}
-                size={24}
-                color2={"#ffd700"}
-                edit={false}
-              />
             </div>
           </div>
         </HoverCardContent>

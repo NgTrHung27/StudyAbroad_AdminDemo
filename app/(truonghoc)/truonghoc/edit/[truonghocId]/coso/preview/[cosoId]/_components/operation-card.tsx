@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Expand, ShoppingCart } from "lucide-react";
+import { Expand } from "lucide-react";
 import { MouseEventHandler } from "react";
 
 import { useRouter } from "next/navigation";
 import usePreviewModal from "@/hooks/use-preview-modal";
 import { Operation } from "@prisma/client";
 import IconButton from "./icon-button";
-import ReactStars from "react-stars";
 
 interface OperationCardProps {
   operation: Operation;
@@ -58,15 +57,7 @@ const OperationCard: React.FC<OperationCardProps> = ({ operation }) => {
         <p className="text-sm text-gray-500">{operation.address}</p>
       </div>
       {/* Price */}
-      <div className="flex items-center justify-between">
-        <ReactStars
-          count={5}
-          value={4.8}
-          size={24}
-          color2={"#ffd700"}
-          edit={false}
-        />
-      </div>
+      <div className="flex items-center justify-between"></div>
     </div>
   );
 };
