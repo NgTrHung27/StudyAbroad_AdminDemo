@@ -42,10 +42,15 @@ export const OperationModal = () => {
     resolver: zodResolver(formCreateOperationSchema),
     defaultValues: {
       name: "",
+      address: "",
       description: "",
       backgroundUrl: "",
     },
   });
+
+  if (!school) {
+    return null;
+  }
 
   const { isLoading, isValid, isSubmitting } = form.formState;
 
@@ -77,24 +82,44 @@ export const OperationModal = () => {
   };
 
   const nameField = (
-    <FormField
-      control={form.control}
-      name="name"
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>Tên cơ sở</FormLabel>
-          <FormControl>
-            <Input
-              disabled={isLoading || isSubmitting}
-              placeholder="Cornerstone"
-              {...field}
-              value={form.getValues("name")}
-            />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
+    <div className="space-y-4">
+      <FormField
+        control={form.control}
+        name="name"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Tên cơ sở</FormLabel>
+            <FormControl>
+              <Input
+                disabled={isLoading || isSubmitting}
+                placeholder="West Hastings"
+                {...field}
+                value={form.getValues("name")}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="address"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Địa chỉ</FormLabel>
+            <FormControl>
+              <Input
+                disabled={isLoading || isSubmitting}
+                placeholder="609 W Hastings St, Vancouver, BC V6B 4W4"
+                {...field}
+                value={form.getValues("address")}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    </div>
   );
 
   const descriptionField = (

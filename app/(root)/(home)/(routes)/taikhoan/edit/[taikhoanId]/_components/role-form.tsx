@@ -15,7 +15,6 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { formRoleSchema } from "../../../../../../../../constaints-edit/constants-user";
 import toast from "react-hot-toast";
@@ -60,6 +59,7 @@ const RoleForm = ({ user }: nameFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formRoleSchema>) => {
     try {
+      console.log(values);
       await axios.patch(`/api/users/${user.id}`, values);
       toast.success("Cập nhật hồ sơ thành công");
       toggleEdit();
@@ -71,7 +71,7 @@ const RoleForm = ({ user }: nameFormProps) => {
     }
   };
 
-  if (user.email === "cigpbubu@gmail.com") {
+  if (user.email === process.env.ADMIN_EMAIL) {
     return null;
   }
 

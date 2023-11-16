@@ -25,6 +25,11 @@ export const formCreateUserSchema = z.object({
   email: z.string().min(1, {
     message: "Vui lòng nhập email",
   }),
+  schoolName: z.string().min(1, {
+    message: "Vui lòng chọn trường",
+  }),
+  certificateCategory: z.string(),
+  schoolCategory: z.string(),
   description: z.string().min(1, {
     message: "Vui lòng miêu tả lý do du học",
   }),

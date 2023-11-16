@@ -21,20 +21,24 @@ export async function POST(
     const body = await req.json();
     const { ...values } = formCreateOperationSchema.parse(body);
 
-    const school = await db.school.update({
+    const school = await db.school.findUnique({
       where: {
         name: params.nameTruong,
       },
+    });
+
+    if (!school) {
+      return new NextResponse("Không tìm thấy trường học", { status: 404 });
+    }
+
+    const operation = await db.operation.create({
       data: {
-        operations: {
-          create: {
-            ...values,
-          },
-        },
+        schoolId: school.id,
+        ...values,
       },
     });
 
-    return NextResponse.json(school);
+    return NextResponse.json(operation);
   } catch (error) {
     console.log(error);
     return new NextResponse("CREATE OPERATION ERROR", { status: 500 });

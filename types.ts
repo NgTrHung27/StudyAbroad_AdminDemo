@@ -1,14 +1,15 @@
-import { Operation, School, Student, User, UserRole } from "@prisma/client";
 import {
-  BookA,
-  BookAIcon,
+  Operation,
+  Program,
+  School,
+  Student,
+  User,
+  UserRole,
+} from "@prisma/client";
+import {
   BookMarked,
-  FileSpreadsheet,
-  GraduationCap,
   Home,
-  Layers3,
   Newspaper,
-  PlusCircle,
   School as SchoolIcon,
   Settings,
   User as UserIcon,
@@ -44,6 +45,12 @@ export const routes = [
     icon: Settings,
     description: "Cài đặt chung",
   },
+  {
+    label: "Tin tức",
+    href: "/tintuc",
+    icon: Newspaper,
+    description: "Tin tức",
+  },
 ];
 
 export type SafeUser = Omit<
@@ -54,6 +61,11 @@ export type SafeUser = Omit<
   updatedAt: string;
   emailVerified: string | null;
 };
+
+export interface Image {
+  id: string;
+  url: string;
+}
 
 export const rolesOptions = [
   {
@@ -155,6 +167,7 @@ export const cccd_matsau = {
 export type SchoolFull = School & {
   students: (Student & { user: User })[];
   operations: Operation[];
+  programs: Program[];
 };
 
 export type StudentProfile = Student & {

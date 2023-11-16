@@ -5,6 +5,9 @@ import { AvatarModal } from "../modals/avatar-modal";
 import { SchoolModal } from "../modals/create-school-modal";
 import { StudentSchoolModal } from "../modals/add-student-school-modal";
 import { OperationModal } from "../modals/create-operation-modal";
+import PreviewModal from "../modals/operation-preview-modal";
+import { ProgramModal } from "../modals/create-program-modal";
+import ProgramPreviewModal from "../modals/program-preview-modal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -23,6 +26,9 @@ export const ModalProvider = () => {
       <SchoolModal />
       <StudentSchoolModal />
       <OperationModal />
+      <PreviewModal />
+      <ProgramModal />
+      <ProgramPreviewModal />
     </>
   );
 };

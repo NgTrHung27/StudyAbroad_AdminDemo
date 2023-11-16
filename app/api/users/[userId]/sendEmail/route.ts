@@ -73,7 +73,7 @@ export async function POST(
     });
 
     const emailTemplate = verifyEmail(
-      params.userId,
+      confirmToken.id,
       confirmToken.token,
       confirmToken.otp
     );

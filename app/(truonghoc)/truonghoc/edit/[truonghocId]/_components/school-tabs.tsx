@@ -1,17 +1,23 @@
 "use client";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { School, User, Program } from "@prisma/client";
+import { School, User } from "@prisma/client";
 import React from "react";
 import { UsersDataTable } from "./_data/users-data-table";
 import { usersColumns } from "./_data/users-column";
 import { SchoolFull } from "@/types";
+import OperationTab from "./_tabs/operation-tab";
 import { OperationsDataTable } from "./_data/operations-data-table";
 import { operationsColumns } from "./_data/operations-columns";
+import { ProgramsDataTable } from "./_data/programs-data-table";
+import { programsColumns } from "./_data/programs-column";
+
 type Props = {
   school: SchoolFull;
   users: User[];
   schools: School[];
 };
+
 const SchoolTabs = ({ school, users, schools }: Props) => {
   return (
     <Tabs defaultValue="users">
@@ -35,9 +41,16 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
         <OperationsDataTable
           columns={operationsColumns}
           data={school.operations}
+          school={school}
         />
       </TabsContent>
-
+      <TabsContent value="programs">
+        <ProgramsDataTable
+          columns={programsColumns}
+          data={school.programs}
+          school={school}
+        />
+      </TabsContent>
     </Tabs>
   );
 };

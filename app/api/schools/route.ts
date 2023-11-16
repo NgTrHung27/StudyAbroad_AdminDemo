@@ -37,11 +37,18 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   try {
     const schools = await db.school.findMany({
+      where: {
+        isPublished: true,
+      },
       include: {
         students: true,
         blogs: true,
         history: true,
-        operations: true,
+        operations: {
+          where: {
+            isPublished: true,
+          },
+        },
         programs: true,
       },
     });
