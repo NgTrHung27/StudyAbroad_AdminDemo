@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import Heading from "../heading";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { formRegisterSchema } from "../../app/(auth)/(routes)/sign-up/constants";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -33,8 +32,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { CertificateCategory, SchoolCategory } from "@prisma/client";
+import { CertificateCategory, School, SchoolCategory } from "@prisma/client";
 import { Textarea } from "../ui/textarea";
+import { formCreateUserSchema } from "../../constants/form-create-user-schema";
+import Banner from "../banner";
+
+type Props = {
+  schools: School[];
+};
 
 enum STEPS {
   INFORMATION = 0,
@@ -52,7 +57,7 @@ const certificateCategoryMap = {
   TOEFL: "Chứng chỉ TOEFL",
 };
 
-const RegisterModal = () => {
+export default function RegisterModal({ schools }: Props) {
   const [isMounted, setIsMounted] = useState(false);
   const [step, setStep] = useState(STEPS.INFORMATION);
   const router = useRouter();
@@ -61,8 +66,8 @@ const RegisterModal = () => {
     setIsMounted(true);
   }, []);
 
-  const registerForm = useForm<z.infer<typeof formRegisterSchema>>({
-    resolver: zodResolver(formRegisterSchema),
+  const registerForm = useForm<z.infer<typeof formCreateUserSchema>>({
+    resolver: zodResolver(formCreateUserSchema),
     defaultValues: {
       name: "",
       address: "",
@@ -70,55 +75,109 @@ const RegisterModal = () => {
       gender: "",
       cccd: "",
       email: "",
-      studyCategory: "",
-      certificateCategory: "",
-      schoolCategory: "",
       description: "",
+      schoolName: "",
+      schoolCategory: "",
+      password: "",
+      certificateCategory: "",
     },
   });
 
-  const onBack = () => {
-    setStep((value) => value - 1);
-  };
+  const { isSubmitting, isValid, isLoading } = registerForm.formState;
 
-  const onNext = () => {
-    setStep((value) => value + 1);
-  };
-
-  const actionLabel = useMemo(() => {
-    if (step === STEPS.CERTIFICATE) {
-      return "Đăng ký";
-    }
-
-    return "TIếp theo";
-  }, [step]);
-
-  const secondaryAction = step === STEPS.INFORMATION ? undefined : onBack;
-
-  const secondaryActionLabel = useMemo(() => {
-    if (step === STEPS.INFORMATION) {
-      return undefined;
-    }
-
-    return "Quay lại";
-  }, [step]);
-
-  const { isSubmitting, isValid } = registerForm.formState;
-
-  const onSubmit = async (values: z.infer<typeof formRegisterSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formCreateUserSchema>) => {
     try {
+      console.log(values);
       await axios.post("/api/register", values);
       registerForm.reset();
       router.push("/");
     } catch (error) {
       console.log(error);
-    } finally {
-      window.location.reload;
     }
   };
 
+  const handlePrev = () => {
+    if (step === STEPS.INFORMATION) return;
+
+    setStep((currentStep) => currentStep - 1);
+  };
+
+  const handleNext = () => {
+    if (step === STEPS.CERTIFICATE) return;
+
+    setStep((currentStep) => currentStep + 1);
+  };
+
+  const prevBtn = (
+    <>
+      {step !== STEPS.INFORMATION && (
+        <Button
+          type="button"
+          disabled={isLoading || isSubmitting}
+          variant={"outline"}
+          onClick={handlePrev}
+        >
+          Quay về
+        </Button>
+      )}
+    </>
+  );
+
+  const nextBtn = (
+    <>
+      {step === STEPS.CERTIFICATE ? (
+        <Button
+          disabled={isLoading || isSubmitting || !isValid}
+          type="button"
+          onClick={registerForm.handleSubmit(onSubmit)}
+        >
+          Đăng ký
+        </Button>
+      ) : (
+        <Button disabled={isLoading} type="button" onClick={handleNext}>
+          Tiếp theo
+        </Button>
+      )}
+    </>
+  );
+
   const informationContent = (
     <>
+      <FormField
+        control={registerForm.control}
+        name="email"
+        render={({ field }) => (
+          <FormItem>
+            <FormControl>
+              <Input
+                className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
+                disabled={isSubmitting}
+                placeholder="Email"
+                {...field}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={registerForm.control}
+        name="password"
+        render={({ field }) => (
+          <FormItem>
+            <FormControl>
+              <Input
+                type="password"
+                className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
+                disabled={isSubmitting}
+                placeholder="Mật khẩu"
+                {...field}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
       <FormField
         control={registerForm.control}
         name="name"
@@ -129,6 +188,7 @@ const RegisterModal = () => {
                 className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
                 disabled={isSubmitting}
                 placeholder="Họ và tên"
+                autoFocus
                 {...field}
               />
             </FormControl>
@@ -161,7 +221,7 @@ const RegisterModal = () => {
                   </Button>
                 </FormControl>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
+              <PopoverContent className="w-auto p-0" align="end">
                 <Calendar
                   mode="single"
                   selected={field.value}
@@ -170,6 +230,9 @@ const RegisterModal = () => {
                     date > new Date() || date < new Date("1900-01-01")
                   }
                   initialFocus
+                  defaultMonth={new Date(2000, 1, 1)}
+                  fromYear={1900}
+                  toYear={2100}
                 />
               </PopoverContent>
             </Popover>
@@ -256,23 +319,6 @@ const RegisterModal = () => {
           </FormItem>
         )}
       />
-      <FormField
-        control={registerForm.control}
-        name="email"
-        render={({ field }) => (
-          <FormItem>
-            <FormControl>
-              <Input
-                className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
-                disabled={isSubmitting}
-                placeholder="Email"
-                {...field}
-              />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
     </>
   );
 
@@ -280,7 +326,41 @@ const RegisterModal = () => {
     <>
       <FormField
         control={registerForm.control}
-        name="studyCategory"
+        name="schoolName"
+        render={({ field }) => (
+          <FormItem>
+            <Select
+              disabled={isSubmitting}
+              onValueChange={field.onChange}
+              defaultValue={field.value}
+            >
+              <FormControl>
+                <SelectTrigger>
+                  <SelectValue placeholder="Chọn trường học" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                {schools.map((school) => (
+                  <div className="flex items-center" key={school.name}>
+                    <Image
+                      width={16}
+                      height={16}
+                      alt="logoschool"
+                      src={school.logoUrl}
+                      className="mr-2"
+                    />
+                    <SelectItem value={school.name}>{school.name}</SelectItem>
+                  </div>
+                ))}
+              </SelectContent>
+            </Select>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={registerForm.control}
+        name="schoolCategory"
         render={({ field }) => (
           <FormItem>
             <Select
@@ -356,6 +436,48 @@ const RegisterModal = () => {
     </>
   );
 
+  registerForm.watch();
+
+  const requiredFields = [
+    registerForm.getValues("name"),
+    registerForm.getValues("address"),
+    registerForm.getValues("cccd"),
+    registerForm.getValues("description"),
+    registerForm.getValues("dob"),
+    registerForm.getValues("gender"),
+    registerForm.getValues("email"),
+    registerForm.getValues("phoneNumber"),
+    registerForm.getValues("password"),
+    registerForm.getValues("certificateCategory"),
+    registerForm.getValues("schoolCategory"),
+    registerForm.getValues("schoolName"),
+  ];
+
+  const totalFields = requiredFields.length;
+  const completedFields = requiredFields.filter(Boolean).length;
+
+  const requiredFieldNames = [
+    "Tên trường học",
+    "Logo",
+    "Hình nền",
+    "Màu đại diện",
+  ];
+
+  const isComplete = requiredFields.every(Boolean);
+
+  const text = `${completedFields}/${totalFields}`;
+
+  const warningText = !isComplete
+    ? "Thiếu thông tin: " +
+      requiredFields.map((field, index) =>
+        !field ? ` ${requiredFieldNames[index]}` : ""
+      )
+    : "Bạn đã hoàn thành tất cả thông tin";
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center p-0 m-0 gap-0">
       <div className="relative flex items-center justify-center w-[193px] h-[120px]">
@@ -371,37 +493,18 @@ const RegisterModal = () => {
             onSubmit={registerForm.handleSubmit(onSubmit)}
             className="flex flex-col justify-center gap-y-4 w-[350px] focus-within::shadow-sm gap-2"
           >
+            <div className="my-2">
+              {/* <Banner variant={"warning"} label={text} /> */}
+            </div>
             {step === STEPS.INFORMATION && informationContent}
             {step === STEPS.CERTIFICATE && certificateContent}
             <div className="flex flex-row items-center justify-center gap-4 w-full">
-              {secondaryAction && secondaryActionLabel && (
-                <Button
-                  variant={"outline"}
-                  disabled={isSubmitting}
-                  onClick={secondaryAction}
-                  type="button"
-                >
-                  {secondaryActionLabel}
-                </Button>
-              )}
-
-              <Button
-                disabled={
-                  isSubmitting ||
-                  (!isValid && step !== STEPS.INFORMATION) ||
-                  (step === STEPS.CERTIFICATE && !isValid)
-                }
-                onClick={onNext}
-                type={step > 1 ? "submit" : "button"}
-              >
-                {actionLabel}
-              </Button>
+              {prevBtn}
+              {nextBtn}
             </div>
           </form>
         </Form>
       </div>
     </div>
   );
-};
-
-export default RegisterModal;
+}

@@ -90,3 +90,11 @@ body,
 .PhoneInput--focus input {
   outline: none;
 }
+
+.rdp-dropdown_month > div {
+  display: none !important;
+}
+
+.rdp-dropdown_year > div {
+  display: none !important;
+}
