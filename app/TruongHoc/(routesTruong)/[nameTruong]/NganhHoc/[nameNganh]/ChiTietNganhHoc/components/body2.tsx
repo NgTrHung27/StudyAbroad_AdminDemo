@@ -1,6 +1,11 @@
 import React from "react";
 import Image from "next/image";
-export const Body2 = () => {
+import { Program } from "@prisma/client";
+interface Props {
+  program: Program;
+}
+export const Body2 = ({ program }: Props) => {
+
   return (
     <>
       <div className="text-[40px] text-center mt-6 font-bold text-[#001524]">
@@ -47,12 +52,10 @@ export const Body2 = () => {
               width={360}
               height={330}
               alt=""
-              src={"/ChiTietNganhHoc/SS-giao-tiep-trong-kinh-doanh 2.png"}
+              src={program.Image2}
               className="col-span-1  rounded-lg mr-0"
             />
-
           </div>
-
         </div>
       </div>
     </>

@@ -92,7 +92,6 @@ export default function RegisterModal({ schools }: Props) {
       registerForm.reset();
       router.push("/");
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -469,9 +468,9 @@ export default function RegisterModal({ schools }: Props) {
 
   const warningText = !isComplete
     ? "Thiếu thông tin: " +
-      requiredFields.map((field, index) =>
-        !field ? ` ${requiredFieldNames[index]}` : ""
-      )
+    requiredFields.map((field, index) =>
+      !field ? ` ${requiredFieldNames[index]}` : ""
+    )
     : "Bạn đã hoàn thành tất cả thông tin";
 
   if (!isMounted) {

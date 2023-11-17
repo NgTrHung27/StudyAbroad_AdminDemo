@@ -63,7 +63,6 @@ const Contact = () => {
       ContactForm.reset();
       router.push("/");
     } catch (error) {
-      console.log(error);
     } finally {
       window.location.reload;
     }

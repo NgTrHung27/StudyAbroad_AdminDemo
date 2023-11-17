@@ -50,7 +50,6 @@ const LoginModal = () => {
 
       form.reset();
     } catch (error) {
-      console.log(error);
     } finally {
       router.refresh();
     }
