@@ -51,3 +51,25 @@ export async function PATCH(
     return new NextResponse("Lỗi cập nhật ngành học", { status: 500 });
   }
 }
+
+export async function GET(req: Request, {params}: {params: {nameTruong:string, programId: string}}) {
+    try {
+        if (!params.programId) {
+            return new NextResponse("Khong tim thay ten nganh", {status: 404})
+        }
+
+        const program = await db.program.findFirst({
+            where: {
+                name: params.programId,
+                school: {
+                    name: params.nameTruong
+                }
+            }
+        })
+
+        return NextResponse.json(program)
+    } catch (error) {
+        console.log(error)
+        return new NextResponse("Lấy thông tin ngành học thất bại", {status: 500})
+    }
+}
