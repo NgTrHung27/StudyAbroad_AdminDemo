@@ -169,7 +169,7 @@ export const cccd_matsau = {
 export type SchoolFull = School & {
   students: (Student & { user: User })[];
   operations: Operation[];
-  history: History;
+  history: History | null;
   programs: Program[];
   requirement: Requirement | null;
 };
