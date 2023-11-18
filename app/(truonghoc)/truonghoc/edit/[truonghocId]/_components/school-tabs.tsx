@@ -14,6 +14,8 @@ import { useSchoolModal } from "@/hooks/use-school-modal";
 import { Button } from "@/components/ui/button";
 import DisplayRequirement from "./requirements/display-requirement-school";
 import DisplayHistory from "./history/display-history-school";
+import { BlogsDataTable } from "./_data/blogs-data-table";
+import { blogsColumns } from "./_data/blogs-column";
 
 type Props = {
   school: SchoolFull;
@@ -51,7 +53,7 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
         />
       </TabsContent>
       <TabsContent value="history">
-        {!school.history ? (
+        {school.history.length <= 0 ? (
           <div className="container">
             <div className="flex items-center justify-center">
               <Button onClick={() => onOpen("createHistory", { school })}>
@@ -60,8 +62,19 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
             </div>
           </div>
         ) : (
-          <DisplayHistory schoolName={school.name} history={school.history} />
+          <DisplayHistory
+            schoolName={school.name}
+            history={school.history[0]}
+          />
         )}
+      </TabsContent>
+      <TabsContent value="blogs">
+        <BlogsDataTable
+          columns={blogsColumns}
+          data={school.blogs}
+          school={school}
+          schools={schools}
+        />
       </TabsContent>
       <TabsContent value="programs">
         <ProgramsDataTable
@@ -71,7 +84,7 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
         />
       </TabsContent>
       <TabsContent value="requirements">
-        {!school.requirement ? (
+        {school.requirement.length <= 0 ? (
           <div className="container">
             <div className="flex items-center justify-center">
               <Button onClick={() => onOpen("createRequirement", { school })}>
@@ -82,7 +95,7 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
         ) : (
           <DisplayRequirement
             schoolName={school.name}
-            requirement={school.requirement}
+            requirement={school.requirement[0]}
           />
         )}
       </TabsContent>

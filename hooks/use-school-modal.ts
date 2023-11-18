@@ -3,9 +3,10 @@ import { create } from "zustand";
 
 interface useSchoolModalStore {
   data: ModalData;
+  optionalData: ModalData;
   type: ModalType | null;
   isOpen: boolean;
-  onOpen: (type: ModalType, data?: ModalData) => void;
+  onOpen: (type: ModalType, data?: ModalData, optionalData?: ModalData) => void;
   onClose: () => void;
 }
 
@@ -16,7 +17,8 @@ type ModalType =
   | "createBlog"
   | "createProgram"
   | "createRequirement"
-  | "createHistory";
+  | "createHistory"
+  | "createBlog";
 
 interface useAddStudentSchoolModalStore {
   data: ModalData;
@@ -41,9 +43,11 @@ interface ModalData {
 
 export const useSchoolModal = create<useSchoolModalStore>((set) => ({
   data: {},
+  optionalData: {},
   type: null,
   isOpen: false,
-  onOpen: (type, data = {}) => set({ isOpen: true, type, data }),
+  onOpen: (type, data = {}, optionalData = {}) =>
+    set({ isOpen: true, type, data, optionalData }),
   onClose: () => set({ type: null, isOpen: false }),
 }));
 

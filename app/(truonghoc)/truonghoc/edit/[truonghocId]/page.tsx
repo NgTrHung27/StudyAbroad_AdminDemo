@@ -45,7 +45,15 @@ const TruongHocIdPage = async ({ params }: Props) => {
           user: true,
         },
       },
-      blogs: true,
+      blogs: {
+        include: {
+          student: {
+            include: {
+              user: true,
+            },
+          },
+        },
+      },
       history: true,
       operations: true,
       programs: true,

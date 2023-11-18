@@ -1,5 +1,5 @@
 import getCurrentUser from "@/actions/get-current-user";
-import { formCreateOperationSchema } from "@/constants/create-opeartion-schema";
+import { formCreateOperationSchema } from "@/constants/create-operation-schema";
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
