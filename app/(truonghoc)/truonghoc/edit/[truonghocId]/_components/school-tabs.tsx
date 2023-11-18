@@ -1,11 +1,11 @@
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { School, User } from "@prisma/client";
+import { School, Student, User } from "@prisma/client";
 import React from "react";
 import { UsersDataTable } from "./_data/users-data-table";
 import { usersColumns } from "./_data/users-column";
-import { SchoolFull } from "@/types";
+import { SchoolFull, StudentProfile } from "@/types";
 import { OperationsDataTable } from "./_data/operations-data-table";
 import { operationsColumns } from "./_data/operations-columns";
 import { ProgramsDataTable } from "./_data/programs-data-table";
@@ -19,11 +19,14 @@ import { blogsColumns } from "./_data/blogs-column";
 
 type Props = {
   school: SchoolFull;
-  users: User[];
+  filterUsers: User[];
+  students: (Student & {
+    user: User;
+  })[];
   schools: School[];
 };
 
-const SchoolTabs = ({ school, users, schools }: Props) => {
+const SchoolTabs = ({ school, filterUsers, schools, students }: Props) => {
   const { onOpen } = useSchoolModal();
 
   return (
@@ -41,7 +44,7 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
           columns={usersColumns}
           data={school.students}
           school={school}
-          users={users}
+          users={filterUsers}
           schools={schools}
         />
       </TabsContent>
@@ -74,7 +77,7 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
           data={school.blogs}
           school={school}
           schools={schools}
-          users={users}
+          students={students}
         />
       </TabsContent>
       <TabsContent value="programs">

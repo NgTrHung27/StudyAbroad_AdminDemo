@@ -31,17 +31,19 @@ import Image from "next/image";
 
 export const BlogModal = () => {
   const router = useRouter();
-  const { type, isOpen, onClose, data, optionalData } = useSchoolModal();
+  const { type, isOpen, onClose, data, optionalData, subData } =
+    useSchoolModal();
   const isModalOpen = isOpen && type === "createBlog";
 
   const { school } = data;
   const { schools } = optionalData;
+  const { students } = subData;
 
   const form = useForm<z.infer<typeof formCreateBlogSchema>>({
     resolver: zodResolver(formCreateBlogSchema),
     defaultValues: {
       schoolId: "",
-      userId: "",
+      studentId: "",
       description: "",
     },
   });
@@ -53,6 +55,8 @@ export const BlogModal = () => {
   if (!schools) {
     return null;
   }
+
+  if (!students) return null;
 
   const { isLoading, isValid, isSubmitting } = form.formState;
 
@@ -122,7 +126,7 @@ export const BlogModal = () => {
               />
               <FormField
                 control={form.control}
-                name="userId"
+                name="studentId"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Chọn người đăng</FormLabel>
@@ -139,18 +143,20 @@ export const BlogModal = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {schools?.map((school) => (
-                          <div key={school.name}>
-                            <SelectItem value={school.id}>
+                        {students?.map((student) => (
+                          <div key={student.user.name}>
+                            <SelectItem value={student.id}>
                               <div className="flex flex-row items-center gap-x-2">
                                 <Image
                                   width={16}
                                   height={16}
                                   alt="logoschool"
-                                  src={school.logoUrl}
+                                  src={
+                                    student.user.avatar || "/placeholder.jpg"
+                                  }
                                   className="mr-2"
                                 />
-                                {school.name}
+                                {student.user.name}
                               </div>
                             </SelectItem>
                           </div>

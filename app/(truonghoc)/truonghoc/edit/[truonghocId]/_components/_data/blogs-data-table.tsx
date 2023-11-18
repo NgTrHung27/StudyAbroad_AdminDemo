@@ -34,14 +34,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { PlusCircle } from "lucide-react";
 import { useSchoolModal } from "@/hooks/use-school-modal";
-import { School, User } from "@prisma/client";
+import { School } from "@prisma/client";
+import { StudentProfile } from "@/types";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   school: School;
   schools: School[];
-  users: User[];
+  students: StudentProfile[];
 }
 
 export function BlogsDataTable<TData, TValue>({
@@ -49,7 +50,7 @@ export function BlogsDataTable<TData, TValue>({
   data,
   school,
   schools,
-  users,
+  students,
 }: DataTableProps<TData, TValue>) {
   const { onOpen } = useSchoolModal();
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -115,7 +116,7 @@ export function BlogsDataTable<TData, TValue>({
         </DropdownMenu>
         <Button
           onClick={() =>
-            onOpen("createBlog", { school }, { schools }, { users })
+            onOpen("createBlog", { school }, { schools }, { students })
           }
           className="ml-auto"
         >

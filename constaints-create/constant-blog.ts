@@ -8,7 +8,7 @@ export const formCreateBlogSchema = z.object({
     .min(1, {
       message: "Vui lòng chọn tên trường",
     }),
-  userId: z
+  studentId: z
     .string({
       required_error: "Vui lòng chọn tên trường",
     })

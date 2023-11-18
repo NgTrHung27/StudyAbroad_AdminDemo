@@ -1,3 +1,4 @@
+import { StudentProfile } from "@/types";
 import { Operation, School, Student, User } from "@prisma/client";
 import { create } from "zustand";
 
@@ -41,7 +42,7 @@ interface useAddStudentSchoolModalStore {
 
 interface ModalData {
   operation?: Operation;
-  students?: Student[];
+  students?: StudentProfile[];
   school?: School;
   users?: User[];
   schools?: School[];
