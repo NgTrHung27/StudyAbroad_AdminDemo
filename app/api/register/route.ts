@@ -24,7 +24,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json(response.data);
   } catch (error) {
-    console.log(error);
     return new NextResponse("Tạo tài khoản thất bại", { status: 500 });
   }
 }
