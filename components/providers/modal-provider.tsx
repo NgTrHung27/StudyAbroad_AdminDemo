@@ -9,6 +9,7 @@ import PreviewModal from "../modals/operation-preview-modal";
 import { ProgramModal } from "../modals/create-program-modal";
 import ProgramPreviewModal from "../modals/program-preview-modal";
 import { RequirementModal } from "../modals/create-requirement-modal";
+import { HistoryModal } from "../modals/create-history-modal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -31,6 +32,7 @@ export const ModalProvider = () => {
       <ProgramModal />
       <ProgramPreviewModal />
       <RequirementModal />
+      <HistoryModal />
     </>
   );
 };

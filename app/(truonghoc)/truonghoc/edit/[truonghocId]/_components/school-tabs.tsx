@@ -13,6 +13,7 @@ import { programsColumns } from "./_data/programs-column";
 import { useSchoolModal } from "@/hooks/use-school-modal";
 import { Button } from "@/components/ui/button";
 import DisplayRequirement from "./requirements/display-requirement-school";
+import DisplayHistory from "./history/display-history-school";
 
 type Props = {
   school: SchoolFull;
@@ -48,6 +49,19 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
           data={school.operations}
           school={school}
         />
+      </TabsContent>
+      <TabsContent value="history">
+        {!school.history ? (
+          <div className="container">
+            <div className="flex items-center justify-center">
+              <Button onClick={() => onOpen("createHistory", { school })}>
+                Thêm lịch sử
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <DisplayHistory schoolName={school.name} history={school.history} />
+        )}
       </TabsContent>
       <TabsContent value="programs">
         <ProgramsDataTable
