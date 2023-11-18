@@ -89,7 +89,7 @@ export const programsColumns: ColumnDef<Program>[] = [
     },
     cell: ({ row }) => (
       <div>
-        <Currency value={row.original.Price} />/ Tháng
+        <Currency value={row.original.Price} />
       </div>
     ),
   },

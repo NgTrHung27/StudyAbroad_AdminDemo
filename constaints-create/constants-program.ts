@@ -1,5 +1,4 @@
 import * as z from "zod";
-
 export const formCreateProgramSchema = z.object({
   name: z.string().min(1, {
     message: "Vui lòng nhập tên ngành học",
