@@ -11,6 +11,7 @@ import { operationsColumns } from "./_data/operations-columns";
 import { ProgramsDataTable } from "./_data/programs-data-table";
 import { programsColumns } from "./_data/programs-column";
 import { Button } from "@/components/ui/button";
+import { useSchoolModal } from "@/hooks/use-school-modal";
 
 type Props = {
   school: SchoolFull;
@@ -19,6 +20,8 @@ type Props = {
 };
 
 const SchoolTabs = ({ school, users, schools }: Props) => {
+  const { onOpen } = useSchoolModal();
+
   return (
     <Tabs defaultValue="users">
       <TabsList className="grid w-full h-full md:grid-cols-3 lg:grid-cols-6 gap-y-3">
@@ -56,7 +59,9 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
         {!school.requirement ? (
           <div className="container">
             <div className="flex items-center justify-center">
-              <Button>Thêm yêu cầu</Button>
+              <Button onClick={() => onOpen("createRequirement", { school })}>
+                Thêm yêu cầu
+              </Button>
             </div>
           </div>
         ) : (
