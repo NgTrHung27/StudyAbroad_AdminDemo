@@ -22,7 +22,11 @@ export async function GET(
       return new NextResponse("Không tìm thấy trường học", { status: 404 });
     }
 
-    const programs = await db.program.findMany({});
+    const programs = await db.program.findMany({
+      where: {
+        schoolId: school.id,
+      },
+    });
 
     return NextResponse.json(programs);
   } catch (error) {
