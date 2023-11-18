@@ -54,12 +54,6 @@ export async function PATCH(
       },
     });
 
-    await db.otp.deleteMany({
-      where: {
-        userId: updatedUser.id,
-      },
-    });
-
     return NextResponse.json(updatedUser, {
       status: 200,
       headers: corsHeaders,

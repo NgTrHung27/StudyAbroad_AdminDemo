@@ -18,6 +18,9 @@ export async function GET(
       where: {
         otp: params.otpString,
         userId: params.userId,
+        expiresAt: {
+          gte: new Date(),
+        },
       },
     });
 
