@@ -6,11 +6,11 @@ import React from "react";
 import { UsersDataTable } from "./_data/users-data-table";
 import { usersColumns } from "./_data/users-column";
 import { SchoolFull } from "@/types";
-import OperationTab from "./_tabs/operation-tab";
 import { OperationsDataTable } from "./_data/operations-data-table";
 import { operationsColumns } from "./_data/operations-columns";
 import { ProgramsDataTable } from "./_data/programs-data-table";
 import { programsColumns } from "./_data/programs-column";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   school: SchoolFull;
@@ -21,12 +21,13 @@ type Props = {
 const SchoolTabs = ({ school, users, schools }: Props) => {
   return (
     <Tabs defaultValue="users">
-      <TabsList className="grid w-full grid-cols-5">
+      <TabsList className="grid w-full h-full md:grid-cols-3 lg:grid-cols-6 gap-y-3">
         <TabsTrigger value="users">Học sinh</TabsTrigger>
         <TabsTrigger value="operations">Cơ sở</TabsTrigger>
         <TabsTrigger value="history">Lịch sử</TabsTrigger>
         <TabsTrigger value="blogs">Blogs</TabsTrigger>
         <TabsTrigger value="programs">Ngành học</TabsTrigger>
+        <TabsTrigger value="requirements">Yêu cầu</TabsTrigger>
       </TabsList>
       <TabsContent value="users">
         <UsersDataTable
@@ -50,6 +51,17 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
           data={school.programs}
           school={school}
         />
+      </TabsContent>
+      <TabsContent value="requirements">
+        {!school.requirement ? (
+          <div className="container">
+            <div className="flex items-center justify-center">
+              <Button>Thêm yêu cầu</Button>
+            </div>
+          </div>
+        ) : (
+          <div className="">Data ở đây nè</div>
+        )}
       </TabsContent>
     </Tabs>
   );

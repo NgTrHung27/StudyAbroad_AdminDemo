@@ -28,7 +28,7 @@ export const SchoolActions = ({
 
       if (isPublished) {
         await axios.patch(`/api/schools/${truonghocId}/unpublish`);
-        toast.success("Ngừng duyệt hồ sơ thành công");
+        toast.success("Ngừng hiển thị trường học thành công");
       } else {
         await axios.patch(`/api/schools/${truonghocId}/publish`);
         toast.success("Hiển thị trường học thành công");

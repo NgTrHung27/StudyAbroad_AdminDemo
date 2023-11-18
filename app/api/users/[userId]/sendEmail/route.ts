@@ -7,17 +7,21 @@ import { NextResponse } from "next/server";
 const jwt = require("jsonwebtoken");
 const otpGenerator = require("otp-generator");
 
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+export async function OPTIONS() {
+  return NextResponse.json({}, { headers: corsHeaders });
+}
+
 export async function POST(
   req: Request,
   { params }: { params: { userId: string } }
 ) {
   try {
-    const currentUser = await getCurrentUser();
-
-    if (!currentUser) {
-      return new NextResponse("Chưa xác thực", { status: 401 });
-    }
-
     const body = await req.json();
 
     const { email } = body;
@@ -87,7 +91,10 @@ export async function POST(
 
     await sendMail({ options });
 
-    return new NextResponse("Gửi email xác thực thành công", { status: 200 });
+    return new NextResponse("Gửi email xác thực thành công", {
+      status: 200,
+      headers: corsHeaders,
+    });
   } catch (error) {
     console.log("VERIFY EMAIL", error);
     return new NextResponse("Gửi email xác thực thất bại", { status: 500 });

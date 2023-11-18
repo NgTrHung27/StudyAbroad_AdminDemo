@@ -1,13 +1,8 @@
-const verifyEmail = function (
-  tokenId: string,
-  tokenString: string,
-  tokenOtp: string
-) {
-  const otpChars = tokenOtp.split("");
+const forgotPassword = function (userId: string, userOtp: string) {
   const html = `
   <!DOCTYPE html>
 <html
-  lang="vi"
+  lang="en"
   xmlns:v="urn:schemas-microsoft-com:vml"
   xmlns:o="urn:schemas-microsoft-com:office:office"
 >
@@ -20,7 +15,7 @@ const verifyEmail = function (
       name="format-detection"
       content="telephone=no, date=no, address=no, email=no"
     />
-    <title>Xác thực email của bạn</title>
+    <title>Khôi phục lại mật khẩu</title>
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700"
       rel="stylesheet"
@@ -71,13 +66,22 @@ const verifyEmail = function (
         }
 
         .sm-py-32 {
-          padding-top: 32px !important;
-          padding-bottom: 32px !important;
+          padding-top: 0px !important;
+          padding-bottom: 0px !important;
         }
 
         .sm-w-full {
           width: 100% !important;
         }
+      }
+
+      .confirm-link {
+        display: flex !important;
+        text-decoration: none !important;
+        align-items: center !important;
+      }
+      .confirm-link:hover {
+        text-decoration: underline !important;
       }
     </style>
   </head>
@@ -132,7 +136,7 @@ const verifyEmail = function (
                   style="
                     font-family: Montserrat, -apple-system, 'Segoe UI',
                       sans-serif;
-                    padding: 48px;
+                    padding: 16px;
                     text-align: center;
                   "
                   align="center"
@@ -176,7 +180,7 @@ const verifyEmail = function (
                             sans-serif;
                           font-size: 14px;
                           line-height: 24px;
-                          padding: 48px;
+                          padding: 32px;
                           text-align: left;
                           --text-opacity: 1;
                           color: #626262;
@@ -184,7 +188,7 @@ const verifyEmail = function (
                         align="left"
                       >
                         <a
-                          href="${process.env.NEXT_PUBLIC_USER_API}"
+                          href="${process.env.NEXT_PUBLIC_USER_URL}"
                           style="
                             display: flex;
                             align-items: center;
@@ -209,62 +213,28 @@ const verifyEmail = function (
                         </p>
 
                         <p style="margin: 0 0 24px">
-                          Một yêu cầu xác thực email từ trang Quản lý du học đã
-                          được gửi cho bạn. Vui lòng nhấn vào đường dẫn bên dưới
-                          để xác thực
+                          Một yêu cầu khôi phục mật khẩu từ trang Quản lý du học
+                          cho email [EMAIL] đã được gửi cho bạn. Vui lòng nhấn
+                          vào đường dẫn bên dưới để tiến hành đặt lại mật khẩu
                         </p>
 
                         <a
                           href="${
-                            process.env.NEXT_PUBLIC_ADMIN_URL
-                          }/api/confirmEmail/${tokenId + " " + tokenString}"
-                          class="hover-underline"
+                            process.env.NEXT_PUBLIC_USER_URL
+                          }/quenmatkhau/${userOtp + "" + userId}"
+                          class="confirm-link"
                           style="
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            text-decoration: none;
+                            justify-content: center !important;
                             color: #7367f0;
                           "
                         >
                           <span>Nhấn vào đây để tiếp tục</span>
                         </a>
 
-                        <p>Hoặc nhập mã OTP bên dưới</p>
-                        <div
-                          style="
-                            margin-top: 8px;
-                            margin-bottom: 8px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            gap: 8px;
-                          "
-                        >
-                        ${otpChars.map(
-                          (char) => `
-                        <div
-                            style="
-                              background-color: lightgray;
-                              padding: 4px;
-                              display: flex;
-                              justify-content: center;
-                              align-items: center;
-                            "
-                          >
-                            <span
-                              style="
-                                font-size: 24px;
-                                font-weight: bolder;
-                                color: black;
-                              "
-                            >
-                              ${char}
-                            </span>
-                          </div>
-                        `
-                        )}
-                        </div>
+                        <p>
+                          Vui lòng bỏ qua email này nếu bạn không phải là cá
+                          nhân yêu cầu khôi phục lại mật khẩu
+                        </p>
                         <table
                           style="font-family: 'Montserrat', Arial, sans-serif"
                           cellpadding="0"
@@ -349,18 +319,9 @@ const verifyEmail = function (
                       <td
                         style="
                           font-family: 'Montserrat', Arial, sans-serif;
-                          height: 20px;
+                          height: 32px;
                         "
-                        height="20"
-                      ></td>
-                    </tr>
-                    <tr>
-                      <td
-                        style="
-                          font-family: 'Montserrat', Arial, sans-serif;
-                          height: 16px;
-                        "
-                        height="16"
+                        height="32"
                       ></td>
                     </tr>
                   </table>
@@ -375,11 +336,11 @@ const verifyEmail = function (
 </html>
 `;
   const text = `
-      Xác thực Email, một yêu cầu đã được gửi đến kèm theo đường link và mã OTP xác nhận. Vui lòng hoàn thành các bước để xác thực email của bạn`;
+      Quên mật khẩu, vui lòng bấm vào đường link được cung cấp để đặt lại mật khẩu`;
   return {
     html: html,
     text: text,
   };
 };
 
-export default verifyEmail;
+export default forgotPassword;
