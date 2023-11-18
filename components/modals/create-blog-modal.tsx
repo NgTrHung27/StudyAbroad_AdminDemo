@@ -27,13 +27,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import Image from "next/image";
 
 export const BlogModal = () => {
   const router = useRouter();
-  const { type, isOpen, onClose, data } = useSchoolModal();
+  const { type, isOpen, onClose, data, optionalData } = useSchoolModal();
   const isModalOpen = isOpen && type === "createBlog";
 
   const { school } = data;
+  const { schools } = optionalData;
 
   const form = useForm<z.infer<typeof formCreateBlogSchema>>({
     resolver: zodResolver(formCreateBlogSchema),
@@ -45,6 +47,10 @@ export const BlogModal = () => {
   });
 
   if (!school) {
+    return null;
+  }
+
+  if (!schools) {
     return null;
   }
 
@@ -74,12 +80,13 @@ export const BlogModal = () => {
       <div>
         <div className="py-2 pb-4">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
                 name="schoolId"
                 render={({ field }) => (
                   <FormItem>
+                    <FormLabel>Chọn trường học</FormLabel>
                     <Select
                       disabled={isSubmitting}
                       onValueChange={field.onChange}
@@ -91,8 +98,63 @@ export const BlogModal = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value={"Test"}>Trường học</SelectItem>
-                        <SelectItem value={"Test"}>Người dùng</SelectItem>
+                        {schools?.map((school) => (
+                          <div key={school.name}>
+                            <SelectItem value={school.id}>
+                              <div className="flex flex-row items-center gap-x-2">
+                                <Image
+                                  width={16}
+                                  height={16}
+                                  alt="logoschool"
+                                  src={school.logoUrl}
+                                  className="mr-2"
+                                />
+                                {school.name}
+                              </div>
+                            </SelectItem>
+                          </div>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="userId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Chọn người đăng</FormLabel>
+                    <Select
+                      disabled={isSubmitting}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue
+                            placeholder={"Vui lòng chọn người đăng"}
+                          />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {schools?.map((school) => (
+                          <div key={school.name}>
+                            <SelectItem value={school.id}>
+                              <div className="flex flex-row items-center gap-x-2">
+                                <Image
+                                  width={16}
+                                  height={16}
+                                  alt="logoschool"
+                                  src={school.logoUrl}
+                                  className="mr-2"
+                                />
+                                {school.name}
+                              </div>
+                            </SelectItem>
+                          </div>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -104,7 +166,7 @@ export const BlogModal = () => {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Blog</FormLabel>
+                    <FormLabel>Nội dung blog</FormLabel>
                     <FormControl>
                       <Editor {...field} />
                     </FormControl>
