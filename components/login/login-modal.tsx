@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,13 +9,16 @@ import { useForm } from "react-hook-form";
 import Heading from "../heading";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { formSchema } from "../../app/(auth)/(routes)/sign-in/constants";
+import { formSchema } from "../../app/(auth)/(routes)/dangnhap/constants";
 import Image from "next/image";
 import { Checkbox } from "../ui/checkbox";
-import { toast } from "../../app/action/use-toast";
+import toast from "react-hot-toast";
+import { Loader2 } from "lucide-react";
+import { useModal } from "../../hooks/use-modal-store";
 
 const LoginModal = () => {
   const router = useRouter();
+  const { onOpen } = useModal();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -33,25 +35,20 @@ const LoginModal = () => {
         redirect: false,
       }).then((callback) => {
         if (callback?.ok) {
-          toast({
-            title: "Đăng nhập thành công",
-          });
           router.push("/");
           form.reset();
         }
 
         if (callback?.error) {
           console.log(callback?.error);
-          toast({
-            title: "Đăng nhập thất bại",
-          });
+          toast.error("Sai thông tin tài khoản");
         }
       });
 
       form.reset();
-    } catch (error) {
-    } finally {
       router.refresh();
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -79,7 +76,7 @@ const LoginModal = () => {
                   <FormControl>
                     <Input
                       className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
-                      disabled={isLoading}
+                      disabled={isLoading || isSubmitting}
                       placeholder="Email đăng nhập"
                       {...field}
                     />
@@ -95,7 +92,7 @@ const LoginModal = () => {
                     <Input
                       type="password"
                       className="text-base text-black outline outline-2 focus-visible:ring-offset-500 focus-visible:ring-[#7D1F1F]"
-                      disabled={isLoading}
+                      disabled={isLoading || isSubmitting}
                       placeholder="Mật khẩu"
                       {...field}
                     />
@@ -113,7 +110,10 @@ const LoginModal = () => {
                   Ghi nhớ mật khẩu
                 </span>
               </div>
-              <div className="text-sm italic font-semibold hover:underline cursor-pointer">
+              <div
+                onClick={() => onOpen("forgotPassword")}
+                className="text-sm italic font-semibold hover:underline cursor-pointer"
+              >
                 Quên mật khẩu?
               </div>
             </div>
@@ -124,15 +124,22 @@ const LoginModal = () => {
                 size="login"
                 disabled={isLoading || isSubmitting || !isValid}
               >
-                Đăng nhập
+                {isSubmitting ? (
+                  <Loader2 className="transition animate-spin w-4 h-4" />
+                ) : (
+                  "Đăng nhập"
+                )}
               </Button>
             </div>
           </form>
         </Form>
       </div>
-      <div className="mt-20 text-[#7D1F1F] text-base font-semibold">
+      <div className="mt14 text-[#7D1F1F] text-base font-semibold">
         Bạn chưa có tài khoản?
-        <span className="ml-2 font-bold cursor-pointer hover:underline">
+        <span
+          onClick={() => router.push("/dangky")}
+          className="ml-2 font-bold cursor-pointer hover:underline"
+        >
           Đăng ký ngay
         </span>
       </div>

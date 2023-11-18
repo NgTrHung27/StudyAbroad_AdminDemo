@@ -17,7 +17,9 @@ export default function NavBtSeo({ currentUser }: Props) {
     <div className="flex gap-3 md:text-lg text-[9px]">
       {currentUser ? (
         <button
-          onClick={() => signOut()}
+          onClick={() =>
+            signOut({ callbackUrl: "http://localhost:3001/truonghoc" })
+          }
           className="bg-[#4A1414] hover:bg-[#fd2021] text-white font-semibold md:py-2 md:px-4 px-1 py-2 border border-gray-400 rounded shadow"
         >
           Đăng xuất
@@ -25,13 +27,13 @@ export default function NavBtSeo({ currentUser }: Props) {
       ) : (
         <>
           <button
-            onClick={() => router.push("/sign-in")}
+            onClick={() => router.push("/dangnhap")}
             className="bg-[#4A1414] hover:bg-[#fd2021] text-white font-semibold md:py-2 md:px-4 px-1 py-2 border border-gray-400 rounded shadow"
           >
             Đăng nhập
           </button>
           <button
-            onClick={() => router.push("/sign-up")}
+            onClick={() => router.push("/dangky")}
             className="bg-[#4A1414] hover:bg-[#fd2021] text-white font-semibold md:py-2 md:px-4 px-1 py-2 border border-gray-400 rounded shadow"
           >
             Đăng Ký

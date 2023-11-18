@@ -47,14 +47,20 @@ const UserMenu = () => {
           <div ref={ref} className="flex flex-col cursor-pointer">
             <MenuItem onClick={() => router.push("/")} label="Trang chủ" />
             <MenuItem onClick={() => router.push("/YeuCau")} label="Yêu cầu" />
-            <MenuItem onClick={() => router.push("/LienKet")} label="Liên kết" />
-            <MenuItem onClick={() => router.push("/NganhHoc")} label="Ngành học" />
+            <MenuItem
+              onClick={() => router.push("/LienKet")}
+              label="Liên kết"
+            />
+            <MenuItem
+              onClick={() => router.push("/NganhHoc")}
+              label="Ngành học"
+            />
             <hr />
             <MenuItem
-              onClick={() => router.push("/sign-in")}
+              onClick={() => router.push("/dangnhap")}
               label="Đăng nhập"
             />
-            <MenuItem onClick={() => router.push("/sign-up")} label="Đăng ký" />
+            <MenuItem onClick={() => router.push("/dangky")} label="Đăng ký" />
           </div>
         </div>
       )}

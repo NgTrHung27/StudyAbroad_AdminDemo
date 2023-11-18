@@ -1,6 +1,7 @@
 import { AlertTriangle, CheckCircleIcon } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import Link from "next/link";
 
 const bannerVariants = cva(
   "border text-center p-4 text-sm flex items-center w-full",
@@ -19,6 +20,8 @@ const bannerVariants = cva(
 
 interface BannerProps extends VariantProps<typeof bannerVariants> {
   label: string;
+  type?: "confirmEmail";
+  actionString?: string;
 }
 
 const iconMap = {
@@ -26,13 +29,18 @@ const iconMap = {
   success: CheckCircleIcon,
 };
 
-const Banner = ({ label, variant }: BannerProps) => {
+const Banner = ({ label, variant, type, actionString }: BannerProps) => {
   const Icon = iconMap[variant || "warning"];
 
   return (
     <div className={cn(bannerVariants({ variant }))}>
       <Icon className="h-4 w-4 mr-2" />
       {label}
+      {type === "confirmEmail" && (
+        <Link href={"/xacthucemail"} className="font-bold hover:underline">
+          {actionString}
+        </Link>
+      )}
     </div>
   );
 };
