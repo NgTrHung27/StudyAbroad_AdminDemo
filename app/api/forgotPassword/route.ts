@@ -100,6 +100,9 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.log("FORGOT PASS ERROR", error);
-    return new NextResponse("Gửi email khôi phục mật khẩu thất bại");
+    return new NextResponse("Gửi email khôi phục mật khẩu thất bại", {
+      status: 500,
+      headers: corsHeaders,
+    });
   }
 }
