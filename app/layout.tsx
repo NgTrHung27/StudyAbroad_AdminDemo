@@ -3,6 +3,8 @@ import { Montserrat } from "next/font/google";
 import React from "react";
 
 import { cn } from "../lib/utils";
+import ToastProvider from "../components/providers/toast-provider";
+import { ModalProvider } from "../components/providers/modal-provider";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -18,7 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn("h-full", font.className)}>{children}</body>
+      <body className={cn("h-full", font.className)}>
+        <ToastProvider />
+        <ModalProvider />
+        {children}
+      </body>
     </html>
   );
 }
