@@ -19,7 +19,7 @@ const NavbarMain = ({ currentUser }: NavbarProps) => {
   if (!mounted) return null;
 
   return (
-    <div className="p-4 border-b h-full flex items-center bg-white shadow-sm">
+    <div className="p-4 border-b h-full flex items-center bg-white dark:bg-[#020817] shadow-sm">
       <MobileSidebar />
       <NavbarRoutes currentUser={currentUser} />
     </div>

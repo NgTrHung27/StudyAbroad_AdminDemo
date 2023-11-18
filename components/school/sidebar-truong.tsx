@@ -16,7 +16,7 @@ const SidebarTruong = () => {
   if (!mounted) return null;
 
   return (
-    <div className="border h-full flex flex-col overflow-y-auto bg-white shadow-sm">
+    <div className="border h-full flex flex-col overflow-y-auto bg-white dark:bg-[#020817] shadow-sm">
       <div className="flex items-center justify-around h-[80px] px-3 border-b shadow-sm">
         <Link href={"/"}>
           <Logo />
