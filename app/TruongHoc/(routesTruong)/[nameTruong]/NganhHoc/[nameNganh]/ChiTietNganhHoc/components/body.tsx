@@ -1,5 +1,9 @@
 import { Program } from "@prisma/client";
 import Image from "next/image";
+import { Preview } from "../../../../../../../../components/preview";
+import { Montserrat } from "next/font/google";
+import { cn } from "../../../../../../../../lib/utils";
+const font = Montserrat({ weight: "500", subsets: ["vietnamese"] });
 interface Props {
   program: Program;
 }
@@ -19,24 +23,11 @@ export const Body = ({ program }: Props) => {
             className="col-span-1 lg:ml-[52px] rounded-lg "
           />
           <br className="lg:hidden" />
-          <div className="ml-[20px] lg:col-span-2 mt-[20px]">
-            <ul className="list-disc">
-              <li className="text-[16px] lg:text-[20px]">
-                Ngày khai giảng: 10/10/2023
-              </li>
-              <li className="text-[16px] lg:text-[20px]">
-                Học phí: 20,990 CAD
-              </li>
-              <li className="text-[16px] lg:text-[20px]">
-                Liên hệ: Vui lòng liên hệ số: (08) 2225 0730 để được tư vấn
-              </li>
-              <li className="text-[16px] lg:text-[20px]">
-                Văn bằng/ Chứng chỉ: Kết thúc khóa học, học viên tham gia thi trực tuyến. Nếu đạt yêu cầu, học viên sẽ nhận được chứng chỉ Kỹ Năng Giao Tiếp Trong Kinh Doanh CBP do tổ chức IBTA-Hoa Kỳ cấp, có giá trị trên toàn cầu
-              </li>
-              <li className="text-[16px] lg:text-[20px]">
-                Tần suất khai giảng: Thường xuyên
-              </li>
-            </ul>
+          <div className={cn(
+            "mt-4 w-full col-span-2",
+            font.className
+          )}>
+            <Preview value={program.description1} />
           </div>
         </div>
       </div>
