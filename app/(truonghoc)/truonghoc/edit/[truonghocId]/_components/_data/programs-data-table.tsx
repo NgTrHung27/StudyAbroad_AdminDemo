@@ -116,7 +116,7 @@ export function ProgramsDataTable<TData, TValue>({
           className="ml-auto"
         >
           <PlusCircle className="h-4 w-4 mr-2" />
-          Thêm ngành học mới
+          Thêm ngành học
         </Button>
       </div>
       <div className="rounded-md border">

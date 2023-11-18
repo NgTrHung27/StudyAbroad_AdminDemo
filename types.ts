@@ -1,6 +1,7 @@
 import {
   Operation,
   Program,
+  Requirement,
   School,
   Student,
   User,
@@ -168,6 +169,7 @@ export type SchoolFull = School & {
   students: (Student & { user: User })[];
   operations: Operation[];
   programs: Program[];
+  requirement: Requirement | null;
 };
 
 export type StudentProfile = Student & {

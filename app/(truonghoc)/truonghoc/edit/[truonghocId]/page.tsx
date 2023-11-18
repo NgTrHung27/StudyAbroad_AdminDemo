@@ -49,6 +49,7 @@ const TruongHocIdPage = async ({ params }: Props) => {
       history: true,
       operations: true,
       programs: true,
+      requirement: true,
     },
   });
 

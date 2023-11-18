@@ -18,7 +18,7 @@ const OperationTab = ({ school }: Props) => {
       <div className="h-24 text-center flex flex-col items-center justify-center gap-3">
         <div>Không có dữ liệu</div>
         <Button onClick={() => onOpen("createOperation", { school })}>
-          Thêm cơ sở mới
+          Thêm cơ sở
         </Button>
       </div>
     );

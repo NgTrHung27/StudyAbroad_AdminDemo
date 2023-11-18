@@ -116,7 +116,7 @@ export function OperationsDataTable<TData, TValue>({
           className="ml-auto"
         >
           <PlusCircle className="h-4 w-4 mr-2" />
-          Thêm cơ sở mới
+          Thêm cơ sở
         </Button>
       </div>
       <div className="rounded-md border">
