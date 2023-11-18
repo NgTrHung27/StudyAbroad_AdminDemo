@@ -36,6 +36,7 @@ import { CertificateCategory, School, SchoolCategory } from "@prisma/client";
 import { Textarea } from "../ui/textarea";
 import { formCreateUserSchema } from "../../constants/form-create-user-schema";
 import Banner from "../banner";
+import { signIn } from "next-auth/react";
 
 type Props = {
   schools: School[];
@@ -90,9 +91,12 @@ export default function RegisterModal({ schools }: Props) {
       console.log(values);
       await axios.post("/api/register", values);
       registerForm.reset();
-      router.push("/");
+      signIn("credentials", {
+        ...values,
+        redirect: false,
+      });
+      router.push("/xacthucemail");
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -469,9 +473,9 @@ export default function RegisterModal({ schools }: Props) {
 
   const warningText = !isComplete
     ? "Thiếu thông tin: " +
-      requiredFields.map((field, index) =>
-        !field ? ` ${requiredFieldNames[index]}` : ""
-      )
+    requiredFields.map((field, index) =>
+      !field ? ` ${requiredFieldNames[index]}` : ""
+    )
     : "Bạn đã hoàn thành tất cả thông tin";
 
   if (!isMounted) {

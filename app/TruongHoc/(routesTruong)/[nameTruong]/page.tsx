@@ -9,7 +9,6 @@ import { Blogs } from "../../../../components/users/blogs";
 import { redirect } from "next/navigation";
 import NavbarTruong from "../../../../components/navbar/navbar";
 import getSchool from "../../../../action/get-school";
-
 const TruongHocNamePage = async (
   {
     params,
@@ -17,9 +16,7 @@ const TruongHocNamePage = async (
     {
       params: { nameTruong: string };
     }) => {
-
   const school = await getSchool(params.nameTruong);
-
   if (!school) {
     return redirect("/");
   }
@@ -38,5 +35,4 @@ const TruongHocNamePage = async (
     </div>
   );
 };
-
 export default TruongHocNamePage;

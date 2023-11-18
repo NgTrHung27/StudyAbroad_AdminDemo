@@ -80,10 +80,6 @@ export const authOptions: NextAuthOptions = {
           throw new Error(`Sai thông tin tài khoản`);
         }
 
-        if (!user.emailVerified) {
-          throw new Error("Người dùng chưa xác thực email");
-        }
-
         const isCorrectPassword = await bcrypt.compare(
           credentials.password,
           user.hashedPassword
