@@ -50,6 +50,7 @@ export async function GET(req: Request) {
           },
         },
         programs: true,
+        requirement: true,
       },
     });
     console.log(schools);
