@@ -74,6 +74,7 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
           data={school.blogs}
           school={school}
           schools={schools}
+          users={users}
         />
       </TabsContent>
       <TabsContent value="programs">
