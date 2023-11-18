@@ -1,5 +1,3 @@
-import getCurrentUser from "@/actions/get-current-user";
-import { formCreateProgramSchema } from "@/constaints-create/constants-program";
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 export async function GET(
