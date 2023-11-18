@@ -16,7 +16,7 @@ interface ModalProps {
   onClose: () => void;
   children?: React.ReactNode;
   warning?: string;
-  variant: "warning" | "success";
+  variant?: "warning" | "success";
 }
 
 export const Modal: React.FC<ModalProps> = ({

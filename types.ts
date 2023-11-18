@@ -1,4 +1,5 @@
 import {
+  History,
   Operation,
   Program,
   Requirement,
@@ -168,6 +169,7 @@ export const cccd_matsau = {
 export type SchoolFull = School & {
   students: (Student & { user: User })[];
   operations: Operation[];
+  history: History | null;
   programs: Program[];
   requirement: Requirement | null;
 };

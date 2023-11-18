@@ -21,3 +21,14 @@ export async function POST(req: Request) {
     });
   }
 }
+
+export async function GET(req: Request) {
+  try {
+    const news = await db.news.findMany();
+
+    return NextResponse.json(news);
+  } catch (error) {
+    console.log("FIND NEWS", error);
+    return new NextResponse("Tìm tin tức thất bại", { status: 500 });
+  }
+}

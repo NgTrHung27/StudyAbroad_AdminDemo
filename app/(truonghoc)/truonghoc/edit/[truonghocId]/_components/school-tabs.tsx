@@ -10,8 +10,10 @@ import { OperationsDataTable } from "./_data/operations-data-table";
 import { operationsColumns } from "./_data/operations-columns";
 import { ProgramsDataTable } from "./_data/programs-data-table";
 import { programsColumns } from "./_data/programs-column";
-import { Button } from "@/components/ui/button";
 import { useSchoolModal } from "@/hooks/use-school-modal";
+import { Button } from "@/components/ui/button";
+import DisplayRequirement from "./requirements/display-requirement-school";
+import DisplayHistory from "./history/display-history-school";
 
 type Props = {
   school: SchoolFull;
@@ -48,6 +50,19 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
           school={school}
         />
       </TabsContent>
+      <TabsContent value="history">
+        {!school.history ? (
+          <div className="container">
+            <div className="flex items-center justify-center">
+              <Button onClick={() => onOpen("createHistory", { school })}>
+                Thêm lịch sử
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <DisplayHistory schoolName={school.name} history={school.history} />
+        )}
+      </TabsContent>
       <TabsContent value="programs">
         <ProgramsDataTable
           columns={programsColumns}
@@ -65,7 +80,10 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
             </div>
           </div>
         ) : (
-          <div className="">Data ở đây nè</div>
+          <DisplayRequirement
+            schoolName={school.name}
+            requirement={school.requirement}
+          />
         )}
       </TabsContent>
     </Tabs>
