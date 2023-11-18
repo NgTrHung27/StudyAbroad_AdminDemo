@@ -39,9 +39,9 @@ const ImageForm = ({ news }: Props) => {
   };
 
   return (
-    <Card className="w-full p-3">
-      <CardHeader className="font-medium flex-row items-center justify-around p-2">
-        <CardTitle>Thumbnail Bài Viết</CardTitle>
+    <Card className="w-full mt-6 border bg-white rounded-md p-4">
+      <CardHeader className="font-black flex-row items-center justify-around p-2">
+        <CardTitle className="">THUMBNAILS</CardTitle>
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditting && <>Hủy</>}
           {!isEditting && news.imageNews && (

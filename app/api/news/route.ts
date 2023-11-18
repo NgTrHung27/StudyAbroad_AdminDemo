@@ -13,11 +13,26 @@ export async function POST(req: Request) {
         ...values,
       },
     });
-    return new NextResponse("OK", { status: 200 });
+    return NextResponse.json(news);
   } catch (error) {
     console.log("CREATE USER", error);
     return new NextResponse("Gửi tin tức thất bại", {
       status: 500,
     });
+  }
+}
+
+export async function GET(
+  req: Request,
+) {
+  try {
+
+    const news = await db.news.findMany({
+    });
+
+    return NextResponse.json(news);
+  } catch (error) {
+    console.log(error);
+    return new NextResponse("Lỗi tìm trường học", { status: 500 });
   }
 }

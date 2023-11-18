@@ -103,7 +103,7 @@ export function DataTable<TData, TValue>({
         <Link href={"/tintuc/create"} className="ml-auto">
           <Button>
             <PlusCircle className="h-4 w-4 mr-2" />
-            Tạo ngành học
+            Tạo tin tức
           </Button>
         </Link>
       </div>

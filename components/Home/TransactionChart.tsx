@@ -6,6 +6,7 @@ import {
   BarChart,
   CartesianGrid,
   Legend,
+  Rectangle,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -15,79 +16,79 @@ import {
 const data = [
   {
     name: "January",
-    Cornestone: 3000,
-    Canada: 2400,
-    Fraser: 2000,
-    Sportt: 1800,
-    Metropolitan: 1500,
-    amt: 2400,
+    Cornestone: 100,
+    Canada: 140,
+    Fraser: 200,
+    Sportt: 180,
+    Metropolitan: 150,
+    amt: 240,
   },
   {
     name: "February",
-    Cornestone: 3200,
-    Canada: 2700,
-    Fraser: 2136,
-    Sportt: 1967,
-    Metropolitan: 1866,
-    amt: 2210,
+    Cornestone: 320,
+    Canada: 270,
+    Fraser: 213,
+    Sportt: 15,
+    Metropolitan: 18,
+    amt: 66,
   },
   {
     name: "March",
-    Cornestone: 3500,
-    Canada: 3000,
-    Fraser: 2578,
-    Sportt: 2216,
-    Metropolitan: 2200,
-    amt: 2290,
+    Cornestone: 88,
+    Canada: 265,
+    Fraser: 258,
+    Sportt: 216,
+    Metropolitan: 220,
+    amt: 223,
   },
   {
     name: "April",
-    Cornestone: 4187,
-    Canada: 3214,
-    Fraser: 2789,
-    Sportt: 2596,
-    Metropolitan: 2456,
-    amt: 2000,
+    Cornestone: 87,
+    Canada: 314,
+    Fraser: 289,
+    Sportt: 26,
+    Metropolitan: 456,
+    amt: 206,
   },
   {
     name: "May",
     Cornestone: 4953,
-    Canada: 3578,
-    Fraser: 3136,
-    Sportt: 2836,
-    Metropolitan: 2789,
-    amt: 2181,
+    Canada: 378,
+    Fraser: 316,
+    Sportt: 286,
+    Metropolitan: 279,
+    amt: 281,
   },
   {
     name: "July",
-    Cornestone: 6215,
-    Canada: 4500,
-    Fraser: 4136,
-    Sportt: 3819,
-    Metropolitan: 3472,
-    amt: 2500,
+    Cornestone: 65,
+    Canada: 450,
+    Fraser: 416,
+    Sportt: 319,
+    Metropolitan: 372,
+    amt: 200,
   },
   {
     name: "August",
-    Cornestone: 8400,
-    Canada: 7416,
-    Fraser: 6978,
-    Sportt: 5100,
-    Metropolitan: 3600,
-    amt: 2100,
+    Cornestone: 400,
+    Canada: 416,
+    Fraser: 978,
+    Sportt: 100,
+    Metropolitan: 600,
+    amt: 100,
   },
   {
     name: "September",
-    Cornestone: 8900,
-    Canada: 7917,
-    Fraser: 7255,
-    Sportt: 5505,
-    Metropolitan: 4130,
-    amt: 2100,
+    Cornestone: 900,
+    Canada: 917,
+    Fraser: 255,
+    Sportt: 505,
+    Metropolitan: 130,
+    amt: 100,
   },
   {
     name: "October",
-    Cornestone: 2641,
+    Cornestone: 641,
     Canada: 1400,
     Fraser: 1496,
     Sportt: 1236,
@@ -138,11 +139,31 @@ export default function TransactionChart() {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="Cornestone" stackId="a" fill="#253C8A" />
-            <Bar dataKey="Metropolitan" stackId="a" fill="#013334" />
-            <Bar dataKey="Fraser" stackId="a" fill="#99CA3B" />
-            <Bar dataKey="Sportt" stackId="a" fill="#29C4F4" />
-            <Bar dataKey="Canada" stackId="a" fill="#D12030" />
+            <Bar
+              dataKey="Cornestone"
+              fill="#253C8A"
+              activeBar={<Rectangle fill="pink" stroke="blue" />}
+            />
+            <Bar
+              dataKey="Fraser"
+              fill="#99CA3B"
+              activeBar={<Rectangle fill="pink" stroke="blue" />}
+            />
+            <Bar
+              dataKey="Metropolitan"
+              fill="#013334"
+              activeBar={<Rectangle fill="pink" stroke="blue" />}
+            />
+            <Bar
+              dataKey="Sportt"
+              fill="#29C4F4"
+              activeBar={<Rectangle fill="pink" stroke="blue" />}
+            />
+            <Bar
+              dataKey="Canada"
+              fill="#D12030"
+              activeBar={<Rectangle fill="pink" stroke="blue" />}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>

@@ -4,7 +4,20 @@ const nextConfig = {
     serverComponentsExternalPackages: ["bcrypt", "bcryptjs"],
   },
   images: {
-    domains: ["utfs.io", "uploadthing.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "uploadthing.com",
+      },
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+      },
+      {
+        protocol: "https",
+        hostname: "admin-duhocsinhcanada.vercel.app",
+      },
+    ],
   },
 };
 
