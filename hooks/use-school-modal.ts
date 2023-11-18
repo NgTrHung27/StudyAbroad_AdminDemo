@@ -14,7 +14,9 @@ type ModalType =
   | "createOperation"
   | "createHistory"
   | "createBlog"
-  | "createProgram";
+  | "createProgram"
+  | "createRequirement"
+  | "createHistory";
 
 interface useAddStudentSchoolModalStore {
   data: ModalData;

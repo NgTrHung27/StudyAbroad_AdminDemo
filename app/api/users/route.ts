@@ -15,12 +15,18 @@ export async function POST(req: Request) {
 
     const { dob: birth } = body;
 
+    console.log(typeof body.dob);
+    console.log(body.dob);
+
     if (typeof birth === "string") {
       body.dob = new Date(birth);
     }
 
+    if (body.dob) {
+      return new NextResponse(birth);
+    }
+
     const {
-      studyCategory,
       certificateCategory,
       schoolCategory,
       schoolName,
@@ -62,13 +68,15 @@ export async function POST(req: Request) {
 
     const user = await db.user.create({
       data: {
-        students: {
-          create: {
-            schoolId: school.id,
-          },
-        },
         hashedPassword,
         ...values,
+      },
+    });
+
+    await db.student.create({
+      data: {
+        schoolId: school.id,
+        userId: user.id,
       },
     });
 
@@ -94,7 +102,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const emailTemplate = verifyEmail(user.id, token.token, token.otp);
+    const emailTemplate = verifyEmail(token.id, token.token, token.otp);
 
     const options = {
       to: user.email,

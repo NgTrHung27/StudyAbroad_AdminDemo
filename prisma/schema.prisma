@@ -39,18 +39,18 @@ model User {
 
   accounts       Account[]
   activateTokens ActivateToken[]
-  students       Student[]
+  blog           Blog[]
+  student        Student?
+  otp            Otp?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  Blog Blog[]
 }
 
 model Student {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  userId String @db.ObjectId
+  userId String @unique @db.ObjectId
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   schoolId String? @db.ObjectId
@@ -133,18 +133,20 @@ model Certificate {
 model School {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  logoUrl       String @db.String
-  backgroundUrl String @db.String
-  name          String @unique
+  logoUrl       String  @db.String
+  backgroundUrl String  @db.String
+  name          String  @unique
   colorValue    String
+  isPublished   Boolean @default(false)
 
-  operations Operation[]
-  history    History[]
-  blogs      Blog[]
-  programs   Program[]
-  students   Student[]
-  requests   Request[]
-  partners   Partner[]
+  operations  Operation[]
+  history     History?
+  blogs       Blog[]
+  programs    Program[]
+  students    Student[]
+  requests    Request[]
+  partners    Partner[]
+  requirement Requirement?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -157,19 +159,19 @@ model History {
   description1 String @db.String
   description2 String @db.String
 
-  schoolId String? @db.ObjectId
-  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-
-  @@index([schoolId])
+  schoolId String @unique @db.ObjectId
+  school   School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
 }
 
 // Bảng cơ sở của trường học
 model Operation {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  name          String @unique
-  description   String @db.String
-  backgroundUrl String @db.String
+  name          String  @unique
+  description   String  @db.String
+  backgroundUrl String  @db.String
+  address       String  @db.String
+  isPublished   Boolean @default(false)
 
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
@@ -200,13 +202,14 @@ model Blog {
 }
 
 model Program {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
-  name         String @db.String
-  description1 String @db.String
-  description2 String @db.String
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  name         String  @db.String
+  description1 String  @db.String
+  description2 String  @db.String
   Price        Float
-  Image1       String @db.String
-  Image2       String @db.String
+  Image1       String  @db.String
+  Image2       String  @db.String
+  isPublished  Boolean @default(false)
 
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
@@ -249,8 +252,9 @@ model Partner {
   contentlist   String @db.String
   content_Tuvan String @db.String
 
-  schoolId  String?  @db.ObjectId
-  school    School?  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId String? @db.ObjectId
+  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -311,12 +315,33 @@ model MiniScore {
 
   @@index([studentScoreId])
 }
+
 model News {
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   titlenews    String
-  descriptions  String   @db.String
-  author        String
-  imageNews     String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  descriptions String   @db.String
+  author       String
+  imageNews    String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Otp {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  otp       String
+  expiresAt DateTime
+
+  userId String @unique @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Requirement {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  description String @db.String
+
+  schoolId String @unique @db.ObjectId
+  school   School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

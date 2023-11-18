@@ -34,22 +34,24 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { PlusCircle } from "lucide-react";
 import { useSchoolModal } from "@/hooks/use-school-modal";
+import { School } from "@prisma/client";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  school: School;
 }
 
 export function OperationsDataTable<TData, TValue>({
   columns,
   data,
+  school,
 }: DataTableProps<TData, TValue>) {
   const { onOpen } = useSchoolModal();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
-  const [isAdd, setIsAdd] = React.useState(false);
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
 
@@ -101,15 +103,20 @@ export function OperationsDataTable<TData, TValue>({
                     }
                   >
                     {column.id === "name" && "Tên cơ sở"}
+                    {column.id === "address" && "Địa chỉ"}
+                    {column.id === "isPublished" && "Trạng thái"}
                     {column.id === "actions" && "Tùy chọn"}
                   </DropdownMenuCheckboxItem>
                 );
               })}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button onClick={() => onOpen("createOperation")} className="ml-auto">
+        <Button
+          onClick={() => onOpen("createOperation", { school })}
+          className="ml-auto"
+        >
           <PlusCircle className="h-4 w-4 mr-2" />
-          Thêm cơ sở mới
+          Thêm cơ sở
         </Button>
       </div>
       <div className="rounded-md border">
@@ -163,22 +170,27 @@ export function OperationsDataTable<TData, TValue>({
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Trước
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Sau
-        </Button>
+        <div className="flex-1 text-sm text-muted-foreground">
+          Tổng số {table.getFilteredRowModel().rows.length} cơ sở
+        </div>
+        <div className="space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Trước
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Sau
+          </Button>
+        </div>
       </div>
     </div>
   );

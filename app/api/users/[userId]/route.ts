@@ -1,4 +1,5 @@
 import getCurrentUser from "@/actions/get-current-user";
+import { formRoleSchema } from "@/constaints-edit/constants-user";
 import { formCreateUserSchema } from "@/constants/create-user-schema";
 import db from "@/lib/db";
 import { UserRole } from "@prisma/client";
@@ -22,7 +23,7 @@ export async function PATCH(
     const { ...values } = body;
 
     if (!currentUser) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return new NextResponse("Chưa xác thực", { status: 401 });
     }
 
     const existingUser = await db.user.findUnique({
@@ -32,18 +33,20 @@ export async function PATCH(
     });
 
     if (!existingUser) {
-      return new NextResponse("User not found", { status: 404 });
+      return new NextResponse("Không tìm thấy người dung", { status: 404 });
     }
 
     if (existingUser.email.toLowerCase() === "cigpbubu@gmail.com") {
-      return new NextResponse("Không thể cập nhật người dùng này");
+      return new NextResponse("Không thể cập nhật người dùng này", {
+        status: 403,
+      });
     }
 
     const user = await db.user.update({
       where: {
-        id: params.userId,
+        id: existingUser.id,
         NOT: {
-          role: UserRole.ADMIN,
+          email: process.env.ADMIN_EMAIL,
         },
       },
       data: {

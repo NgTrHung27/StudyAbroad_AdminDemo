@@ -65,7 +65,6 @@ export function ProfileForm() {
       gender: "",
       cccd: "",
       email: "",
-      studyCategory: "",
       certificateCategory: "",
       schoolCategory: "",
       description: "",

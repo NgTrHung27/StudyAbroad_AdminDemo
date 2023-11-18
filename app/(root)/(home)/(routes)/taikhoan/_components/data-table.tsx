@@ -99,8 +99,9 @@ export function DataTable<TData, TValue>({
                     }
                   >
                     {column.id === "name" && "Tên tài khoản"}
-                    {column.id === "email" && "email"}
-                    {column.id === "role" && "vai trò"}
+                    {column.id === "email" && "Email"}
+                    {column.id === "role" && "Vai trò"}
+                    {column.id === "isPublished" && "Trạng thái"}
                     {column.id === "actions" && "Tùy chọn"}
                   </DropdownMenuCheckboxItem>
                 );
@@ -125,9 +126,9 @@ export function DataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
                     </TableHead>
                   );
                 })}
@@ -164,7 +165,6 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-
 
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
