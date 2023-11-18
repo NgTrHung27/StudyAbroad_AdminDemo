@@ -10,8 +10,9 @@ import { OperationsDataTable } from "./_data/operations-data-table";
 import { operationsColumns } from "./_data/operations-columns";
 import { ProgramsDataTable } from "./_data/programs-data-table";
 import { programsColumns } from "./_data/programs-column";
-import { Button } from "@/components/ui/button";
 import { useSchoolModal } from "@/hooks/use-school-modal";
+import { Button } from "@/components/ui/button";
+import DisplayRequirement from "./requirements/display-requirement-school";
 
 type Props = {
   school: SchoolFull;
@@ -65,7 +66,10 @@ const SchoolTabs = ({ school, users, schools }: Props) => {
             </div>
           </div>
         ) : (
-          <div className="">Data ở đây nè</div>
+          <DisplayRequirement
+            schoolName={school.name}
+            requirement={school.requirement}
+          />
         )}
       </TabsContent>
     </Tabs>

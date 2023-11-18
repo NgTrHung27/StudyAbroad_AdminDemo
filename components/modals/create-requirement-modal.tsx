@@ -49,6 +49,7 @@ export const RequirementModal = () => {
 
       router.refresh();
       toast.success("Thêm yêu cầu thành công");
+      form.reset();
     } catch (error) {
       toast.error("Thêm yêu cầu thất bại " + error);
     } finally {
@@ -64,7 +65,7 @@ export const RequirementModal = () => {
       onClose={onClose}
     >
       <div>
-        <div className="space-y-4 py-2 pb-4">
+        <div className="py-2 pb-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
