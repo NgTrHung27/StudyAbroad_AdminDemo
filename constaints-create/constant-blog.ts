@@ -1,13 +1,9 @@
 import { z } from "zod";
 
 export const formCreateBlogSchema = z.object({
-  schoolId: z
-    .string({
-      required_error: "Vui lòng chọn tên trường",
-    })
-    .min(1, {
-      message: "Vui lòng chọn tên trường",
-    }),
+  schoolId: z.string({
+    required_error: "Vui lòng chọn tên trường",
+  }),
   studentId: z
     .string({
       required_error: "Vui lòng chọn tên trường",
