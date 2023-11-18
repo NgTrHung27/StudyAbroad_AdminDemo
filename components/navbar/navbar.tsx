@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import Container from "../container";
 import Logo from "./logo";
@@ -12,7 +11,6 @@ import { School } from "@prisma/client";
 interface Props {
   school?: School;
 }
-
 const NavbarTruong = ({ school }: Props) => {
   return (
     <div className="fixed w-full inset-y-0 h-[72px] z-50 ">

@@ -27,7 +27,6 @@ const Search = () => {
 
       console.log(data);
     } catch (error) {
-      console.log(error);
     } finally {
       reset();
       router.refresh();

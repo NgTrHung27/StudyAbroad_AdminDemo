@@ -57,7 +57,6 @@ const Contact = () => {
       registerForm.reset();
       router.push("/");
     } catch (error) {
-      console.log(error);
     } finally {
       window.location.reload;
     }

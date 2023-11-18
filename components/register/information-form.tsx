@@ -11,7 +11,6 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { format } from "date-fns";
 import { vi } from "date-fns/locale";
-import { formRegisterSchema } from "../../app/(auth)/(routes)/sign-up/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
