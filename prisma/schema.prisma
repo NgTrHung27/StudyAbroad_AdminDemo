@@ -39,11 +39,12 @@ model User {
 
   accounts       Account[]
   activateTokens ActivateToken[]
-  Blog           Blog[]
+  blog           Blog[]
+  student        Student?
+  otp            Otp?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Student   Student?
 }
 
 model Student {
@@ -323,4 +324,13 @@ model News {
   imageNews    String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+model Otp {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  otp       String
+  expiresAt DateTime
+
+  userId String @unique @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
