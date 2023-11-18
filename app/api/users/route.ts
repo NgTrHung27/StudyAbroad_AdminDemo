@@ -15,8 +15,15 @@ export async function POST(req: Request) {
 
     const { dob: birth } = body;
 
+    console.log(typeof body.dob);
+    console.log(body.dob);
+
     if (typeof birth === "string") {
       body.dob = new Date(birth);
+    }
+
+    if (body.dob) {
+      return new NextResponse(birth);
     }
 
     const {
