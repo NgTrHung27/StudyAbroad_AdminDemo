@@ -20,8 +20,7 @@ export const columns: ColumnDef<Program>[] = [
                 <Button
                     variant={"ghost"}
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                    className="p-0"
-                >
+                    className="p-0">
                     Tên ngành học
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
