@@ -13,7 +13,7 @@ const TrangChuLayout = async ({ children }: { children: React.ReactNode }) => {
         <div className="fixed w-full h-[80px] inset-y-0 z-10 shadow-sm">
           <NavBtHome schools={schools} />
         </div>
-        <main className="flex-1 pt-[72px] h-full">
+        <main className="flex flex-col flex-1 pt-[72px] h-fit">
           {children}
           <FooterDemo />
         </main>

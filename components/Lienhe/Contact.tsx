@@ -168,7 +168,7 @@ const Contact = () => {
           <h1 className="text-3xl capitalize font-bold">Liên hệ</h1>
         </div>
         <div className="mx-12 pt-2">
-          <ul className="list-none decoration-slice text-lg font-medium space-y-8 text-[#777E90] ">
+          <ul className="list-none decoration-slice text-lg font-medium space-y-6 text-[#777E90] ">
             <li className="flex justify-between">
               <span>
                 {" "}
@@ -211,11 +211,11 @@ const Contact = () => {
           </ul>
         </div>
       </div>
-      <div className="">
+      <div className="md:pl-[10%]">
         <Form {...ContactForm}>
           <form
             onSubmit={ContactForm.handleSubmit(onSubmit)}
-            className="flex flex-col justify-center gap-y-4 w-[350px] focus-within::shadow-sm gap-2"
+            className="flex flex-col justify-center gap-y-5 w-[80%] focus-within::shadow-sm gap-2"
           >
             {informationContent}
             <Button

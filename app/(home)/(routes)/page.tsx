@@ -6,8 +6,10 @@ import Motel from "./_components/4_Motel";
 import Event from "./_components/5_Event_Bus";
 import HighlightSchool from "./_components/6_HightlightSchool";
 import News_Home from "./_components/8_News/News_Home";
+import getNews from "../../../action/get-news";
 
-const HomePage = () => {
+const HomePage = async () => {
+  const news = await getNews();
   return (
     <>
       <div className="w-10/12 h-full mx-auto ">
@@ -23,7 +25,7 @@ const HomePage = () => {
         <HighlightSchool />
       </div>
       <div >
-        <News_Home/>
+        <News_Home news={news} />
       </div>
     </>
   );
