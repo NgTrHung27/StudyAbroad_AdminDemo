@@ -91,12 +91,8 @@ export const BlogModal = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value={UserRole.ADMIN}>
-                          Trường học
-                        </SelectItem>
-                        <SelectItem value={UserRole.USER}>
-                          Người dùng
-                        </SelectItem>
+                        <SelectItem value={"Test"}>Trường học</SelectItem>
+                        <SelectItem value={"Test"}>Người dùng</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
