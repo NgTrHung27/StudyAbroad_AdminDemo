@@ -22,10 +22,6 @@ export async function POST(req: Request) {
       body.dob = new Date(birth);
     }
 
-    if (body.dob) {
-      return new NextResponse(birth);
-    }
-
     const {
       certificateCategory,
       schoolCategory,

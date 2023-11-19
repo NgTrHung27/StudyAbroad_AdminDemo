@@ -20,7 +20,7 @@ import { useSchoolModal } from "@/hooks/use-school-modal";
 import { Modal } from "../modal";
 import FileUpload from "../file-upload";
 import { useState } from "react";
-import { formCreateOperationSchema } from "@/constants/create-opeartion-schema";
+import { formCreateOperationSchema } from "@/constants/create-operation-schema";
 import { useRouter } from "next/navigation";
 import { Editor } from "../editor";
 

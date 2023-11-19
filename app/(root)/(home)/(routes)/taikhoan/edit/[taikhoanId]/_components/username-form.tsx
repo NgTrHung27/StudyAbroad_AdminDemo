@@ -57,7 +57,7 @@ const NameForm = ({ user }: nameFormProps) => {
   };
 
   return (
-    <div className="mt-6 border bg-white rounded-md p-4">
+    <div className="mt-6 border bg-white dark:bg-background rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Họ tên người dùng
         <Button onClick={toggleEdit} variant={"ghost"}>

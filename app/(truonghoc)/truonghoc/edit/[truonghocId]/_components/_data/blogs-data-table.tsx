@@ -33,30 +33,30 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { PlusCircle } from "lucide-react";
-import AddStudent from "../add-student";
-import { SchoolFull } from "@/types";
-import { School, User } from "@prisma/client";
+import { useSchoolModal } from "@/hooks/use-school-modal";
+import { School } from "@prisma/client";
+import { StudentProfile } from "@/types";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  school: SchoolFull;
-  users: User[];
+  school: School;
   schools: School[];
+  students: StudentProfile[];
 }
 
-export function UsersDataTable<TData, TValue>({
+export function BlogsDataTable<TData, TValue>({
   columns,
   data,
   school,
-  users,
   schools,
+  students,
 }: DataTableProps<TData, TValue>) {
+  const { onOpen } = useSchoolModal();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
-  const [isAdd, setIsAdd] = React.useState(false);
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
 
@@ -77,24 +77,11 @@ export function UsersDataTable<TData, TValue>({
     },
   });
 
-  const toggleAdd = () => setIsAdd((current) => !current);
-
-  if (isAdd) {
-    return (
-      <AddStudent
-        setIsAdd={setIsAdd}
-        school={school}
-        users={users}
-        schools={schools}
-      />
-    );
-  }
-
   return (
     <div>
       <div className="flex items-center py-4 justify-between gap-x-2">
         <Input
-          placeholder="Bộ lọc tên học sinh..."
+          placeholder="Bộ lọc tên người đăng..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
@@ -120,18 +107,21 @@ export function UsersDataTable<TData, TValue>({
                       column.toggleVisibility(!!value)
                     }
                   >
-                    {column.id === "name" && "Tên học sinh"}
-                    {column.id === "dob" && "Ngày sinh"}
-                    {column.id === "isPublished" && "Trạng thái"}
+                    {column.id === "name" && "Người đăng"}
                     {column.id === "actions" && "Tùy chọn"}
                   </DropdownMenuCheckboxItem>
                 );
               })}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button onClick={toggleAdd} className="ml-auto">
+        <Button
+          onClick={() =>
+            onOpen("createBlog", { school }, { schools }, { students })
+          }
+          className="ml-auto"
+        >
           <PlusCircle className="h-4 w-4 mr-2" />
-          Quản lý
+          Thêm blogs
         </Button>
       </div>
       <div className="rounded-md border">
@@ -186,7 +176,7 @@ export function UsersDataTable<TData, TValue>({
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          Tổng số {table.getFilteredRowModel().rows.length} học sinh
+          Tổng số {table.getFilteredRowModel().rows.length} blog
         </div>
         <div className="space-x-2">
           <Button

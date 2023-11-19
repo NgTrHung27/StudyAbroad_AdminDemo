@@ -244,7 +244,7 @@ export const StudentSchoolModal = () => {
                   <DropdownMenuContent side="left">
                     <DropdownMenuItem
                       onClick={() => onAdd(user.id)}
-                      className="text-emerald-300"
+                      className="text-emerald-600 font-semibold"
                     >
                       <PlusCircle className="h-4 w-4 mr-2" />
                       Thêm vào trường học

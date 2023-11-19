@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const font = Montserrat({ subsets: ["latin"] });
 
@@ -23,7 +24,14 @@ export default function RootLayout({
         <ModalProvider />
         <ConfettiProvider />
         <ToastProvider />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

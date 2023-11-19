@@ -46,6 +46,8 @@ export const HistoryModal = () => {
     },
   });
 
+  form.watch();
+
   if (!school) {
     return null;
   }
@@ -173,8 +175,6 @@ export const HistoryModal = () => {
     </>
   );
 
-  const formStepField = [imageUrlField, description1Field, description2Field];
-
   const requiredFields = [
     form.getValues("imageUrl"),
     form.getValues("description1"),
@@ -205,7 +205,9 @@ export const HistoryModal = () => {
         <div className="py-2 pb-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              {formStepField[step]}
+              {step === STEPS.IMAGE && imageUrlField}
+              {step === STEPS.DESCRIPTION1 && description1Field}
+              {step === STEPS.DESCRIPTION2 && description2Field}
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
                 {prevBtn}
                 {nextBtn}

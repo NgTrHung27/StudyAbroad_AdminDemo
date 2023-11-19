@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import { School } from "@prisma/client";
 import SchoolSwitcher from "./school-switcher";
 import { UserButton } from "../user-button";
+import { ModeToggle } from "../toggle-theme";
 
 interface NavbarRoutesProps {
   currentUser?: SafeUser | null;
@@ -35,6 +36,7 @@ export const NavbarRoutesTruong = ({
               </Button>
             </Link>
           )}
+          <ModeToggle />
           <UserButton currentUser={currentUser} />
         </div>
       </div>

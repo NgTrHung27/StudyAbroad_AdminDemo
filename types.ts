@@ -1,4 +1,5 @@
 import {
+  Blog,
   History,
   Operation,
   Program,
@@ -40,12 +41,6 @@ export const routes = [
     href: "/lienhe",
     icon: BookMarked,
     description: "Liên Hệ",
-  },
-  {
-    label: "Cài đặt",
-    href: "/caidat",
-    icon: Settings,
-    description: "Cài đặt chung",
   },
   {
     label: "Tin tức",
@@ -169,11 +164,16 @@ export const cccd_matsau = {
 export type SchoolFull = School & {
   students: (Student & { user: User })[];
   operations: Operation[];
-  history: History | null;
+  history: History[];
   programs: Program[];
-  requirement: Requirement | null;
+  requirement: Requirement[];
+  blogs: BlogFull[];
 };
 
 export type StudentProfile = Student & {
   user: User;
+};
+
+export type BlogFull = Blog & {
+  student: StudentProfile;
 };

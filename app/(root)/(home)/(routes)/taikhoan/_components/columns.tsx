@@ -60,7 +60,9 @@ export const columns: ColumnDef<User>[] = [
       const isAdmin = row.getValue("role") === UserRole.ADMIN || false;
 
       return (
-        <Badge className={cn("bg-slate-500", isAdmin && "bg-rose-500")}>
+        <Badge
+          className={cn("bg-slate-500 text-center", isAdmin && "bg-rose-500")}
+        >
           {isAdmin ? "Quản trị viên" : "Người dùng"}
         </Badge>
       );
@@ -85,7 +87,7 @@ export const columns: ColumnDef<User>[] = [
       return (
         <Badge
           className={cn(
-            "bg-yellow-200 text-black",
+            "bg-yellow-200 text-black text-center",
             isPublished && "bg-green-400"
           )}
         >

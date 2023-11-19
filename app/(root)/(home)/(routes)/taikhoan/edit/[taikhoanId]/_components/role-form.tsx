@@ -76,7 +76,7 @@ const RoleForm = ({ user }: nameFormProps) => {
   }
 
   return (
-    <div className="mt-6 border bg-white rounded-md p-4">
+    <div className="mt-6 border bg-white dark:bg-background rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Vai trò nguời dùng
         <Button onClick={toggleEdit} variant={"ghost"}>

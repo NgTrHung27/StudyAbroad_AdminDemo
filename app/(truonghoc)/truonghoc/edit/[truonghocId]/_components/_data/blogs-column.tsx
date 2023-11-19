@@ -1,9 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Student } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
+import { ArrowUpDown, Eye, MoreHorizontal, Pencil } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,33 +10,34 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
+import { BlogFull } from "@/types";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Preview } from "@/components/preview";
 import { format } from "date-fns";
 import { vi } from "date-fns/locale";
-import { StudentProfile } from "@/types";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
-import { Preview } from "@/components/preview";
+import { Tabs } from "@radix-ui/react-tabs";
+import { TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 import PhoneInput from "react-phone-number-input";
+import { CellAction } from "../cell-action";
 
-export const usersColumns: ColumnDef<StudentProfile>[] = [
+export const blogsColumns: ColumnDef<BlogFull>[] = [
   {
     id: "name",
-    accessorKey: "user.name",
+    accessorKey: "student.user.name",
     header: ({ column }) => {
       return (
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Tên học sinh
+          Người đăng
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -49,10 +49,10 @@ export const usersColumns: ColumnDef<StudentProfile>[] = [
             <Avatar>
               <AvatarImage
                 alt="avatar"
-                src={row.original.user.avatar || "/placeholder.jpg"}
+                src={row.original.student.user.avatar || "/placeholder.jpg"}
               />
             </Avatar>
-            {row.original.user.name}
+            {row.original.student.user.name}
           </div>
         </HoverCardTrigger>
         <HoverCardContent className="w-[500px] p-2">
@@ -60,7 +60,7 @@ export const usersColumns: ColumnDef<StudentProfile>[] = [
             <Avatar className="w-full h-full">
               <AvatarImage
                 alt="avatar"
-                src={row.original.user.avatar || "/placeholder.jpg"}
+                src={row.original.student.user.avatar || "/placeholder.jpg"}
               />
             </Avatar>
             <div>
@@ -72,30 +72,30 @@ export const usersColumns: ColumnDef<StudentProfile>[] = [
                 <TabsContent value="information" className="space-y-4">
                   <p>
                     <strong>Tên: </strong>
-                    <span>{row.original.user.name}</span>
+                    <span>{row.original.student.user.name}</span>
                   </p>
                   <p>
                     <strong>Ngày sinh: </strong>
                     <span>
-                      {format(row.original.user.dob, "dd MMMM, yyyy", {
+                      {format(row.original.student.user.dob, "dd MMMM, yyyy", {
                         locale: vi,
                       })}
                     </span>
                   </p>
                   <p>
                     <strong>Địa chỉ: </strong>
-                    <span>{row.original.user.address}</span>
+                    <span>{row.original.student.user.address}</span>
                   </p>
                   <p>
                     <strong>Giới tính: </strong>
                     <span
                       className={cn(
-                        row.original.user.gender.toLowerCase() === "nam"
+                        row.original.student.user.gender === "Nam"
                           ? "text-blue-400 font-semibold"
                           : "text-pink-300 font-semibold"
                       )}
                     >
-                      {row.original.user.gender}
+                      {row.original.student.user.gender}
                     </span>
                   </p>
                   <p>
@@ -103,7 +103,7 @@ export const usersColumns: ColumnDef<StudentProfile>[] = [
                     <PhoneInput
                       disabled={true}
                       onChange={() => {}}
-                      value={row.original.user.phoneNumber}
+                      value={row.original.student.user.phoneNumber}
                       defaultCountry="VN"
                     />
                   </p>
@@ -128,82 +128,56 @@ export const usersColumns: ColumnDef<StudentProfile>[] = [
           <Separator className="my-2" />
           <div className="p-2">
             <p className="text-lg font-semibold">Lý do đi du học:</p>
-            <Preview value={row.original.user.description || ""} />
+            <Preview value={row.original.student.user.description || ""} />
           </div>
         </HoverCardContent>
       </HoverCard>
     ),
   },
   {
-    id: "dob",
-    accessorKey: "user.dob",
+    id: "description",
+    accessorKey: "description",
     header: ({ column }) => {
       return (
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Ngày sinh
+          Nội dung
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
-      <div>{format(row.original.user.dob, "do MMM, yyyy", { locale: vi })}</div>
+      <div>
+        <Preview value={row.original.description} />
+      </div>
     ),
   },
   {
-    id: "isPublished",
-    accessorKey: "user.isPublished",
+    id: "createdAt",
+    accessorKey: "createdAt",
     header: ({ column }) => {
       return (
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Trạng thái
+          Ngày đăng
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }) => {
-      const isPublished = !!row.getValue("isPublished");
-
-      return (
-        <Badge
-          className={cn(
-            "bg-yellow-200 text-black",
-            isPublished && "bg-green-400"
-          )}
-        >
-          {isPublished ? "Đã xét duyệt" : "Chưa xét duyệt"}
-        </Badge>
-      );
-    },
+    cell: ({ row }) => (
+      <div className="text-center">
+        {format(row.original.createdAt, "dd MMMM, yyyy HH:MM:SS", {
+          locale: vi,
+        })}
+      </div>
+    ),
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const { id } = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant={"ghost"} className="h-4 w-8 p-0">
-              <span className="sr-only">Tùy chọn</span>
-              <MoreHorizontal className="h4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <Link href={`/taikhoan/edit/${id}`}>
-              <DropdownMenuItem>
-                <Pencil className="h-4 w-4 mr-2" />
-                Xem thông tin chi tiết
-              </DropdownMenuItem>
-            </Link>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
+    cell: ({ row }) => <CellAction data={row.original} />,
   },
 ];

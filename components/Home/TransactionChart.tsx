@@ -51,7 +51,7 @@ const data = [
     amt: 206,
   },
   {
-    name: "May",
+    name: "Tháng 5",
     Cornestone: 4953,
     Canada: 378,
     Fraser: 316,
@@ -93,35 +93,40 @@ const data = [
     Fraser: 1496,
     Sportt: 1236,
     Metropolitan: 951,
-    amt: 2100,
   },
   {
-    name: "November",
+    name: "Tháng 10",
     Cornestone: 5678,
     Canada: 4300,
     Fraser: 5000,
     Sportt: 3500,
     Metropolitan: 2200,
-    amt: 2100,
   },
   {
-    name: "December",
+    name: "Tháng 11",
     Cornestone: 3490,
     Canada: 4300,
     Fraser: 5000,
     Sportt: 3500,
     Metropolitan: 2200,
-    amt: 2100,
+  },
+  {
+    name: "Tháng 12",
+    Cornestone: 3350,
+    Canada: 4280,
+    Fraser: 1140,
+    Sportt: 3990,
+    Metropolitan: 2400,
   },
 ];
 
 export default function TransactionChart() {
   return (
-    <div className="h-[22rem] bg-white rounded-sm border border-gray-200 flex flex-col flex-1">
-      <strong className="text-gray-700 font-semibold">
+    <div className="h-[22rem] bg-white dark:bg-background rounded-sm border border-gray-200 flex flex-col flex-1 mx-3 mt-4">
+      <strong className="text-gray-700 dark:text-white font-semibold p-3">
         Độ thu hút các trường qua từng tháng
       </strong>
-      <div className="w-full mt-3 flex-1 text-xs">
+      <div className="w-full mt-3 flex-1 text-xs dark:text-white">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             width={500}
