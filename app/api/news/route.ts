@@ -13,7 +13,7 @@ export async function POST(req: Request) {
         ...values,
       },
     });
-    return new NextResponse("OK", { status: 200 });
+    return NextResponse.json(news);
   } catch (error) {
     console.log("CREATE USER", error);
     return new NextResponse("Gửi tin tức thất bại", {

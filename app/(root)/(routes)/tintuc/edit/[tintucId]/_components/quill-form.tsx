@@ -8,6 +8,7 @@ import { Pencil } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { News } from "@prisma/client";
 
 import {
   Form,
@@ -18,43 +19,39 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { News } from "@prisma/client";
-import { Preview } from "@/components/preview";
-import { Editor } from "@/components/editor";
+import { Textarea } from "@/components/ui/textarea";
+import { Editor } from "./editor-quill";
+import { Preview } from "./preview";
 
 interface DescriptionFormProps {
-  initialData: News;
-  eventId: string;
+  news: News;
 }
 
-const formSchema = z.object({
-  description: z.string().min(1, {
+const formDesNews = z.object({
+  descriptions: z.string().min(1, {
     message: "Yêu cầu nhập mô tả hoạt động",
   }),
 });
 
-export const DescriptionForm = ({
-  initialData,
-  eventId,
-}: DescriptionFormProps) => {
+export const QuillForm = ({ news }: DescriptionFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof formDesNews>>({
+    resolver: zodResolver(formDesNews),
     defaultValues: {
-      description: initialData?.descriptions || "",
+      descriptions: news?.descriptions || "",
     },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formDesNews>) => {
     try {
-      await axios.patch(`/api/events/${eventId}`, values);
+      await axios.patch(`/api/news/${news.id}`, values);
       toast.success("Cập nhật mô tả thành công");
       toggleEdit();
       router.refresh();
@@ -66,7 +63,7 @@ export const DescriptionForm = ({
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Mô tả hoạt động
+        Nội dung bài viết
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Hủy</>
@@ -82,13 +79,11 @@ export const DescriptionForm = ({
         <p
           className={cn(
             "text-sm mt-2",
-            !initialData.descriptions && "text-slate-500 italic"
+            !news.descriptions && "text-slate-500 italic"
           )}
         >
-          {!initialData.descriptions && "Không có mô tả"}
-          {initialData.descriptions && (
-            <Preview value={initialData.descriptions} />
-          )}
+          {!news.descriptions && "Không có mô tả"}
+          {news.descriptions && <Preview value={news.descriptions} />}
         </p>
       )}
       {isEditing && (
@@ -99,7 +94,7 @@ export const DescriptionForm = ({
           >
             <FormField
               control={form.control}
-              name="description"
+              name="descriptions"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
