@@ -4,7 +4,7 @@ import * as z from "zod";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Pencil } from "lucide-react";
+import { Loader2, Pencil } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -30,6 +30,7 @@ interface nameFormProps {
 
 const EmailForm = ({ user }: nameFormProps) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [isEditting, setIsEditting] = useState(false);
 
@@ -61,6 +62,7 @@ const EmailForm = ({ user }: nameFormProps) => {
 
   const sendEmail = async () => {
     try {
+      setIsLoading(true);
       const email = user.email;
 
       await axios.post(`/api/users/${user.id}/sendEmail`, { email });
@@ -69,11 +71,13 @@ const EmailForm = ({ user }: nameFormProps) => {
     } catch (error) {
       console.log(error);
       toast.error("Gửi email thất bại");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="mt-6 border bg-white rounded-md p-4">
+    <div className="mt-6 border bg-white dark:bg-background rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Email liên hệ
         <Button onClick={toggleEdit} variant={"ghost"}>
@@ -106,12 +110,18 @@ const EmailForm = ({ user }: nameFormProps) => {
               {user.emailVerified ? "Đã xác thực" : "Chưa xác thực"}
             </Badge>
             {!user.emailVerified && (
-              <Badge
-                onClick={sendEmail}
-                className="bg-black text-white font-bold hover:bg-black/90 hover:cursor-pointer"
-              >
-                Gửi email xác thực
-              </Badge>
+              <>
+                {!isLoading ? (
+                  <Badge
+                    onClick={sendEmail}
+                    className="bg-black text-white font-bold hover:bg-black/90 hover:cursor-pointer"
+                  >
+                    Gửi email xác thực
+                  </Badge>
+                ) : (
+                  <Loader2 className="w-4 h-4 animate-spin transition" />
+                )}
+              </>
             )}
           </div>
         </div>
