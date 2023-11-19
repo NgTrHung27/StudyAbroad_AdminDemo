@@ -71,8 +71,10 @@ const TruongHocIdPage = async ({ params }: Props) => {
     },
   });
 
+  const students = await db.student.findMany({});
+
   const filterUsers = users.filter(
-    (user) => !school.students.some((student) => student.userId === user.id)
+    (user) => !students.some((student) => student.userId === user.id)
   );
 
   const requiredFields = [

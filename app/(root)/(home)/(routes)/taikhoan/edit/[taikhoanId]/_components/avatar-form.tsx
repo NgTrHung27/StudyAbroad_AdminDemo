@@ -12,7 +12,7 @@ const AvatarForm = ({ user }: AvatarFormProps) => {
   const { onOpen } = useModal();
 
   return (
-    <div className="mt-6 border bg-white rounded-md p-4">
+    <div className="mt-6 border bg-white dark:bg-background rounded-md p-4">
       <div className="font-medium flex items-center justify-center">
         <div className="relative">
           <Avatar className="h-32 w-32 border-4 border-slate-200">
@@ -27,7 +27,7 @@ const AvatarForm = ({ user }: AvatarFormProps) => {
           />
         </div>
       </div>
-      <div className="text-xs text-muted-foreground mt-4 text-center">
+      <div className="text-xs text-muted-foreground dark:text-primary mt-4 text-center">
         <h1 className="font-semibold">Ảnh đại diện</h1>
         Khuyến khích sử dụng hình ảnh có kích thước là 200px X 200px
       </div>

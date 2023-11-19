@@ -127,7 +127,7 @@ export const blogsColumns: ColumnDef<BlogFull>[] = [
           </div>
           <Separator className="my-2" />
           <div className="p-2">
-            <p className="text-lg font-semibold">Lý do đi học:</p>
+            <p className="text-lg font-semibold">Lý do đi du học:</p>
             <Preview value={row.original.student.user.description || ""} />
           </div>
         </HoverCardContent>

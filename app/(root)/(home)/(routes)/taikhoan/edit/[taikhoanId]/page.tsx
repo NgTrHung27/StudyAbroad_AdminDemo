@@ -59,12 +59,12 @@ const TaiKhoanIdPage = async ({
             isPublished={user.isPublished}
           />
         </div>
-        <div className="bg-slate-100 border shadow-md p-4 mt-8">
+        <div className="bg-slate-100 dark:bg-background border shadow-md p-4 mt-8">
           <div className="flex items-center gap-x-2">
             <IconBadge icon={LayoutDashboard} />
             <div className="flex flex-col gap-y-2">
               <h1 className="text-2xl font-medium">Hồ sơ thông tin</h1>
-              <span className="text-sm text-slate-700">
+              <span className="text-sm text-slate-700 dark:text-primary">
                 Hoàn thành đầy đủ các thông tin {completionText}
               </span>
             </div>

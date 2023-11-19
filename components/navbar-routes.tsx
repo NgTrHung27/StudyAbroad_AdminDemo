@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
 import Heading from "./heading";
 import { UserButton } from "./user-button";
+import { ModeToggle } from "./toggle-theme";
 
 interface NavbarRoutesProps {
   currentUser?: SafeUser | null;
@@ -41,6 +42,7 @@ export const NavbarRoutes = ({ currentUser }: NavbarRoutesProps) => {
               </Button>
             </Link>
           )}
+          <ModeToggle />
           <UserButton currentUser={currentUser} />
         </div>
       </div>
