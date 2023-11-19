@@ -1,7 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
-
-export const OperationTop = () => {
+import { School } from '@prisma/client';
+interface Props {
+  school: School;
+}
+export const OperationTop = ({ school }: Props) => {
   return (
     <div>
       <div className='flex flex-col'>
@@ -9,13 +12,13 @@ export const OperationTop = () => {
           <Image alt='/' src='/Truong1/historyheader.png' fill className='z-0 absolute' />
           <div className='bg-blue-950 bg-opacity-90 z-10 relative inset-0 w-full min-h-[219px] text-center items-center flex flex-col'>
             <div className='text-2xl md:text-5xl font-bold text-white pb-4 mt-3 '>
-              <p style={{ letterSpacing: "-1px" }}>Các cơ sở của Cornerstone</p>
+              <p style={{ letterSpacing: "-1px" }}>Các cơ sở của {school.name}</p>
             </div>
             <div className='bg-white w-[92%] min-h-fit z-20 top-[70px] mb-5 flex flex-col'>
               <div className='flex flex-row justify-center '>
                 <div><Image className='mx-1' alt='/' src={"/Truong1/book.png"} width={24} height={24} /></div>
                 <div className='flex flex-col items-center text-center text-black font-[20%] text-sm md:text-base'>
-                  <p >Cornerstone International Community College là trường  <br/>
+                  <p >{school.name} International Community College là trường  <br />
                     cao đẳng tư thục lớn nhất ở Vancouver.</p>
                 </div>
               </div>
