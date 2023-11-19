@@ -43,12 +43,6 @@ export const routes = [
     description: "Liên Hệ",
   },
   {
-    label: "Cài đặt",
-    href: "/caidat",
-    icon: Settings,
-    description: "Cài đặt chung",
-  },
-  {
     label: "Tin tức",
     href: "/tintuc",
     icon: Newspaper,

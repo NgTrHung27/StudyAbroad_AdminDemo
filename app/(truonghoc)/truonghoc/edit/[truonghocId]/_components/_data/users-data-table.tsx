@@ -131,7 +131,7 @@ export function UsersDataTable<TData, TValue>({
         </DropdownMenu>
         <Button onClick={toggleAdd} className="ml-auto">
           <PlusCircle className="h-4 w-4 mr-2" />
-          Quản lý học sinh
+          Quản lý
         </Button>
       </div>
       <div className="rounded-md border">
