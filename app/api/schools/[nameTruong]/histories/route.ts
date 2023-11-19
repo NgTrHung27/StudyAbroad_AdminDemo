@@ -8,11 +8,6 @@ export async function POST(
   { params }: { params: { nameTruong: string } }
 ) {
   try {
-    const currentUser = await getCurrentUser();
-
-    if (!currentUser) {
-      return new NextResponse("Chưa xác thực", { status: 401 });
-    }
 
     if (!params.nameTruong) {
       return new NextResponse("Không tìm thấy mã trường học", { status: 404 });
@@ -44,4 +39,36 @@ export async function POST(
     console.log("CREATE HISTORY", error);
     return new NextResponse("Lỗi tạo lịch sử", { status: 500 });
   }
+}
+export async function GET(
+  req: Request,
+  { params }: { params: { nameTruong: string } }
+) {
+  try {
+    if (!params.nameTruong) {
+      return new NextResponse("Không tìm thấy tên trường", { status: 404 });
+    }
+
+    const school = await db.school.findUnique({
+      where: {
+        name: params.nameTruong,
+      },
+    });
+
+    if (!school) {
+      return new NextResponse("Không tìm thấy trường học", { status: 404 });
+    }
+
+    const historys = await db.history.findMany({
+      where: {
+        schoolId: school.id,
+      },
+    });
+    return NextResponse.json(historys);
+  } catch (error) {
+    return new NextResponse(`Lấy lịch sử thất bại thất bại `, {
+      status: 500,
+    });
+  }
+  
 }
