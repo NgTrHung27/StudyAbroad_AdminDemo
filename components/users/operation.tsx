@@ -1,7 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
-
-export const OperationTop = () => {
+import { School } from '@prisma/client';
+interface Props {
+  school: School;
+}
+export const OperationTop = ({ school }: Props) => {
   return (
     <div>
       <div className='flex flex-col'>
@@ -15,7 +18,7 @@ export const OperationTop = () => {
               <div className='flex flex-row justify-center '>
                 <div><Image className='mx-1' alt='/' src={"/Truong1/book.png"} width={24} height={24} /></div>
                 <div className='flex flex-col items-center text-center text-black font-[20%] text-sm md:text-base'>
-                  <p >Cornerstone International Community College là trường  <br/>
+                  <p >{school.name} International Community College là trường  <br />
                     cao đẳng tư thục lớn nhất ở Vancouver.</p>
                 </div>
               </div>

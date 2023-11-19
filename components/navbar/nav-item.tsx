@@ -3,7 +3,7 @@ import { School } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
 interface Props {
-  school?: School;
+  school: School;
 }
 const NavItem = ({ school }: Props) => {
   return (

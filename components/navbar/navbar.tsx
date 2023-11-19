@@ -9,7 +9,7 @@ import Link from "next/link";
 import { School } from "@prisma/client";
 
 interface Props {
-  school?: School;
+  school: School;
 }
 const NavbarTruong = ({ school }: Props) => {
   return (

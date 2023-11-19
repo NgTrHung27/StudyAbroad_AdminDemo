@@ -1,14 +1,16 @@
 import React from "react";
 import Image from "next/image";
 import { School } from "@prisma/client";
+import { cn } from "../../lib/utils";
 
 interface Props {
   school: School;
 }
 
 export const History = ({ school }: Props) => {
+  console.log(school)
   return (
-    <div className="w-full h-fit relative bg-yellow-500 ">
+    <div className={cn("w-full h-fit relative", `bg-[${school.colorValue}]`)}>
       <div className="w-full h-[209px] relative">
         <Image
           alt="/"
@@ -32,7 +34,7 @@ export const History = ({ school }: Props) => {
           <div className="bg-white my-4 z-10 ">
             <div className="flex flex-col py-[120px] ">
               <div className="flex flex-row pl-[22px] pr-[58px]">
-                <div className=" p-0 w-8 h-8 rounded-full border-yellow-500 border-[2px] border-dashed justify-center items-center font-bold flex absolute">
+                <div className={cn("p-0 w-8 h-8 rounded-full  border-[2px] border-dashed justify-center items-center font-bold flex absolute", `border-[${school.colorValue}]`)}>
                   <p>01</p>
                 </div>
                 <div className="flex ml-[50px] text-neutral-950 font-semibold ">
@@ -40,9 +42,9 @@ export const History = ({ school }: Props) => {
                   sở giáo dục nổi tiếng với lịch sử đa dạng và phong phú.
                 </div>
               </div>
-              <div className="bg-yellow-500 w-[3px] h-[140px] ml-[37px] mt-12 absolute"></div>
+              <div className={cn("w-[3px] h-[140px] ml-[37px] mt-12 absolute", `bg-[${school.colorValue}]`)}></div>
               <div className="flex flex-row pl-[22px] pr-[58px] md:mt-[175px] mt-[150px]">
-                <div className=" p-0 w-8 h-8 rounded-full border-yellow-500 border-[2px] border-dashed justify-center items-center font-bold flex absolute">
+                <div className={cn("p-0 w-8 h-8 rounded-full  border-[2px] border-dashed justify-center items-center font-bold flex absolute", `border-[${school.colorValue}]`)}>
                   <p>02</p>
                 </div>
                 <div className="flex ml-[50px] text-neutral-950 font-semibold mr-[30px] ">

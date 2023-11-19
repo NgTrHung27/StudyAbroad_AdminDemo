@@ -9,6 +9,8 @@ import { Blogs } from "../../../../components/users/blogs";
 import { redirect } from "next/navigation";
 import NavbarTruong from "../../../../components/navbar/navbar";
 import getSchool from "../../../../action/get-school";
+import getOperation from "../../../../action/get-operations";
+import getSchools from "../../../../action/get-schools";
 const TruongHocNamePage = async (
   {
     params,
@@ -17,6 +19,8 @@ const TruongHocNamePage = async (
       params: { nameTruong: string };
     }) => {
   const school = await getSchool(params.nameTruong);
+
+  const operation = await getOperation(params.nameTruong);
   if (!school) {
     return redirect("/");
   }
@@ -26,8 +30,8 @@ const TruongHocNamePage = async (
       <div className="h-full w-full pt-[72px]">
         <Welcome school={school} />
         <History school={school} />
-        <OperationTop />
-        <OperationBody />
+        <OperationTop school={school} />
+        <OperationBody school={school} operations={operation} />
         <Procedure />
         <Connect />
         <Blogs />
