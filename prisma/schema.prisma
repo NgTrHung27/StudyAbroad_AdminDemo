@@ -138,7 +138,7 @@ model School {
   name          String  @unique
   colorValue    String
   isPublished   Boolean @default(false)
-
+  requirement Requirement[]
   operations Operation[]
   history    History[]
   blogs      Blog[]
@@ -153,14 +153,11 @@ model School {
 
 model History {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-
   imageUrl     String @db.String
   description1 String @db.String
   description2 String @db.String
-
   schoolId String? @db.ObjectId
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-
   @@index([schoolId])
 }
 
@@ -331,4 +328,14 @@ model Otp {
 
   userId String @unique @db.ObjectId
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+model Requirement {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  description String @db.String
+
+  schoolId String @unique @db.ObjectId
+  school   School @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

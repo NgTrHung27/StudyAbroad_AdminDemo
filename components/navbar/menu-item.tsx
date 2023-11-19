@@ -1,16 +1,12 @@
 "use client";
-
 import React from "react";
 import { cn } from "../../lib/utils";
-
 interface MenuItemProps {
   onClick: () => void;
   label: string;
 }
-
 const MenuItem = ({ onClick, label }: MenuItemProps) => {
   const isVisible = label === "Đăng ký" || label === "Đăng nhập";
-
   return (
     <div
       onClick={onClick}
