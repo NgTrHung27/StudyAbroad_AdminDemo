@@ -1,74 +1,77 @@
-"use client";
-import * as z from "zod";
-import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { Contact } from "@prisma/client";
-import { formContactSchema } from "./constants";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import db from "@/lib/db";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import React from "react";
 
-type Props = {
-  contacts: Contact;
-};
+export const revalidate = 0;
 
-const Contact = ({ contacts }: Props) => {
-  //
-  const [isMounted, setIsMounted] = useState(false);
-  const router = useRouter();
+interface Props {
+  params: {
+    contactId: string;
+  };
+}
 
-  useEffect(() => {
-    setIsMounted(true);
-    console.log("Contacts:", contacts);
-  }, [contacts]);
-
-  const ContactForm = useForm<z.infer<typeof formContactSchema>>({
-    resolver: zodResolver(formContactSchema),
-    defaultValues: {
-      name: contacts && contacts.name ? contacts.name : "", // Kiểm tra giá trị của contacts.name
-      phoneNumber: "",
-      email: "",
-      title: "",
-      textContent: "",
+const ContactComponent = async ({ params }: Props) => {
+  const contact = await db.contact.findUnique({
+    where: {
+      id: params.contactId,
     },
   });
 
-  const informationContent = (
-    <>
-      <FormField
-        control={ContactForm.control}
-        name="name"
-        render={({ field }) => {
-          console.log("Field:", field);
-          return (
-            <FormItem>
-              <FormControl>
-              <Input {...field} readOnly />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          );
-        }}
-      />
-    </>
-  );
-
   return (
-    <div className="m-10">
-      <Form {...ContactForm}>
-        <form className="w-[350px]">{informationContent}</form>
-      </Form>
+    <div className="m-10 font-semibold bg-gray-200 p-4 w-auto rounded-lg">
+      <Link
+        href={`/lienhe`}
+        className="flex items-center text-sm hover:opacity-75 transition mb-6"
+      >
+        <ArrowLeft className="h-4 w-4 mr-2" />
+        Quay về trang liên hệ
+      </Link>
+      {contact ? (
+        <table className="table-fixed w-full border-collapse">
+          <thead>
+            <tr>
+              <th className="text-2xl w-1/6 border-gray-700">
+                Thông tin liên hệ
+              </th>
+            </tr>
+          </thead>
+          <tbody className="border border-gray-700">
+            <tr className="text-sm mt-2 border-b border-gray-700">
+              <td className="font-semibold border-r border-gray-700">
+                Tiêu đề
+              </td>
+              <td className="p-2">{contact.title}</td>
+            </tr>
+            <tr className="text-sm mt-2 border-b border-gray-700">
+              <td className="font-semibold border-r border-gray-700">
+                Tên người gửi
+              </td>
+              <td className="p-2">{contact.name}</td>
+            </tr>
+            <tr className="text-sm mt-2 border-b border-gray-700">
+              <td className="font-semibold border-r border-gray-700">Email</td>
+              <td className="p-2">{contact.email}</td>
+            </tr>
+            <tr className="text-sm mt-2 border-b border-gray-700">
+              <td className="font-semibold border-r border-gray-700">
+                Số điện thoại
+              </td>
+              <td className="p-2">{contact.phoneNumber}</td>
+            </tr>
+            <tr className="text-sm mt-2">
+              <td className="font-semibold border-r border-gray-700">
+                Nội dung liên hệ
+              </td>
+              <td className="p-2">{contact.textContent}</td>
+            </tr>
+          </tbody>
+        </table>
+      ) : (
+        <p className="text-sm mt-2 text-red-500">Không có dữ liệu liên hệ</p>
+      )}
     </div>
   );
 };
 
-export default Contact;
+export default ContactComponent;

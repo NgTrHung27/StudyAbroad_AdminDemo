@@ -39,7 +39,7 @@ const ImageForm = ({ news }: Props) => {
   };
 
   return (
-    <Card className="w-full mt-6 border bg-white rounded-md p-4">
+    <Card className="w-full h-auto mt-6 border bg-white rounded-md p-4">
       <CardHeader className="font-black flex-row items-center justify-around p-2">
         <CardTitle className="">THUMBNAILS</CardTitle>
         <Button onClick={toggleEdit} variant={"ghost"}>
@@ -51,7 +51,7 @@ const ImageForm = ({ news }: Props) => {
           )}
         </Button>
       </CardHeader>
-      <CardContent className="relative h-[60vh] md:h-[50vh]">
+      <CardContent className="relative h-20 md:h-44">
         {!isEditting && (
           <Image
             fill

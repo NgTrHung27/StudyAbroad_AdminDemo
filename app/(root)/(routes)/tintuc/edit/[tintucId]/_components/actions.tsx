@@ -2,7 +2,6 @@
 
 import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { Button } from "@/components/ui/button";
-import { useConfettiStore } from "@/hooks/use-confetti-store";
 import { News } from "@prisma/client";
 import axios from "axios";
 import { Trash } from "lucide-react";
@@ -17,12 +16,9 @@ interface ActionsProps {
 }
 
 export const Actions = ({
-  disabled,
   tintucId,
-  news
 }: ActionsProps) => {
   const router = useRouter();
-  const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
 
 
@@ -42,7 +38,7 @@ export const Actions = ({
   return (
     <div className="flex items-center gap-x-2">
       <ConfirmModal onConfirm={onDelete}>
-        <Button size={"sm"} disabled={isLoading}>
+        <Button size={"sm"} disabled={isLoading} className="mt-4">
           <Trash className="h-4 w-4" />
         </Button>
       </ConfirmModal>

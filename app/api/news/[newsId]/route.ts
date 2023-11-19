@@ -59,3 +59,30 @@ export async function GET(
     return new NextResponse("Lỗi tìm tin tức", { status: 500 });
   }
 }
+
+export async function DELETE(
+  req: Request,
+  { params }: { params: { newsId: string } }
+) {
+  try {
+    if (!params.newsId) {
+      return new NextResponse("Không tìm thấy mã tin tức", { status: 404 });
+    }
+
+    const news = await db.news.findUnique({
+      where: {
+        id: params.newsId,
+      },
+    });
+
+    await db.news.delete({
+      where: {
+        id: params.newsId,
+      },
+    });
+    return NextResponse.json(news);
+  } catch (error) {
+    console.log(error);
+    return new NextResponse("Lỗi tìm tin tức", { status: 500 });
+  }
+}
