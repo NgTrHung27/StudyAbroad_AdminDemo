@@ -1,10 +1,22 @@
 import React from "react";
 import Image from "next/image";
+import NavbarTruong from "../../../../../components/navbar/navbar";
+import getSchool from "../../../../../action/get-school";
 
-const page = () => {
+const page = async (
+  {
+    params,
+  }:
+    {
+      params: { nameTruong: string };
+    }) => {
+
+  const school = await getSchool(params.nameTruong);
+
   return (
     <div className="flex flex-col">
-      <div className="flex justify-center items-center h-48">
+      <NavbarTruong school={school} />
+      <div className="flex justify-center items-center h-48 mt-20">
         <Image
           width={200}
           height={200}

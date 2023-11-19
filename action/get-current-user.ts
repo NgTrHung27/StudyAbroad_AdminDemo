@@ -1,6 +1,5 @@
 import { getServerSession } from "next-auth/next";
 
-import { UserRole } from "@prisma/client";
 import prismadb from "../lib/prismadb";
 import { authOptions } from "../lib/nextauth";
 
@@ -19,7 +18,6 @@ export default async function getCurrentUser() {
     const currentUser = await prismadb.user.findUnique({
       where: {
         email: session.user.email as string,
-        role: UserRole.ADMIN,
       },
     });
 

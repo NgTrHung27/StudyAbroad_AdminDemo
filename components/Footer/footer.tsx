@@ -13,7 +13,7 @@ import Image from "next/image";
 
 export default function FooterDemo() {
   return (
-    <footer className="bg-[#F8F8F8] w-full">
+    <footer className="bg-[#F8F8F8] w-full h-full">
       <div className="container grid md:grid-cols-3 grid-cols-1 mx-auto py-10">
         <div className="w-auto mb-4">
           <Image width={130} height={100} src="/login/LOGO_RED.png" alt="" />
