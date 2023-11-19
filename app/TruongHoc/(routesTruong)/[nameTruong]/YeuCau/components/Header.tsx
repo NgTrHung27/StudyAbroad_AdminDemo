@@ -1,7 +1,11 @@
+import { Request, Requirement } from "@prisma/client";
 import Image from "next/image";
 import React from "react";
-
-export default function Header() {
+import { Preview } from "../../../../../../components/preview";
+interface Props {
+  requirements: Requirement[];
+}
+export default function Header({ requirements }: Props) {
   return (
     <>
       <div>
@@ -15,14 +19,6 @@ export default function Header() {
         />
       </div>
       <div>
-        <div>
-          <Image
-            alt=""
-            src={"/LOGO_RED.png"}
-            layout="fill"
-            className="absolute inset-0 z-0 mt-[970px] -rotate-45 opacity-20"
-          />
-        </div>
         <div className="relative z-10">
           <div className="w-full h-[91px] bg-[#D9D9D9] flex flex-row border-[2px] border-[#A33737] ">
             <div>
@@ -158,26 +154,14 @@ export default function Header() {
               </p>
             </div>
           </div>
-          <ul className="list-disc ml-[90px] md:ml-[520px] text-[18px]">
-            <li className="mt-3">Tiếng anh 12 - điểm cuối kỳ tối thiểu &quot;C&quot;</li>
-            <li className="mt-3">Văn học tiếng anh 12 - điểm tối thiểu &quot;C&quot;</li>
-            <li className="mt-3">Giao tiếp 12 - điểm cuối kỳ tối thiểu &quot;B&quot;</li>
-            <li className="mt-3">
-              Tiếng anh 12 dân tộc bản địa - điểm cuối kỳ tối thiểu &quot;C&quot;
-            </li>
-            <li className="mt-3">
-              Tiếng anh 12 dân tộc bản địa - điểm cuối kỳ tối thiểu &quot;C&quot;
-            </li>
-            <li className="mt-3">
-              Giao tiếp kỹ thuật và chuyên nghiệp 12 - điểm tối thiểu &quot;C&quot; hoặc
-              tiếng anh hoặc văn học - điểm tối thiểu 3
-            </li>
-            <li className="mt-3">TOEFL PBT - 513; CBT - 183; ibt - 65</li>
-            <li className="mt-3">
-              Ielts academic - 5.5, hoặc bài kiểm tra vị trí cornerstone - trình
-              độ trung cấp cao*
-            </li>
-          </ul>
+          {
+            requirements.map((requirement) => (
+              <div className="lg:ml-[440px] mt-2" key={requirement.description}>
+                <Preview value={requirement.description} />
+              </div>
+            ))
+
+          }
         </div>
       </div>
     </>

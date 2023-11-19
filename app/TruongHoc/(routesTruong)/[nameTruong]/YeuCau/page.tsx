@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import NavbarTruong from "../../../../../components/navbar/navbar";
 import getSchool from "../../../../../action/get-school";
+import getRequirements from "../../../../../action/get-Requirements";
 
 const Page = async (
   {
@@ -10,13 +11,13 @@ const Page = async (
     {
       params: { nameTruong: string };
     }) => {
-    
-      const school = await getSchool(params.nameTruong);
 
+  const school = await getSchool(params.nameTruong);
+  const requirements = await getRequirements(params.nameTruong);
   return (
     <div className="">
       <NavbarTruong school={school} />
-      <Header />
+      <Header requirements={requirements} />
     </div>
   );
 }

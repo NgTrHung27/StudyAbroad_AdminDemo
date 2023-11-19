@@ -12,7 +12,7 @@ export const OperationTop = ({ school }: Props) => {
           <Image alt='/' src='/Truong1/historyheader.png' fill className='z-0 absolute' />
           <div className='bg-blue-950 bg-opacity-90 z-10 relative inset-0 w-full min-h-[219px] text-center items-center flex flex-col'>
             <div className='text-2xl md:text-5xl font-bold text-white pb-4 mt-3 '>
-              <p style={{ letterSpacing: "-1px" }}>Các cơ sở của Cornerstone</p>
+              <p style={{ letterSpacing: "-1px" }}>Các cơ sở của {school.name}</p>
             </div>
             <div className='bg-white w-[92%] min-h-fit z-20 top-[70px] mb-5 flex flex-col'>
               <div className='flex flex-row justify-center '>

@@ -1,14 +1,15 @@
 import React from "react";
 import Image from "next/image";
-import { School } from "@prisma/client";
+import { School, History } from "@prisma/client";
 import { cn } from "../../lib/utils";
+import { Preview } from "../preview";
 
 interface Props {
   school: School;
+  histories: History[];
 }
 
-export const History = ({ school }: Props) => {
-  console.log(school)
+export const History1 = ({ school, histories }: Props) => {
   return (
     <div className={cn("w-full h-fit relative", `bg-[${school.colorValue}]`)}>
       <div className="w-full h-[209px] relative">
@@ -31,42 +32,42 @@ export const History = ({ school }: Props) => {
           <Image alt="/2" src="/Truong1/truong1.png" fill className="w-full h-full absolute" />
         </div>
         <div className="col-span-2 relative z-0 flex justify-center">
-          <div className="bg-white my-4 z-10 ">
-            <div className="flex flex-col py-[120px] ">
-              <div className="flex flex-row pl-[22px] pr-[58px]">
-                <div className={cn("p-0 w-8 h-8 rounded-full  border-[2px] border-dashed justify-center items-center font-bold flex absolute", `border-[${school.colorValue}]`)}>
-                  <p>01</p>
+          {histories.map((historie) => (
+            <div key={historie.description1}>
+
+              <div className="bg-white my-4 z-10 ">
+                <div className="flex flex-col py-[120px] ">
+                  <div className="flex flex-row pl-[22px] pr-[58px]">
+                    <div className={cn("p-0 mt-2 w-8 h-8 rounded-full  border-[2px] border-dashed justify-center items-center font-bold flex absolute", `border-[${school.colorValue}]`)}>
+                      <p>01</p>
+                    </div>
+                    <div className="flex ml-[50px] text-neutral-950 font-semibold ">
+                      <Preview value={historie.description1} />
+                    </div>
+                  </div>
+                  <div className={cn("w-[3px] h-[140px] ml-[37px] mt-12 absolute", `bg-[${school.colorValue}]`)}></div>
+                  <div className="flex flex-row pl-[22px] pr-[58px] md:mt-[175px] mt-[130px]">
+                    <div className={cn("p-0 w-8 h-8 rounded-full  border-[2px] border-dashed justify-center items-center font-bold flex absolute", `border-[${school.colorValue}]`)}>
+                      <p>02</p>
+                    </div>
+                    <div className="flex mt-[-10px] ml-[50px] text-neutral-950 font-semibold mr-[30px] ">
+                      <Preview value={historie.description2} />
+                    </div>
+                  </div>
                 </div>
-                <div className="flex ml-[50px] text-neutral-950 font-semibold ">
-                  Cornerstone international community college (CICC) là một cơ
-                  sở giáo dục nổi tiếng với lịch sử đa dạng và phong phú.
-                </div>
-              </div>
-              <div className={cn("w-[3px] h-[140px] ml-[37px] mt-12 absolute", `bg-[${school.colorValue}]`)}></div>
-              <div className="flex flex-row pl-[22px] pr-[58px] md:mt-[175px] mt-[150px]">
-                <div className={cn("p-0 w-8 h-8 rounded-full  border-[2px] border-dashed justify-center items-center font-bold flex absolute", `border-[${school.colorValue}]`)}>
-                  <p>02</p>
-                </div>
-                <div className="flex ml-[50px] text-neutral-950 font-semibold mr-[30px] ">
-                  <p>
-                    CICC được thành lập vào năm 1980 với tầm nhìn cung cấp một
-                    nền giáo dục chất lượng và dễ tiếp cận cho sinh viên từ
-                    nhiều nền văn hóa khác nhau. Kể từ khi thành lập, CICC cam
-                    kết cung cấp các chương trình học phù hợp với ngành nghề và
-                    trang bị cho sinh viên sự thành công trong sự nghiệp.
-                  </p>
+                <div className="right-10 bottom-0 absolute z-10 w-[204px] h-[167px] invisible md:visible ">
+                  <Image
+                    src={"/Truong1/cornerstone_logo.png"}
+                    alt="logoBottom"
+                    width={204}
+                    height={167}
+                  />
                 </div>
               </div>
             </div>
-            <div className="right-10 bottom-0 absolute z-10 w-[204px] h-[167px] invisible md:visible ">
-              <Image
-                src={"/Truong1/cornerstone_logo.png"}
-                alt="logoBottom"
-                width={204}
-                height={167}
-              />
-            </div>
-          </div>
+
+          ))}
+
         </div>
       </div>
     </div>

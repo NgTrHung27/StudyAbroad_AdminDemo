@@ -1,7 +1,5 @@
 import FooterDemo from "../../../components/Footer/footer";
-
 export const revalidate = 0;
-
 const TruongHocLayout = async ({
   children: children,
 }: {
