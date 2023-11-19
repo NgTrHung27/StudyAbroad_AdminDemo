@@ -31,7 +31,7 @@ const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
       onClick={onClick}
       type="button"
       className={cn(
-        "flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-[#7D1F1F]/20",
+        "flex items-center gap-x-2 text-slate-500 dark:text-white text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-[#7D1F1F]/20",
         isActive &&
           "text-[#7D1F1F] bg-[#7D1F1F]/20 hover:bg-[#7D1F1F]/20 hover:text-red-700"
       )}
@@ -39,7 +39,10 @@ const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
       <div className="flex items-center gap-x-2 py-4">
         <Icon
           size={22}
-          className={cn("text-slate-500", isActive && "text-[#7D1F1F]")}
+          className={cn(
+            "text-slate-500 dark:text-white",
+            isActive && "text-[#7D1F1F]"
+          )}
         />
         {label}
       </div>

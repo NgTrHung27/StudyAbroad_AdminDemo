@@ -8,25 +8,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Preview } from "@/components/preview";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { History } from "@prisma/client";
-import { FileText, Pencil, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import { ConfirmModal } from "@/components/modals/confirm-modal";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import Heading from "@/components/heading";
+import EditDescription1Form from "./edit-description-1-form";
+import EditDescription2Form from "./edit-description-2-form";
 
 type Props = { schoolName: string; history: History };
 
 const DisplayHistory = ({ schoolName, history }: Props) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-
-  const toggleEdit = () => setIsEditing((value) => !value);
 
   const onDelete = async () => {
     try {
@@ -50,19 +47,6 @@ const DisplayHistory = ({ schoolName, history }: Props) => {
             <CardDescription>Thông tin về lịch sử của trường</CardDescription>
           </div>
           <div className="flex items-center gap-x-2">
-            {!isEditing ? (
-              <Button
-                onClick={() => toggleEdit()}
-                variant={"ghost"}
-                className="w-full"
-              >
-                <Pencil className="w-4 h-4" />
-              </Button>
-            ) : (
-              <Button onClick={() => toggleEdit()} variant={"ghost"}>
-                Hủy
-              </Button>
-            )}
             <div className="flex items-center gap-x-2">
               <ConfirmModal onConfirm={onDelete}>
                 <Button size={"sm"} disabled={isLoading}>
@@ -75,30 +59,16 @@ const DisplayHistory = ({ schoolName, history }: Props) => {
         <Separator />
       </CardHeader>
       <CardContent>
-        {!isEditing ? (
-          <>
-            <Heading
-              icon={FileText}
-              title="Mô tả 1"
-              description="Nhập đoạn thứ nhất của lịch sử"
-            />
-            <Preview value={history.description1} />
-            <Heading
-              icon={FileText}
-              title="Mô tả 2"
-              description="Nhập đoạn thứ hai của lịch sử"
-            />
-            <Preview value={history.description2} />
-          </>
-        ) : (
-          // <EditRequirementForm
-          //   description={requirement.description}
-          //   schoolName={schoolName}
-          //   requirementId={requirement.id}
-          //   toggleEdit={toggleEdit}
-          // />
-          <div>Test</div>
-        )}
+        <EditDescription1Form
+          description={history.description1}
+          schoolName={schoolName}
+          historyId={history.id}
+        />
+        <EditDescription2Form
+          description={history.description2}
+          schoolName={schoolName}
+          historyId={history.id}
+        />
       </CardContent>
     </Card>
   );

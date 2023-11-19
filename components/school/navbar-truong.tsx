@@ -21,7 +21,7 @@ const NavbarTruong = ({ currentUser, schools }: NavbarProps) => {
   if (!mounted) return null;
 
   return (
-    <div className="p-4 border-b h-full flex items-center bg-white shadow-sm">
+    <div className="p-4 border-b h-full flex items-center bg-white dark:bg-[#020817] shadow-sm">
       <MobileSidebar />
       <NavbarRoutesTruong schools={schools} currentUser={currentUser} />
     </div>

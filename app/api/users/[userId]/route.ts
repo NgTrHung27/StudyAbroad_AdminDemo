@@ -60,3 +60,33 @@ export async function PATCH(
     return new NextResponse("Lỗi cập nhật hồ sơ", { status: 500 });
   }
 }
+
+export async function GET(
+  req: Request,
+  { params }: { params: { userId: string } }
+) {
+  try {
+    if (!params.userId) {
+      return new NextResponse("Không tìm thấy mã người dùng", { status: 404 });
+    }
+
+    const user = await db.user.findUnique({
+      where: {
+        id: params.userId,
+      },
+    });
+
+    if (!user) {
+      return new NextResponse("Không tìm thấy người dùng", { status: 404 });
+    }
+
+    if (user.role === "ADMIN") {
+      return new NextResponse("Quyền hạn không được phép", { status: 403 });
+    }
+
+    return NextResponse.json(user);
+  } catch (error) {
+    console.log("FIND USERS ERROR", error);
+    return new NextResponse("Lỗi tìm người dùng", { status: 500 });
+  }
+}

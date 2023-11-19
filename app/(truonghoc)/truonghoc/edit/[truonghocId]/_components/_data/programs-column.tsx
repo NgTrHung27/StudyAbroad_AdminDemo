@@ -21,6 +21,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import Currency from "@/components/currency";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const programsColumns: ColumnDef<Program>[] = [
   {
@@ -50,26 +51,32 @@ export const programsColumns: ColumnDef<Program>[] = [
           </div>
         </HoverCardTrigger>
         <HoverCardContent className="w-[500px] h-full">
-          <div className="w-full h-full flex flex-col justify-around space-x-4">
-            <div className="relative aspect-video w-full">
-              <Image alt="operationBackground" fill src={row.original.Image2} />
-            </div>
-            <div className="space-y-2">
-              <h2 className=" text-lg font-semibold py-2">
-                Tên ngành học: {row.original.name}
-              </h2>
-              <div className="flex flex-col gap-y-2">
-                <p className="font-semibold">Thông tin ngành học</p>
-                <Preview value={row.original.description1} />
-                <p className="font-semibold">Chi tiết ngành học</p>
-                <Preview value={row.original.description2} />
+          <ScrollArea className="h-[500px] rounded-md border p-4">
+            <div className="w-full h-full flex flex-col justify-around space-x-4">
+              <div className="relative aspect-video w-full">
+                <Image
+                  alt="operationBackground"
+                  fill
+                  src={row.original.Image2}
+                />
               </div>
-              <div className="flex items-center gap-x-2">
-                <p className="font-semibold">Chi phí:</p>
-                <Currency value={row.original.Price} />
+              <div className="space-y-2">
+                <h2 className=" text-lg font-semibold py-2">
+                  Tên ngành học: {row.original.name}
+                </h2>
+                <div className="flex flex-col gap-y-2">
+                  <p className="font-semibold">Thông tin ngành học</p>
+                  <Preview value={row.original.description1} />
+                  <p className="font-semibold">Chi tiết ngành học</p>
+                  <Preview value={row.original.description2} />
+                </div>
+                <div className="flex items-center gap-x-2">
+                  <p className="font-semibold">Chi phí:</p>
+                  <Currency value={row.original.Price} />
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollArea>
         </HoverCardContent>
       </HoverCard>
     ),

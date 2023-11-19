@@ -18,7 +18,7 @@ const Logo = () => {
       />
       <p
         className={cn(
-          "uppercase font-semibold text-[#7D1F1F] text-lg",
+          "uppercase font-semibold text-[#7D1F1F] dark:text-white text-lg",
           font.className
         )}
       >

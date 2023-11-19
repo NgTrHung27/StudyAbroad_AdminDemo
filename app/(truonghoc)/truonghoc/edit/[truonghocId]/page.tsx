@@ -45,7 +45,15 @@ const TruongHocIdPage = async ({ params }: Props) => {
           user: true,
         },
       },
-      blogs: true,
+      blogs: {
+        include: {
+          student: {
+            include: {
+              user: true,
+            },
+          },
+        },
+      },
       history: true,
       operations: true,
       programs: true,
@@ -134,7 +142,8 @@ const TruongHocIdPage = async ({ params }: Props) => {
             <CardContent>
               <SchoolTabs
                 school={school}
-                users={filterUsers}
+                filterUsers={filterUsers}
+                students={school.students}
                 schools={schools}
               />
             </CardContent>

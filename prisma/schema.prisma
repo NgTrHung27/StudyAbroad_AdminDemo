@@ -39,7 +39,6 @@ model User {
 
   accounts       Account[]
   activateTokens ActivateToken[]
-  blog           Blog[]
   student        Student?
   otp            Otp?
 
@@ -57,7 +56,7 @@ model Student {
   school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
 
   certificates  Certificate[]
-  blogs         Blog[]
+  blog          Blog[]
   studentScores StudentScore[]
 
   createdAt DateTime @default(now())
@@ -140,13 +139,13 @@ model School {
   isPublished   Boolean @default(false)
 
   operations  Operation[]
-  history     History?
+  history     History[]
   blogs       Blog[]
   programs    Program[]
   students    Student[]
   requests    Request[]
   partners    Partner[]
-  requirement Requirement?
+  requirement Requirement[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -187,18 +186,15 @@ model Blog {
 
   description String @db.String
 
-  userId String @db.ObjectId
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  schoolId String? @db.ObjectId
-  school   School? @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId  String  @db.ObjectId
+  school    School  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  studentId String  @db.ObjectId
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Student   Student? @relation(fields: [studentId], references: [id])
-  studentId String?  @db.ObjectId
 
-  @@index([userId, schoolId])
+  @@index([schoolId, studentId])
 }
 
 model Program {
