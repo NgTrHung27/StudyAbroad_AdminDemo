@@ -59,7 +59,7 @@ const TitleForm = ({ news }: nameFormProps) => {
   return (
     <div className="mt-6 border bg-white rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Tên bài viết
+         <h1>Tên bài viết</h1>
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditting ? (
             <>Hủy</>

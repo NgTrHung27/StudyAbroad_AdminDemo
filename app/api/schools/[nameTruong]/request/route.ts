@@ -12,12 +12,6 @@ export async function POST(req: Request, {params}: {params: {nameTruong: string}
     const { Name,Image1,Content1,Title1,Content2, Title2,checkcontent,roundcontent} =
       formCreateRequestSchema.parse(body);
 
-    const school = db.school.findUnique({
-      where: {
-        name: params.nameTruong
-      }
-    })
-
     const request = await db.request.create(
       {
        data: {

@@ -11,7 +11,7 @@ export async function POST(
     const currentUser = await getCurrentUser();
 
     if (!currentUser) {
-      return new NextResponse("Chưa xác thực", { status: 401 });
+      return new NextResponse("Chưa xác thực", { status: 404 });
     }
 
     if (!params.nameTruong) {
@@ -44,4 +44,38 @@ export async function POST(
     console.log("CREATE REQUIREMENT", error);
     return new NextResponse("Lỗi tạo yêu cầu nhập học", { status: 500 });
   }
+}
+export async function GET(
+  req: Request,
+  { params }: { params: { nameTruong: string } }
+) {
+  try {
+    if (!params.nameTruong) {
+      return new NextResponse("Không tìm thấy tên trường", { status: 404 });
+    }
+
+    const school = await db.school.findUnique({
+      where: {
+        name: params.nameTruong,
+      },
+    });
+
+    if (!school) {
+      return new NextResponse("Không tìm thấy trường học", { status: 404 });
+    }
+
+    const requirements = await db.requirement.findMany({
+      where: {
+        schoolId: school.id,
+      },
+    });
+
+    return NextResponse.json(requirements);
+  } catch (error) {
+    console.log("FIND PROGRAMS", error);
+    return new NextResponse(`Lấy ngành học thất bại ${error}`, {
+      status: 500,
+    });
+  }
+  
 }
