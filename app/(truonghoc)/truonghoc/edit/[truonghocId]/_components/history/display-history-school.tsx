@@ -18,6 +18,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import EditDescription1Form from "./edit-description-1-form";
 import EditDescription2Form from "./edit-description-2-form";
+import EditImageForm from "./edit_image-form";
 
 type Props = { schoolName: string; history: History };
 
@@ -59,6 +60,11 @@ const DisplayHistory = ({ schoolName, history }: Props) => {
         <Separator />
       </CardHeader>
       <CardContent>
+        <EditImageForm
+          schoolName={schoolName}
+          historyId={history.id}
+          imageUrl={history.imageUrl}
+        />
         <EditDescription1Form
           description={history.description1}
           schoolName={schoolName}

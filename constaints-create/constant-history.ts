@@ -23,3 +23,9 @@ export const formDes2Schema = z.object({
     message: "Vui lòng nhập đoạn thứ hai",
   }),
 });
+
+export const formImageSchema = z.object({
+  imageUrl: z.string().min(1, {
+    message: "Vui lòng chọn hình ảnh",
+  }),
+});

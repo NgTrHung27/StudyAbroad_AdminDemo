@@ -50,7 +50,7 @@ const CoSoIdPage = async ({
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-background">
       <Container>
         <div className="px-6">
           <Link

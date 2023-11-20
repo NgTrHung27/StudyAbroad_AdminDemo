@@ -1,60 +1,73 @@
 "use client";
 
-import * as z from "zod";
-import axios from "axios";
-import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
-import { useState } from "react";
-import toast from "react-hot-toast";
-
+import { Editor } from "@/components/editor";
+import Heading from "@/components/heading";
+import { Preview } from "@/components/preview";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Separator } from "@/components/ui/separator";
+import { formImageSchema } from "@/constaints-create/constant-history";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { FileText, ImageIcon, Pencil, PlusCircle } from "lucide-react";
 import Image from "next/image";
-import ProgramFileUpload from "./program-file-upload";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { z } from "zod";
+import HistoryFileUpload from "./history-file-upload";
 
-interface ProgramImage2FormProps {
-  imageUrl: string | null;
-  truonghocId: string;
-  nganhhocId: string;
-}
+type Props = {
+  schoolName: string;
+  historyId: string;
+  imageUrl: string;
+};
 
-export const formImageSchema = z.object({
-  Image2: z.string().min(1, {
-    message: "Yêu cầu chọn một hình ảnh",
-  }),
-});
-
-const ProgramImage2Form = ({
-  imageUrl,
-  truonghocId,
-  nganhhocId,
-}: ProgramImage2FormProps) => {
+const EditImageForm = ({ schoolName, historyId, imageUrl }: Props) => {
   const router = useRouter();
-
   const [isEditting, setIsEditting] = useState(false);
 
   const toggleEdit = () => {
     setIsEditting((current) => !current);
   };
 
+  const form = useForm<z.infer<typeof formImageSchema>>({
+    resolver: zodResolver(formImageSchema),
+    defaultValues: {
+      imageUrl: imageUrl || "",
+    },
+  });
+
   const onSubmit = async (values: z.infer<typeof formImageSchema>) => {
     try {
       await axios.patch(
-        `/api/schools/${truonghocId}/programs/${nganhhocId}`,
+        `/api/schools/${schoolName}/histories/${historyId}`,
         values
       );
-      toast.success("Cập nhật ngành học thành công");
+
+      toast.success("Cập nhật lịch sử thành công");
       toggleEdit();
-    } catch (error) {
-      toast.error("Cập nhật ngành học thất bại");
-    } finally {
       router.refresh();
+      form.reset();
+    } catch (error) {
+      toast.error("Cập nhật lịch sử thất bại " + error);
+    } finally {
+      window.location.reload;
     }
   };
 
   return (
-    <div className="mt-6 border bg-slate-100 dark:bg-background rounded-md p-4">
+    <div className="mb-6 border bg-slate-100 dark:bg-background rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Hình ảnh 2
+        Hình ảnh đại diện
         <Button onClick={toggleEdit} variant={"ghost"}>
           {isEditting && <>Hủy</>}
           {!isEditting && !imageUrl && (
@@ -89,11 +102,11 @@ const ProgramImage2Form = ({
 
       {isEditting && (
         <div>
-          <ProgramFileUpload
+          <HistoryFileUpload
             endpoint="schoolBackground"
             onChange={(url) => {
               if (url) {
-                onSubmit({ Image2: url });
+                onSubmit({ imageUrl: url });
               }
             }}
           />
@@ -106,4 +119,4 @@ const ProgramImage2Form = ({
   );
 };
 
-export default ProgramImage2Form;
+export default EditImageForm;

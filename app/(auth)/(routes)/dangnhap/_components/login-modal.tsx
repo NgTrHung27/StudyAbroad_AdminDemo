@@ -75,7 +75,7 @@ const LoginModal = () => {
 
   return (
     <Dialog open>
-      <DialogContent className="bg-white text-black p-0 overflow-hidden">
+      <DialogContent className="bg-white dark:bg-background text-black dark:text-primary p-0 overflow-hidden">
         <DialogHeader className="flex items-center pt-9 px-6">
           <div className="relative w-[195px] h-[95px]">
             <Image

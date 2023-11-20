@@ -34,10 +34,10 @@ const ProgramCard: React.FC<ProgramCardProps> = ({ program }) => {
   return (
     <div
       onClick={handleClick}
-      className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4"
+      className="bg-white dark:bg-background group cursor-pointer rounded-xl border p-3 space-y-4"
     >
       {/* Images and Actions */}
-      <div className="aspect-square roudned-xl bg-gray-100 relative">
+      <div className="aspect-square rounded-xl bg-gray-100 relative">
         <Image
           src={program.Image1}
           fill

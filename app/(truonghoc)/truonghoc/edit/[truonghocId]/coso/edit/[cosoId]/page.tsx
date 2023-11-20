@@ -67,7 +67,7 @@ const EditOperationPage = async ({
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col gap-y-2">
                 <h1 className="text-2xl font-medium">Tùy chỉnh cơ sở</h1>
-                <span className="text-sm text-slate-700">
+                <span className="text-sm text-slate-700 dark:text-primary">
                   Hoàn thành đầy đủ các thông tin {completionText}
                 </span>
               </div>
