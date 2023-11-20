@@ -35,8 +35,8 @@ export async function GET(
       status: 500,
     });
   }
+  
 }
-
 export async function POST(
   req: Request,
   { params }: { params: { nameTruong: string } }
@@ -80,3 +80,5 @@ export async function POST(
     });
   }
 }
+
+

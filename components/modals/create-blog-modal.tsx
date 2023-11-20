@@ -40,7 +40,6 @@ export const BlogModal = () => {
   const form = useForm<z.infer<typeof formCreateBlogSchema>>({
     resolver: zodResolver(formCreateBlogSchema),
     defaultValues: {
-      schoolId: school?.id,
       studentId: "",
       description: "",
     },
@@ -86,7 +85,7 @@ export const BlogModal = () => {
                   <FormItem>
                     <FormLabel>Chọn người đăng</FormLabel>
                     <Select
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || isLoading}
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
