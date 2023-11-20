@@ -10,8 +10,9 @@ import { School } from "@prisma/client";
 
 interface Props {
   school: School;
+  schools: School[];
 }
-const NavbarTruong = ({ school }: Props) => {
+const NavbarTruong = ({ school, schools }: Props) => {
   return (
     <div className="fixed w-full inset-y-0 h-[72px] z-50 ">
       <div className="h-full bg-[#7D1F1F]">
@@ -21,7 +22,7 @@ const NavbarTruong = ({ school }: Props) => {
               <Logo />
             </Link>
             <div className="">
-              <NavItem school={school} />
+              <NavItem school={school} schools={schools} />
             </div>
             <Search />
             <UserMenu />

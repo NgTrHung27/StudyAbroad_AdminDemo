@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import NavbarTruong from "../../../../../components/navbar/navbar";
 import getSchool from "../../../../../action/get-school";
+import getSchools from "../../../../../action/get-schools";
 
 const page = async (
   {
@@ -12,10 +13,11 @@ const page = async (
     }) => {
 
   const school = await getSchool(params.nameTruong);
+  const schools = await getSchools();
 
   return (
     <div className="flex flex-col">
-      <NavbarTruong school={school} />
+      <NavbarTruong school={school} schools={schools}/>
       <div className="flex justify-center items-center h-48 mt-20">
         <Image
           width={200}
