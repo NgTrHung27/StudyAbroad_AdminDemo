@@ -6,6 +6,7 @@ import { Logo } from "./components/logo";
 import getProgram from "../../../../../../../action/get-program";
 import getSchool from "../../../../../../../action/get-school";
 import NavbarTruong from "../../../../../../../components/navbar/navbar";
+import getSchools from "../../../../../../../action/get-schools";
 
 const Page = async (
   {
@@ -16,9 +17,11 @@ const Page = async (
     }) => {
   const program = await getProgram(params.nameTruong, params.nameNganh);
   const school = await getSchool(params.nameTruong);
+  const schools = await getSchools();
+
   return (
     <div className="bg-[#FFF6E0]">
-      <NavbarTruong school={school} />
+      <NavbarTruong school={school} schools={schools} />
       <Header />
       <Body program={program} />
       <Body2 program={program} />

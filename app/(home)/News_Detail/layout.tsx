@@ -3,6 +3,7 @@ import FooterDemo from "../../../components/Footer/footer";
 import React, { Suspense } from "react";
 import getSchools from "../../../action/get-schools";
 import Loading from "./loading";
+export const revalidate = 0;
 
 const TrangChuLayout = async ({ children }: { children: React.ReactNode }) => {
   const schools = await getSchools();
