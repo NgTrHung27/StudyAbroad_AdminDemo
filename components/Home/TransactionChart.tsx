@@ -15,7 +15,7 @@ import {
 
 const data = [
   {
-    name: "January",
+    name: "Tháng 1",
     Cornestone: 100,
     Canada: 140,
     Fraser: 200,
@@ -24,7 +24,7 @@ const data = [
     amt: 240,
   },
   {
-    name: "February",
+    name: "Tháng 2",
     Cornestone: 320,
     Canada: 270,
     Fraser: 213,
@@ -33,7 +33,7 @@ const data = [
     amt: 66,
   },
   {
-    name: "March",
+    name: "Tháng 3",
     Cornestone: 88,
     Canada: 265,
     Fraser: 258,
@@ -42,7 +42,7 @@ const data = [
     amt: 223,
   },
   {
-    name: "April",
+    name: "Tháng 4",
     Cornestone: 87,
     Canada: 314,
     Fraser: 289,
@@ -60,7 +60,7 @@ const data = [
     amt: 281,
   },
   {
-    name: "July",
+    name: "Tháng 6",
     Cornestone: 65,
     Canada: 450,
     Fraser: 416,
@@ -69,7 +69,7 @@ const data = [
     amt: 200,
   },
   {
-    name: "August",
+    name: "Tháng 7",
     Cornestone: 400,
     Canada: 416,
     Fraser: 978,
@@ -78,7 +78,7 @@ const data = [
     amt: 100,
   },
   {
-    name: "September",
+    name: "Tháng 8",
     Cornestone: 900,
     Canada: 917,
     Fraser: 255,
@@ -87,7 +87,7 @@ const data = [
     amt: 100,
   },
   {
-    name: "October",
+    name: "Tháng 9",
     Cornestone: 641,
     Canada: 1400,
     Fraser: 1496,
