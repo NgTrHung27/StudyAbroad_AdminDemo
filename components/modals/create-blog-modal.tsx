@@ -40,6 +40,7 @@ export const BlogModal = () => {
   const form = useForm<z.infer<typeof formCreateBlogSchema>>({
     resolver: zodResolver(formCreateBlogSchema),
     defaultValues: {
+      schoolId: school?.id,
       studentId: "",
       description: "",
     },
@@ -135,10 +136,7 @@ export const BlogModal = () => {
                 )}
               />
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                <Button
-                  disabled={isSubmitting || isLoading || !isValid}
-                  type="submit"
-                >
+                <Button disabled={isSubmitting || isLoading} type="submit">
                   Thêm
                 </Button>
               </div>
