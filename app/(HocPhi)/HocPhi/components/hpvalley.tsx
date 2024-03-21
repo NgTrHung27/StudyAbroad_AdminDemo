@@ -6,7 +6,9 @@ export const Hpvalley = () => {
     <div className='w-full h-fit p-5 grid grid-cols-3 bg-gray-300'>
         <div className='col-span-1 relative items-center justify-center bg-[#99CA3B] rounded-2xl px-0 md:px-5 flex'>
             <div className='w-full md:h-[50%] h-[20%] relative '>
-                <Image alt='/' fill src={"/HocPhi/Valley.jpg"} className='w-full h-full absolute'  />
+                <Image alt='/' fill src={"/HocPhi/Valley.jpg"} 
+                className=' absolute'  
+                sizes='w-full h-full'/>
             </div>
         </div>
         <div className='col-span-1 px-2 md:px-5 flex flex-col gap-y-3 md:ml-3 ml-1 font-bold md:text-xs text-[8.5px]'>

@@ -6,7 +6,9 @@ export const Hpmetropolitan = () => {
     <div className='w-full h-fit p-5 grid grid-cols-3 bg-gray-300'>
         <div className='col-span-1 relative items-center justify-center bg-[#013334] rounded-2xl px-0 md:px-5 flex'>
             <div className='w-full md:h-[40%] h-[20%] relative '>
-                <Image alt='/' fill src={"/HocPhi/Metropolitan.jpg"} className='w-full h-full absolute'  />
+                <Image alt='/' fill src={"/HocPhi/Metropolitan.jpg"} 
+                sizes='w-full h-full'
+                className='absolute'  />
             </div>
         </div>
         <div className='col-span-1 px-2 md:px-5 flex flex-col gap-y-3 md:ml-3 ml-1 font-bold md:text-[10.8px] text-[7.5px]'>

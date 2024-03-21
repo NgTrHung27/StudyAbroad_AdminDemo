@@ -31,7 +31,7 @@ const Connectcard = ({
         <h2 className="text-2xl capitalize font-bold">{title}</h2>
       </div>
       <h3 className="w-full pb-12 px-3">{description}</h3>
-      <button
+      <Button
         className={cn(
           "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 absolute -bottom-5",
           bgColor
@@ -43,7 +43,7 @@ const Connectcard = ({
             <ChevronRight className={cn("w-4 h-4 my-1 mx-2", iconColor)} />
           </div>
         </div>
-      </button>
+      </Button>
     </div>
   );
 };

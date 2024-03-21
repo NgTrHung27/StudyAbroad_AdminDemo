@@ -15,6 +15,7 @@ const HightlightSchool = () => {
             height={150}
             alt="Icon"
             src="/Banner_Valeey.jpg"
+            style={{width:"auto", height:"auto"}}
             className="object-cover rounded-xl"
           />
         </div>
@@ -24,6 +25,7 @@ const HightlightSchool = () => {
             height={150}
             alt="Icon"
             src="/Banner_Sprott.jpg"
+            style={{width:"auto", height:"auto"}}
             className="object-cover rounded-xl"
           />
         </div>
@@ -33,6 +35,7 @@ const HightlightSchool = () => {
             height={150}
             alt="Icon"
             src="/Banner_Metropolitan.jpg"
+            style={{width:"auto", height:"auto"}}
             className="object-cover rounded-xl"
           />
         </div>
@@ -42,6 +45,7 @@ const HightlightSchool = () => {
             height={150}
             alt="Icon"
             src="/Banner_Cornerstone.jpg"
+            style={{width:"auto", height:"auto"}}
             className="object-cover rounded-xl"
           />
         </div>
@@ -51,6 +55,7 @@ const HightlightSchool = () => {
             height={150}
             alt="Icon"
             src="/Banner_Canada.jpg"
+            style={{width:"auto", height:"auto"}}
             className="object-cover rounded-xl"
           />
         </div>

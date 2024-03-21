@@ -4,6 +4,7 @@ import React from "react";
 
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { BiSearch } from "react-icons/bi";
+import { Button } from "./ui/button";
 
 interface InputProps {
   id: string;
@@ -43,12 +44,12 @@ const Input = ({
               errors[id] ? "border-rose-500" : "border-neutral-300"
             } ${errors[id] ? "focus:border-rose-500" : "focus:border-black"}`}
           />
-          <button
+          <Button
             type="submit"
             className="flex flex-row items-center justify-center bg-[#7D1F1F] w-10 h-10 rounded-full"
           >
             <BiSearch className="font-bold w-5 h-5 text-white" />
-          </button>
+          </Button>
         </div>
       </form>
     </div>
