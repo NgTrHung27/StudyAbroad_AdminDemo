@@ -20,10 +20,10 @@ const NavItem = ({ schools }: Props) => {
           <HomeMenu />
           <TruongHocCombobox schools={schools} />
         </div>
-        <Link className="md:visible hidden text-white md:text-lg text-base font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full md:flex justify-center text-center items-center px-8" href="/LienHe">Liên Hệ</Link>
-        <Link className="md:visible hidden text-white font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full md:flex justify-center text-center items-center px-8" href="/SoSanh">So Sánh</Link>
-        <Link className="md:visible hidden text-white font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full md:flex justify-center text-center items-center px-8" href="/HocPhi">Học Phí</Link>
-        <Link className="md:visible hidden text-white font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full md:flex justify-center text-center items-center px-8" href="/DoiTac2">E-Sport</Link>
+        <Link className="md:visible hidden text-white md:text-lg text-base font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full md:flex justify-center text-center items-center px-8" href="/Contact">Liên Hệ</Link>
+        <Link className="md:visible hidden text-white font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full md:flex justify-center text-center items-center px-8" href="/Compare">So Sánh</Link>
+        <Link className="md:visible hidden text-white font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full md:flex justify-center text-center items-center px-8" href="/SchoolFees">Học Phí</Link>
+        <Link className="md:visible hidden text-white font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full md:flex justify-center text-center items-center px-8" href="/Partner2">E-Sport</Link>
       </div>
     </>
   );

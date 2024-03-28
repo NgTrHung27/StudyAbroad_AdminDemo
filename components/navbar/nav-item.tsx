@@ -23,20 +23,20 @@ const NavItem = ({ school, schools }: Props) => {
       </div>
       <Link
         className="text-white font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full flex justify-center text-center items-center px-8"
-        href={`/TruongHoc/${school?.name}/YeuCau`}
+        href={`/TruongHoc/${school?.name}/Request`}
       >
         Yêu Cầu
       </Link>
       <Link
         className="text-white font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full flex justify-center text-center items-center px-8"
-        href={`/TruongHoc/${school?.name}/DoiTac`}
+        href={`/TruongHoc/${school?.name}/Partner`}
       >
         {" "}
         Đối Tác
       </Link>
       <Link
         className="text-white font-semibold transition hover:cursor-pointer hover:bg-white hover:text-red-900 min-h-full flex justify-center text-center items-center px-8"
-        href={`/TruongHoc/${school?.name}/NganhHoc/nameNganh`}
+        href={`/TruongHoc/${school?.name}/Program/nameNganh`}
       >
         Ngành Học
       </Link>

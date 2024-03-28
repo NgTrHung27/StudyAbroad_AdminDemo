@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import Heading from "../heading";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { formContactSchema } from "../../app/(lienhe)/LienHe/constants";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -35,6 +34,7 @@ import {
 } from "../ui/select";
 import { CertificateCategory, SchoolCategory } from "@prisma/client";
 import { Textarea } from "../ui/textarea";
+import { formContactSchema } from "../../app/(Contact)/Contact/constants";
 
 const Contact = () => {
   //
