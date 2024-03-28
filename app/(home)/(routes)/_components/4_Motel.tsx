@@ -62,11 +62,13 @@ const Motel = () => {
       <div className="m-10 grid md:grid-cols-3 grid-cols-1 gap-28 justify-center">
         <div className="max-w-sm rounded overflow-hidden shadow-lg ">
           <Image
-            className="w-full h-[200px]"
+            className=""
             width={200}
             height={200}
             src="/Motel_Campie.jpg"
+            style={{width:"w-full ", height:"200px"}}
             alt="Sunset in the mountains"
+
           />
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2">Nhà trọ Campie</div>
@@ -86,10 +88,11 @@ const Motel = () => {
         </div>
         <div className="max-w-sm rounded overflow-hidden shadow-lg ">
           <Image
-            className="w-full h-[200px]"
+            className=""
             width={200}
             height={200}
             src="/Motel_Downtown.jpg"
+            style={{width:"full", height:"full  "}}
             alt="Sunset in the mountains"
           />
           <div className="px-6 py-4">
@@ -112,10 +115,11 @@ const Motel = () => {
         </div>
         <div className="max-w-sm rounded overflow-hidden shadow-lg ">
           <Image
-            className="w-full h-[200px]"
+            className=""
             width={200}
             height={200}
             src="/Motel_Jerico.jpg"
+            style={{width: "full" , height: "200px"}}
             alt="Sunset in the mountains"
           />
           <div className="px-6 py-4">

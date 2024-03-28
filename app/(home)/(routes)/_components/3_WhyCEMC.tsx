@@ -15,6 +15,7 @@ const WhyCEMC = () => {
           height={500}
           alt="Icon"
           src="/3Icon.png"
+          style={{width:"auto", height:"auto"}}
           className="object-cover "
         />
       </div>

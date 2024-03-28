@@ -19,7 +19,8 @@ const News_Card = ({ news }: Props) => {
           alt="newsthumb"
           fill
           src={news.imageNews}
-          className="absolute w-full h-full"
+          sizes="w-full h-full"
+          className="absolute "
         />
       </div>
       <div className="row-span-1 flex justify-start text-justify items-center md:text-[140%] text-[50%] font-semibold px-[5%] tracking-tighter">
