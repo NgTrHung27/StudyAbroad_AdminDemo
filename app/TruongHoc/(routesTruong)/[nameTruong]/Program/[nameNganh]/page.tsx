@@ -7,7 +7,7 @@ import getSchool from "../../../../../../action/get-school";
 import NavbarTruong from "../../../../../../components/navbar/navbar";
 import getSchools from "../../../../../../action/get-schools";
 export const revalidate = 0;
-const NganhHoc = async ({ params }: { params: { nameTruong: string } }) => {
+const Programs = async ({ params }: { params: { nameTruong: string } }) => {
   const programs = await getPrograms(params.nameTruong);
   const school = await getSchool(params.nameTruong);
   const schools = await getSchools();
@@ -21,4 +21,4 @@ const NganhHoc = async ({ params }: { params: { nameTruong: string } }) => {
     </div>
   );
 }
-export default NganhHoc;
+export default Programs;

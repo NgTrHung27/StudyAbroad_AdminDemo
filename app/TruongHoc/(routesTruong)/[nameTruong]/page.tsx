@@ -16,7 +16,7 @@ import getSchools from "../../../../action/get-schools";
 export const revalidate = 0;
 
 
-const TruongHocNamePage = async (
+const SchoolNamePage = async (
   {
     params,
   }:
@@ -46,4 +46,4 @@ const TruongHocNamePage = async (
     </div>
   );
 };
-export default TruongHocNamePage;
+export default SchoolNamePage;

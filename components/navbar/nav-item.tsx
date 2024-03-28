@@ -9,7 +9,6 @@ interface Props {
   schools: School[];
 }
 const NavItem = ({ school, schools }: Props) => {
-  console.log(school);
   return (
     <div className="hidden md:flex flex-row items-center justify-center mx-auto gap-3 text-center md:h-[72px] md:text-lg text-base">
       <Link

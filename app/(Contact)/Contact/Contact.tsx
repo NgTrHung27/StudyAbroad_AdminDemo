@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";
-import Heading from "../heading";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import Heading from "../../../components/heading";
+import { Input } from "../../../components/ui/input";
+import { Button } from "../../../components/ui/button";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -17,12 +17,12 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "../ui/form";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { cn } from "../../lib/utils";
+} from "../../../components/ui/form";
+import { Popover, PopoverContent, PopoverTrigger } from "../../../components/ui/popover";
+import { cn } from "../../../lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { Calendar } from "../ui/calendar";
+import { Calendar } from "../../../components/ui/calendar";
 import { vi } from "date-fns/locale";
 import PhoneInput from "react-phone-number-input";
 import {
@@ -31,10 +31,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "../../../components/ui/select";
 import { CertificateCategory, SchoolCategory } from "@prisma/client";
-import { Textarea } from "../ui/textarea";
-import { formContactSchema } from "../../app/(Contact)/Contact/constants";
+import { Textarea } from "../../../components/ui/textarea";
+import { formContactSchema } from "./constants";
 
 const Contact = () => {
   //

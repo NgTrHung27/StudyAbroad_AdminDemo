@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Contact from "../../../components/Lienhe/Contact";
+import Contact from "./Contact";
 
 type Props = {};
 

@@ -2,7 +2,7 @@ import NavBtHome from "../../components/navbar_Home/navbar_Home";
 import FooterDemo from "../../components/Footer/footer";
 import getSchools from "../../action/get-schools";
 
-const LienHeLayout = async ({
+const ContactLayout = async ({
   children: children,
 }: {
   children: React.ReactNode;
@@ -20,4 +20,4 @@ const LienHeLayout = async ({
       </div>
     );
   };
-export default LienHeLayout;
+export default ContactLayout;

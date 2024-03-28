@@ -4,7 +4,7 @@ import { Hpcanadawest } from "./components/hpcanadawest";
 import { Hpvalley } from "./components/hpvalley";
 import { HPsprott } from "./components/hpsprott";
 
-const HocPhiPage = () => {
+const SchoolFeesPage = () => {
   return (
     <div className="pt-28 px-[8%] h-fit w-full items-center flex flex-col">
       <div className="text-center text-3xl font-bold text-red-900 ">
@@ -30,4 +30,4 @@ const HocPhiPage = () => {
   );
 };
 
-export default HocPhiPage;
+export default SchoolFeesPage;

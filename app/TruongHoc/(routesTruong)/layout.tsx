@@ -1,6 +1,6 @@
 import FooterDemo from "../../../components/Footer/footer";
 export const revalidate = 0;
-const TruongHocLayout = async ({
+const SchoolLayout = async ({
   children: children,
 }: {
   children: React.ReactNode;
@@ -15,4 +15,4 @@ const TruongHocLayout = async ({
   );
 };
 
-export default TruongHocLayout;
+export default SchoolLayout;

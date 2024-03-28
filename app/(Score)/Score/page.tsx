@@ -88,7 +88,7 @@ export default function App() {
               <TableCell>
                 <Check />
               </TableCell>
-              <TableCell>{/* */}</TableCell>
+              <TableCell>.</TableCell>
             </TableRow>
             <TableRow key="2">
               <TableCell>Design Partern</TableCell>
@@ -118,7 +118,7 @@ export default function App() {
               <TableCell>
                 <Check />
               </TableCell>
-              <TableCell>{/* */}</TableCell>
+              <TableCell>.</TableCell>
             </TableRow>
             <TableRow key="4">
               <TableCell>Database</TableCell>
@@ -133,7 +133,7 @@ export default function App() {
               <TableCell>
                 <Check />
               </TableCell>
-              <TableCell>{/* */}</TableCell>
+              <TableCell>.</TableCell>
             </TableRow>
           </TableBody>
         </Table>

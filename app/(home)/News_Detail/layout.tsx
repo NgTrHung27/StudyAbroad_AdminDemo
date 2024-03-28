@@ -5,7 +5,7 @@ import getSchools from "../../../action/get-schools";
 import Loading from "./loading";
 export const revalidate = 0;
 
-const TrangChuLayout = async ({ children }: { children: React.ReactNode }) => {
+const RouteLayout = async ({ children }: { children: React.ReactNode }) => {
   const schools = await getSchools();
 
   return (
@@ -22,4 +22,4 @@ const TrangChuLayout = async ({ children }: { children: React.ReactNode }) => {
     </Suspense>
   );
 };
-export default TrangChuLayout;
+export default RouteLayout;
