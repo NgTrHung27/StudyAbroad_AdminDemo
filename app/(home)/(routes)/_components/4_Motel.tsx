@@ -92,7 +92,7 @@ const Motel = () => {
             width={200}
             height={200}
             src="/Motel_Downtown.jpg"
-            style={{width:"full", height:"full"}}
+            style={{width:"full", height:"full  "}}
             alt="Sunset in the mountains"
           />
           <div className="px-6 py-4">
