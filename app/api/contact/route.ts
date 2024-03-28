@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { formContactSchema } from "../../(lienhe)/LienHe/constants";
+import { formContactSchema } from "../../(lienhe)/Contact/constants";
 import axios from "axios";
 
 export async function POST(req: Request) {

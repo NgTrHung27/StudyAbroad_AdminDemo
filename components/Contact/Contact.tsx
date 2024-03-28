@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import Heading from "../heading";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { formContactSchema } from "../../app/(lienhe)/LienHe/constants";
+import { formContactSchema } from "../../app/(lienhe)/Contact/constants";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
